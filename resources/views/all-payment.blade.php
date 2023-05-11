@@ -58,6 +58,7 @@
                                             <div class="d-flex">
                                                 <form
                                                     action="{{ route('approved.payment', ['id' => $payment->id, 'certficate_id' => $payment->certificate_id]) }}"
+                                                    {{-- action="{{ route('approved.payment', ['id' => $payment->id, 'certficate_id' => $payment->certificate_id]) }}" --}}
                                                     method="post">
                                                     @csrf
                                                     <button type="submit" class="btn btn-link small">Approve</button>

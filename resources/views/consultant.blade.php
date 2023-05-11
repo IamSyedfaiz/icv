@@ -17,7 +17,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Certificate Drafts</h5>
-                            <h1>17</h1>
+                            <h1>{{ $draftCount }}</h1>
                         </div>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Certificate Final</h5>
-                            <h1>6</h1>
+                            <h1>{{ $finalCount }}</h1>
                         </div>
                     </div>
                 </div>

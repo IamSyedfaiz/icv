@@ -33,29 +33,33 @@
                                 <!-- Use auto complete js https://jqueryui.com/autocomplete/ -->
                                 <div class="col-12">
                                     <label for="cat" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="cat" name="c_name" required>
+                                    <input type="text" class="form-control" id="cat" name="c_name"
+                                        value="{{ old('c_name') }}" required>
                                 </div>
                                 <!-- Use auto complete js https://jqueryui.com/autocomplete/ -->
                                 <div class="col-12">
                                     <label for="subcat" class="form-label">Business Name</label>
                                     <input type="text" class="form-control" id="subcat" name="c_business_name"
-                                        required>
+                                        value="{{ old('c_business_name') }}" required>
                                 </div>
                                 <!-- Use auto complete js https://jqueryui.com/autocomplete/ -->
                                 <div class="col-12">
                                     <label for="product" class="form-label">Address</label>
-                                    <input type="text" class="form-control" id="product" name="c_address" required>
+                                    <input type="text" class="form-control" id="product" name="c_address"
+                                        value="{{ old('c_address') }}" required>
                                 </div>
                                 <div class="col-12">
                                     <label for="refno" class="form-label">Phone</label>
-                                    <input type="text" class="form-control" id="refno" name="c_phone" required>
-                                    @error('c_phone')
+                                    <input type="text" class="form-control" id="refno" name="phone"
+                                        value="{{ old('phone') }}" required>
+                                    @error('phone')
                                         <p class="small text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="col-12">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" name="c_email" required>
+                                    <input type="email" class="form-control" id="email" name="c_email"
+                                        value="{{ old('c_email') }}" required>
                                     @error('c_email')
                                         <p class="small text-danger">{{ $message }}</p>
                                     @enderror

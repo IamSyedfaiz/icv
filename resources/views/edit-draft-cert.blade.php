@@ -204,15 +204,18 @@
                                             <input type="text" name="registered_site"
                                                 value="{{ @$certification->registered_site }}" hidden>
                                         </div>
-                                        {{-- {{$certificats->certificate_template}} --}}
+
+
                                         @if ($certification->certificate_template == 'ici')
-                                            <div class="col-12">
-                                                <label for="refno" class="form-label">Certificate No</label>
-                                                <input type="text" class="form-control"
-                                                    value="{{ $ici_Certificate_number }}" id="refno"
-                                                    placeholder="format required from client" name="certificate_number"
-                                                    readonly>
-                                            </div>
+
+                                            
+                                        <div class="col-12">
+                                            <label for="refno" class="form-label">Certificate No</label>
+                                            <input type="text" class="form-control" id="myInput" value="{{$ici_Certificate_number}}"
+                                                id="refno" placeholder="format required from client"
+                                                name="certificate_number" readonly>
+                                        </div>
+
                                         @elseif ($certification->certificate_template == 'icv')
                                             <div class="col-12">
                                                 <label for="refno" class="form-label">Certificate No</label>
@@ -355,9 +358,6 @@
                     date2.setMonth(date2.getMonth() + 22); // Add 11 months to the current date
                     let date3 = new Date(input1Date.getTime());
                     date3.setMonth(date3.getMonth() + 33); // Add 11 months to the current date
-                    // var formatDate1 = formatDate(date1);
-                    // var formatDate2 = formatDate(date2);
-                    // var formatDate3 = formatDate(date3);
                     var input2Date = $('#first_surveillance_audit').val(formatDate(date1));
                     var input3Date = $('#second_surveillance_audit').val(formatDate(date2));
                     var input3Date = $('#certification_due_date').val(formatDate(date3));
@@ -365,4 +365,24 @@
             });
         </script>
     </main><!-- End #main -->
+
 @endsection
+
+
+     <script>
+         // Get the input element
+         const inputElement = document.getElementById('myInput');
+        //  alert(122);
+    console.log(inputElement);
+    
+    // Get the current value of the input field
+    let currentValue = Number(inputElement.value);
+    
+    // Increment the value
+    currentValue++;
+    
+    // Set the new value back to the input field
+    inputElement.value = currentValue;
+  </script>
+
+

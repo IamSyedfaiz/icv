@@ -38,7 +38,10 @@ class HomeController extends Controller
             Auth::logout();
             return redirect()->back()->with('danger', 'Your Account has been Suspended');
         } else {
-            return view('home');
+            $draftCount = Certification::where('certificate_status', 'draft')->where('user_id', auth()->user()->id)->count();
+            $finalCount = Certification::where('certificate_status', 'final')->where('user_id', auth()->user()->id)->count();
+            // $certifications = Certification::where('user_id', auth()->user()->id)->get();
+            return view('home', compact('draftCount', 'finalCount'));
         }
     }
     public function add_user()
@@ -98,11 +101,14 @@ class HomeController extends Controller
     }
     public function consultant($id)
     {
+        $draftCount = Certification::where('certificate_status', 'draft')->where('user_id', auth()->user()->id)->count();
+        $finalCount = Certification::where('certificate_status', 'final')->where('user_id', auth()->user()->id)->count();
         $consultant = Consultant::where('id', $id)->first();
-        return view('consultant', compact('consultant'));
+        return view('consultant', compact('consultant','draftCount','finalCount'));
     }
     public function store_draft_cert(Request $request)
     {
+
 
 
         $validator = Validator::make($request->all(), [
@@ -171,6 +177,38 @@ class HomeController extends Controller
     }
     public function edit_draft_cert($id)
     {
+
+        $star_cert = Certification::where('certificate_template', 'star')->where('certificate_status', 'Final')
+            ->whereNotNull('date_registration')->latest('updated_at')->first();
+
+        if ($star_cert) {
+
+            $star_cert_no = explode('/', $star_cert->certificate_number)[1] + 1;
+        } else {
+            $star_cert_no = 1100;
+        }
+
+
+        $ici_cert = Certification::where('certificate_template', 'ici')->where('certificate_status', 'Final')
+            ->whereNotNull('date_registration')->latest('updated_at')->first();
+
+        if ($ici_cert) {
+
+            $ici_cert_no = explode('/', $ici_cert->certificate_number)[1] + 1;
+        } else {
+            $ici_cert_no = 3100;
+        }
+
+
+        $icv_cert = Certification::where('certificate_template', 'ici')->where('certificate_status', 'Final')
+            ->whereNotNull('date_registration')->latest('updated_at')->first();
+
+        if ($icv_cert) {
+
+            $icv_cert_no = explode('/', $icv_cert->certificate_number)[1] + 1;
+        } else {
+            $icv_cert_no = 900;
+        }
         $current_date = now();
         $format_current_date = $current_date->format('d-m-y');
         $first_date = $current_date->copy()->addMonth(10);
@@ -186,11 +224,10 @@ class HomeController extends Controller
         $second_number = rand(100,  1000);
         $third_number = rand(10,  100);
         $fourth_number = rand(1000,  10000);
-        $ici_Certificate_number = 'ICI' . '/' . $first_number . '/' . $second_number . '/' . $third_number;
-        $icv_Certificate_number = 'IN' . '/' . $first_number . '/' . $second_number . '/' . $fourth_number;
-        $star_Certificate_number = 'SR' . '/' . $first_number . '/' . $second_number . '/' . $fourth_number;
 
-
+        $ici_Certificate_number = 'ICI' . '/' . $star_cert_no . $second_number . '/' . $third_number;
+        $icv_Certificate_number = 'IN' . '/' . $first_number . $icv_cert_no . '/' . $fourth_number;
+        $star_Certificate_number = 'SR' . '/' . $star_cert_no . $second_number . '/' . $fourth_number;
 
 
         return view('edit-draft-cert', compact('certification', 'documents', 'format_current_date', 'format_first_date', 'format_second_date', 'format_due_date', 'payments', 'ici_Certificate_number', 'icv_Certificate_number', 'star_Certificate_number'));

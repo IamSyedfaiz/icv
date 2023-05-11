@@ -31,7 +31,7 @@
                                             <i class="bi bi-patch-check"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>14</h6>
+                                            <h6>{{ $draftCount }}</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -49,7 +49,7 @@
                                             <i class="bi bi-patch-check"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>25</h6>
+                                            <h6>{{ $finalCount }}</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -57,7 +57,7 @@
                         </div>
                         <!-- End Revenue Card -->
                         <!-- Customers Card -->
-                        <div class="col-xxl-4 col-md-6">
+                        {{-- <div class="col-xxl-4 col-md-6">
                             <div class="card info-card sales-card">
                                 <div class="card-body">
                                     <h5 class="card-title">Payment <span>| Total</span></h5>
@@ -72,7 +72,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- End Customers Card -->
 
                         <!-- Reports -->

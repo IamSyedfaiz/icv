@@ -18,6 +18,7 @@ class AdminController extends Controller
 
     public function approvedPayment($id, $certficate_id)
     {
+
         $data = Payment::find($id);
         $data->status = 'A';
         $data->save();

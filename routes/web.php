@@ -55,7 +55,7 @@ Route::get('/consultant_payment', [UserController::class, 'consultantPayment'])-
 
 
 Route::get('/all_payment', [AdminController::class, 'allPayment'])->name('payment');
-Route::post('/approved_payment/{id}', [AdminController::class, 'approvedPayment'])->name('approved.payment');
+Route::post('/approved_payment/{id}/{certficate_id}', [AdminController::class, 'approvedPayment'])->name('approved.payment');
 Route::post('/Rejected_payment/{id}', [AdminController::class, 'rejectedPayment'])->name('rejected.payment');
 Route::get('/delete_certificate/{id}', [UserController::class, 'deleteCertificate'])->name('delete.certificate');
 // Route::post('/upload_image/{id}', [UserController::class, 'storeImage'])->name('image');

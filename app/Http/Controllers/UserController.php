@@ -20,9 +20,10 @@ class UserController extends Controller
         $request->validate([
             'urole' => 'required',
             'uphone' => 'nullable|digits:10',
-            'uphone.max' => 'Please enter a valid 10-digit mobile number',
             'upassword' => 'nullable|min:8',
-            'upassword.min' => 'Please enter a valid 8-digit mobile number',
+        ], [
+            'uphone.digits' => 'Please enter a valid 10-digit mobile number',
+            'upassword.min' => 'The password must be at least 8 characters',
         ]);
 
         if (User::where('email', $request->uemail)->exists()) {
@@ -71,8 +72,9 @@ class UserController extends Controller
     public function create_consultant(Request $request)
     {
         $request->validate([
-            'c_phone' => 'nullable|digits:10',
-            'c_phone.max' => 'Please enter a valid 10-digit mobile number',
+            'phone' => 'nullable|digits:10',
+        ], [
+            'phone.digits' => 'Please enter a valid 10-digit mobile number',
         ]);
 
         if (Consultant::where('email', $request->c_email)->exists()) {
@@ -84,7 +86,7 @@ class UserController extends Controller
             $data->name = $request->c_name;
             $data->business_name = $request->c_business_name;
             $data->address = $request->c_address;
-            $data->phone = $request->c_phone;
+            $data->phone = $request->phone;
             $data->email = $request->c_email;
             $data->user_id = auth()->user()->id;
 
