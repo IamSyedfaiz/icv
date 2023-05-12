@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('first_surveillance_audit')->nullable();
             $table->string('second_surveillance_audit')->nullable();
             $table->string('certification_due_date')->nullable();
+            $table->enum('status', ["A", "R"])->nullable();
             $table->timestamps();
         });
     }

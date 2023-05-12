@@ -21,7 +21,7 @@
                                 {{ @$certification->consultant->name }}
 
                             </h5>
-                            <form class="row g-3" action="{{ route('store.draft.cert') }}" method="post">
+                            <form class="row g-3" action="{{ route('edit.certificate', ['id'=>$certification->id]) }}" method="post">
                                 @csrf
                                 <!-- Use auto complete js https://jqueryui.com/autocomplete/ -->
 
@@ -29,34 +29,35 @@
                                     <label for="cat" class="form-label">Certificate Template</label>
                                     <input type="text" name="consultant_id" class="form-control" id="cat"
                                         value="{{ @$consultants->id }}" hidden>
-                                    <select class="form-control" name="certificate_template">
-                                        <option value="">{{ @$certification->certificate_template }}</option>
+                                    <select  class="form-control" name="certificate_template">
+                                        <option  value="">{{ @$certification->certificate_template }}</option>
+                                        
                                     </select>
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <label for="cat" class="form-label">Certificate Status</label>
-                                    <select class="form-control" name="certificate_status">
+                                    <select readonly class="form-control" name="certificate_status">
                                         <option>{{ @$certification->certificate_status }}</option>
                                     </select>
                                 </div>
                                 <div class="col-12">
                                     <label for="cat" class="form-label">Business Name</label>
                                     <input type="text" name="business_name" value="{{ @$certification->business_name }}"
-                                        readonly class="form-control" id="cat">
+                                         class="form-control" id="cat">
                                 </div>
 
                                 <div class="col-12">
                                     <label for="subcat" class="form-label">Scope of Registration</label>
-                                    <textarea class="form-control" name="scope_registration" readonly>{{ @$certification->scope_registration }}</textarea>
+                                    <textarea class="form-control" name="scope_registration" >{{ @$certification->scope_registration }}</textarea>
                                 </div>
 
                                 <div class="col-12">
                                     <label for="product" class="form-label">Registered Site(s)</label>
-                                    <textarea class="form-control" name="registered_site" readonly>{{ @$certification->registered_site }}</textarea>
+                                    <textarea class="form-control" name="registered_site" >{{ @$certification->registered_site }}</textarea>
                                 </div>
-                                {{-- <div class="text-center">
+                                <div class="text-center">
                                     <button type="submit" class="btn btn-primary">Submit</button>
-                                </div> --}}
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -155,6 +156,7 @@
                                             <label for="cat" class="form-label">Payment Received</label>
                                             <select class="form-control" name="payment_type">
                                                 <option>Select</option>
+                                                <option>Pending</option>
                                                 <option>Paytm</option>
                                                 <option>Gpay</option>
                                                 <option>Phonepay</option>
@@ -207,15 +209,13 @@
 
 
                                         @if ($certification->certificate_template == 'ici')
-
-                                            
-                                        <div class="col-12">
-                                            <label for="refno" class="form-label">Certificate No</label>
-                                            <input type="text" class="form-control" id="myInput" value="{{$ici_Certificate_number}}"
-                                                id="refno" placeholder="format required from client"
-                                                name="certificate_number" readonly>
-                                        </div>
-
+                                            <div class="col-12">
+                                                <label for="refno" class="form-label">Certificate No</label>
+                                                <input type="text" class="form-control" id="myInput"
+                                                    value="{{ $ici_Certificate_number }}" id="refno"
+                                                    placeholder="format required from client" name="certificate_number"
+                                                    readonly>
+                                            </div>
                                         @elseif ($certification->certificate_template == 'icv')
                                             <div class="col-12">
                                                 <label for="refno" class="form-label">Certificate No</label>
@@ -266,7 +266,7 @@
                                                     </p>
                                                 </div>
 
-                                                @if ($payment->status == 'A')
+                                                @if ($payment->status == 'A' && $certification->status == 'A')
                                                     <div class="text-center">
 
                                                         <button type="submit" class="btn btn-primary">Generate Final
@@ -365,24 +365,21 @@
             });
         </script>
     </main><!-- End #main -->
-
 @endsection
 
 
-     <script>
-         // Get the input element
-         const inputElement = document.getElementById('myInput');
-        //  alert(122);
+<script>
+    // Get the input element
+    const inputElement = document.getElementById('myInput');
+    //  alert(122);
     console.log(inputElement);
-    
+
     // Get the current value of the input field
     let currentValue = Number(inputElement.value);
-    
+
     // Increment the value
     currentValue++;
-    
+
     // Set the new value back to the input field
     inputElement.value = currentValue;
-  </script>
-
-
+</script>

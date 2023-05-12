@@ -46,7 +46,7 @@
         }
 
         #page-container {
-            background-image: url("{{ asset('/assets/img/cert/ICI.jpg') }}");
+            background-image: url("{{ asset('/assets/img/cert/ICI-Draft.jpg') }}");
             background-repeat: no-repeat;
             /* object-fit: cover; */
             background-size: 920px 1500px;

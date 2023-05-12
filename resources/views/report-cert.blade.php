@@ -41,7 +41,20 @@
                     <table class="table table-striped datatable">
                         <thead>
                             <tr>
-                                <th>#</th>
+                                {{-- <th>#</th> --}}
+                                <th>Standerd</th>
+                                <th>Business</th>
+                                <th>Cert No.</th>
+                                <th>CB</th>
+                                <th>Salesperson</th>
+                                <th>Consultant</th>
+                                <th>DOC</th>
+                                <th>Scope of Registration</th>
+                                <th>Registered Site</th>
+                                <th>Payment</th>
+                                <th>Payment Type</th>
+                                <th>Status</th>
+                                {{-- <th>#</th>
                                 <th>Standerd</th>
                                 <th>Salesperson</th>
                                 <th>Business</th>
@@ -53,18 +66,20 @@
                                 <th>Payment</th>
                                 <th>Payment Type</th>
                                 <th>Status</th>
-                                <th>Cert No.</th>
+                                <th>Cert No.</th> --}}
 
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (@$certifications as $certification)
                                 <tr>
-                                    <td>{{ $certification->id }}</td>
+                                    {{-- <td>{{ $certification->id }}</td> --}}
                                     <td>{{ $certification->standerd }}</td>
-                                    <td>{{ $certification->user->name }}</td>
                                     <td>{{ $certification->business_name }}</td>
+                                    <td>{{ $certification->certificate_number }}</td>
+
                                     <td>{{ $certification->certificate_template }}</td>
+                                    <td>{{ $certification->user->name }}</td>
                                     <td>{{ $certification->consultant->name }}</td>
                                     <td>{{ date('d-m-Y', strtotime($certification->created_at)) }}</td>
                                     <td>{{ $certification->scope_registration }}</td>
@@ -89,7 +104,6 @@
                                     </td>
                                     {{-- <td>7981236786123</td> --}}
                                     {{-- <td>{{ $certification->certificate_status }}</td> --}}
-                                    <td>{{ $certification->certificate_number }}</td>
                                 </tr>
                             @endforeach
 

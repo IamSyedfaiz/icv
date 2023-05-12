@@ -16,19 +16,19 @@ class AdminController extends Controller
         return view('all-payment', compact('payments'));
     }
 
-    public function approvedPayment($id, $certficate_id)
+    public function approvedPayment($id)
     {
 
         $data = Payment::find($id);
         $data->status = 'A';
         $data->save();
-        if ($certficate_id) {
-            $cert = Certification::find($certficate_id);
-            if ($cert) {
-                $cert->certificate_status = 'Final';
-                $cert->save();
-            }
-        }
+        // if ($certficate_id) {
+        //     $cert = Certification::find($certficate_id);
+        //     if ($cert) {
+        //         $cert->certificate_status = 'Final';
+        //         $cert->save();
+        //     }
+        // }
 
 
         return redirect()->back();
@@ -37,6 +37,34 @@ class AdminController extends Controller
     {
         $data = Payment::find($id);
         $data->status = 'R';
+        $data->save();
+
+        return redirect()->back();
+    }
+    public function document()
+    {
+        // $payments = Payment::all();
+        // $payments = Payment::where('user_id', auth()->user()->id)->get();
+        $certifications = Certification::all();
+
+        return view('document', compact('certifications'));
+    }
+    public function approved_document($id)
+    {
+
+        $data = Certification::find($id);
+        $data->status = 'A';
+        $data->certificate_status = 'Final';
+        $data->save();
+
+        return redirect()->back();
+    }
+    public function rejected_document($id)
+    {
+        $data = Certification::find($id);
+        $data->status = 'R';
+        $data->certificate_status = 'Draft';
+
         $data->save();
 
         return redirect()->back();

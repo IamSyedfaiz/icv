@@ -46,6 +46,9 @@ Route::post('/create-consultant', [UserController::class, 'create_consultant'])-
 Route::get('/create-icv/{id}', [UserController::class, 'create_icv'])->name('create.icv');
 Route::get('/create-ici/{id}', [UserController::class, 'create_ici'])->name('create.ici');
 Route::get('/create-star/{id}', [UserController::class, 'create_star'])->name('create.star');
+Route::get('/final-icv/{id}', [UserController::class, 'final_icv'])->name('final.icv');
+Route::get('/final-ici/{id}', [UserController::class, 'final_ici'])->name('final.ici');
+Route::get('/final-star/{id}', [UserController::class, 'final_star'])->name('final.star');
 Route::post('/upload_document', [UserController::class, 'uploadDocument'])->name('upload.document');
 Route::get('/delete_document/{id}', [UserController::class, 'deleteDocument'])->name('delete.document');
 Route::post('/upload_payment', [UserController::class, 'uploadPayment'])->name('upload.payment');
@@ -55,7 +58,15 @@ Route::get('/consultant_payment', [UserController::class, 'consultantPayment'])-
 
 
 Route::get('/all_payment', [AdminController::class, 'allPayment'])->name('payment');
-Route::post('/approved_payment/{id}/{certficate_id}', [AdminController::class, 'approvedPayment'])->name('approved.payment');
+Route::post('/approved_payment/{id}', [AdminController::class, 'approvedPayment'])->name('approved.payment');
 Route::post('/Rejected_payment/{id}', [AdminController::class, 'rejectedPayment'])->name('rejected.payment');
 Route::get('/delete_certificate/{id}', [UserController::class, 'deleteCertificate'])->name('delete.certificate');
-// Route::post('/upload_image/{id}', [UserController::class, 'storeImage'])->name('image');
+
+
+// document 
+Route::get('/document', [AdminController::class, 'document'])->name('document');
+Route::post('/approved_document/{id}', [AdminController::class, 'approved_document'])->name('approved.document');
+Route::post('/rejected_document/{id}', [AdminController::class, 'rejected_document'])->name('rejected.document');
+
+
+Route::post('/edit_certificate/{id}', [UserController::class, 'editCertificate'])->name('edit.certificate');

@@ -58,6 +58,20 @@
 
                 </ul>
             </li><!-- End Components Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#document" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-calendar4-event"></i><span>Document</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="document" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+                    <li>
+                        <a href="{{ route('document') }}">
+                            <i class="bi bi-circle"></i><span>View All</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li><!-- End Components Nav -->
 
 
 

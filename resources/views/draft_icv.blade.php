@@ -46,13 +46,13 @@
         }
 
         #page-container {
-            background-image: url("{{ asset('/assets/img/cert/ICI.jpg') }}");
+            background-image: url("{{ asset('/assets/img/cert/ICV-Draft.jpg') }}");
             background-repeat: no-repeat;
             /* object-fit: cover; */
-            background-size: 920px 1500px;
+            background-size: 100% 1800px;
             /* margin: 100px auto 50px; */
             width: 100%;
-            height: 1500px;
+            height: 1800px;
             display: grid;
             place-items: center;
             padding-left: 100px;
@@ -115,7 +115,7 @@
                                             <div class="date-text">
                                                 <p>Date of initial registration
                                                     &nbsp; &nbsp; <span>
-                                                        {{ @$data->date_registration ? @$data->date_registration : 'XX XXX 2023' }}</span>
+                                                        {{ @$data->date_registration ? @$data->date_registration : 'XX XXX xx' }}</span>
                                                 </p>
                                                 <p>First Surveillance Audit on or before:
                                                     &nbsp;&nbsp; <span>
@@ -131,24 +131,24 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-9 ms-auto" style="position: absolute; right: 0px;">
-                                            <div id="previewImage"></div>
-                                        </div>
                                     </div>
                                 </div>
-
                             </div>
-                            <div class="card-footer">
-                                <div class="text-center">
-                                    <a id="btn-Convert-jpg" class="btn btn-primary">Download JPG</a>
-                                    <a id="btn-Convert-Html2Image" class="btn btn-primary"> <i
-                                            class="fas fa-file-download"></i>
-                                        Download PDF</a>
-                                </div>
+
+                        </div>
+                        <div class="card-footer">
+                            <div class="text-center">
+                                <a id="btn-Convert-jpg" class="btn btn-primary">Download JPG</a>
+                                <a id="btn-Convert-Html2Image" class="btn btn-primary"> <i class="fas fa-file-download"></i>
+                                    Download PDF</a>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- End Left side columns -->
+                <!-- Right side columns -->
+
+                <!-- End Right side columns -->
             </div>
         </section>
     </main>
@@ -175,7 +175,7 @@
                 var pdf = new jsPDF({
                     orientation: "portrait",
                     unit: "px",
-                    format: [510, 850]
+                    format: [540, 1010]
                 });
 
 

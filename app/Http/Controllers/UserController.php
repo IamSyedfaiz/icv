@@ -34,7 +34,7 @@ class UserController extends Controller
             if ($request->urole == 'Sales') {
                 $data = new User();
                 $data->name = $request->uname;
-                $data->password = $request->upassword;
+                $data->password = bcrypt($request->upassword);
                 $data->phone = $request->uphone;
                 $data->active = 'Y';
                 $data->email = $request->uemail;
@@ -44,7 +44,7 @@ class UserController extends Controller
             } else {
                 $data = new User();
                 $data->name = $request->uname;
-                $data->password = $request->upassword;
+                $data->password = bcrypt($request->upassword);
                 $data->phone = $request->uphone;
                 $data->active = 'Y';
                 $data->email = $request->uemail;
@@ -98,15 +98,33 @@ class UserController extends Controller
     {
         $data = Certification::find($id);
         // return $draft_data;
-        return view('preview_icv', compact('data'));
+        return view('draft_icv', compact('data'));
     }
     public function create_ici($id)
     {
         $data = Certification::find($id);
         // return $draft_data;
-        return view('preview_ici', compact('data'));
+        return view('draft_ici', compact('data'));
     }
     public function create_star($id)
+    {
+        $data = Certification::find($id);
+        // return $draft_data;
+        return view('draft_star', compact('data'));
+    }
+    public function final_icv($id)
+    {
+        $data = Certification::find($id);
+        // return $draft_data;
+        return view('preview_icv', compact('data'));
+    }
+    public function final_ici($id)
+    {
+        $data = Certification::find($id);
+        // return $draft_data;
+        return view('preview_ici', compact('data'));
+    }
+    public function final_star($id)
     {
         $data = Certification::find($id);
         // return $draft_data;
@@ -161,6 +179,28 @@ class UserController extends Controller
         $data->delete();
 
         return redirect()->back();
+    }
+
+    public function editCertificate(Request $request, $id)
+    {
+        $data = Certification::find($id);
+        // $data->certificate_template = $request->certificate_template;
+        // $data->certificate_status = $request->certificate_status;
+        $data->business_name = $request->business_name;
+        $data->scope_registration = $request->scope_registration;
+        $data->registered_site = $request->registered_site;
+        $data->save();
+        // return $data->certificate_template;
+
+        if ($data->certificate_template == 'icv') {
+            return redirect('/create-icv/' . $data->id);
+        } elseif ($data->certificate_template == 'ici') {
+            return redirect('/create-ici/' . $data->id);
+        } elseif ($data->certificate_template == 'star') {
+            return redirect('/create-star/' . $data->id);
+        } else {
+            return redirect()->back();
+        }
     }
 
     // public function storeImage(Request $request, $id)

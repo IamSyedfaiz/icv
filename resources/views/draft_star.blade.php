@@ -46,13 +46,13 @@
         }
 
         #page-container {
-            background-image: url("{{ asset('/assets/img/cert/ICI.jpg') }}");
+            background-image: url("{{ asset('/assets/img/cert/STAR-Draft.pdf') }}");
             background-repeat: no-repeat;
             /* object-fit: cover; */
-            background-size: 920px 1500px;
+            background-size: 920px 1800px;
             /* margin: 100px auto 50px; */
             width: 100%;
-            height: 1500px;
+            height: 1800px;
             display: grid;
             place-items: center;
             padding-left: 100px;
@@ -60,7 +60,8 @@
         }
 
         #canvasElement {
-            margin: 0px auto 50px;
+            /* margin: 0px auto 50px; */
+
             text-align: center;
         }
 
@@ -96,7 +97,7 @@
 
                             <div id="page-container">
                                 <div id="canvasElement" class="cert-text pb-5">
-                                    <h6>This is to certify that the management system of</h6><br>
+                                    {{-- <h6>This is to certify that the management system of</h6><br> --}}
                                     <h2>{{ $data->business_name }}</h2><br>
                                     <h6>has been formally assessed by</h6>
                                     <h6>INTERNATIONAL CERTIFICATION & INSPECTION UK LTD.</h6>
@@ -115,7 +116,7 @@
                                             <div class="date-text">
                                                 <p>Date of initial registration
                                                     &nbsp; &nbsp; <span>
-                                                        {{ @$data->date_registration ? @$data->date_registration : 'XX XXX 2023' }}</span>
+                                                        {{ @$data->date_registration ? @$data->date_registration : 'XX XXX xx' }}</span>
                                                 </p>
                                                 <p>First Surveillance Audit on or before:
                                                     &nbsp;&nbsp; <span>
@@ -131,24 +132,24 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-9 ms-auto" style="position: absolute; right: 0px;">
-                                            <div id="previewImage"></div>
-                                        </div>
                                     </div>
                                 </div>
-
                             </div>
-                            <div class="card-footer">
-                                <div class="text-center">
-                                    <a id="btn-Convert-jpg" class="btn btn-primary">Download JPG</a>
-                                    <a id="btn-Convert-Html2Image" class="btn btn-primary"> <i
-                                            class="fas fa-file-download"></i>
-                                        Download PDF</a>
-                                </div>
+
+                        </div>
+                        <div class="card-footer">
+                            <div class="text-center">
+                                <a id="btn-Convert-jpg" class="btn btn-primary">Download JPG</a>
+                                <a id="btn-Convert-Html2Image" class="btn btn-primary"> <i class="fas fa-file-download"></i>
+                                    Download PDF</a>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- End Left side columns -->
+                <!-- Right side columns -->
+
+                <!-- End Right side columns -->
             </div>
         </section>
     </main>
@@ -175,7 +176,7 @@
                 var pdf = new jsPDF({
                     orientation: "portrait",
                     unit: "px",
-                    format: [510, 850]
+                    format: [510, 1050]
                 });
 
 

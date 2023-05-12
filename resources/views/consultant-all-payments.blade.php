@@ -49,7 +49,7 @@
                             @foreach ($payments as $payment)
                                 <tr>
                                     <td>{{ @$payment->consultant->business_name }}</td>
-                                    <td>LK Pvt Ltd</td>
+                                    <td>{{ @$payment->certification->certificate_number }}</td>
                                     <td> {{ date('d-m-Y', strtotime($payment->created_at)) }}</td>
                                     <td>{{ $payment->payment_balance }}</td>
                                     <td>{{ $payment->status == 'A' ? 'Approved' : ($payment->status == 'R' ? 'Rejected' : 'pending ') }}

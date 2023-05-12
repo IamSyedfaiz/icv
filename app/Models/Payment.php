@@ -17,4 +17,8 @@ class Payment extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function certification()
+    {
+        return $this->belongsTo(Certification::class, 'certificate_id');
+    }
 }

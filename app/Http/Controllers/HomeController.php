@@ -104,7 +104,7 @@ class HomeController extends Controller
         $draftCount = Certification::where('certificate_status', 'draft')->where('user_id', auth()->user()->id)->count();
         $finalCount = Certification::where('certificate_status', 'final')->where('user_id', auth()->user()->id)->count();
         $consultant = Consultant::where('id', $id)->first();
-        return view('consultant', compact('consultant','draftCount','finalCount'));
+        return view('consultant', compact('consultant', 'draftCount', 'finalCount'));
     }
     public function store_draft_cert(Request $request)
     {
@@ -166,11 +166,11 @@ class HomeController extends Controller
 
 
         if ($request->certificate_template == 'icv') {
-            return redirect('/create-icv/' . $id);
+            return redirect('/final-icv/' . $id);
         } elseif ($request->certificate_template == 'ici') {
-            return redirect('/create-ici/' . $id);
+            return redirect('/final-ici/' . $id);
         } elseif ($request->certificate_template == 'star') {
-            return redirect('/create-star/' . $id);
+            return redirect('/final-star/' . $id);
         } else {
             return redirect()->back();
         }
@@ -178,36 +178,43 @@ class HomeController extends Controller
     public function edit_draft_cert($id)
     {
 
+        $ici_cert = Certification::where('certificate_template', 'ici')->where('certificate_status', 'Final')
+            ->whereNotNull('date_registration')->latest('updated_at')->first();
+            // return 123;
+
+        if ($ici_cert) {
+            // return $ici_cert;
+
+            $ici_cert_no = explode('/', $ici_cert->certificate_number)[1];
+            $final_ici_cert = substr($ici_cert_no, 0, 4)+1;
+        } else {
+
+            $final_ici_cert = 3100;
+        }
+
         $star_cert = Certification::where('certificate_template', 'star')->where('certificate_status', 'Final')
             ->whereNotNull('date_registration')->latest('updated_at')->first();
 
         if ($star_cert) {
 
-            $star_cert_no = explode('/', $star_cert->certificate_number)[1] + 1;
+            $star_cert_no = explode('/', $star_cert->certificate_number)[1];
+            $final_star_cert = substr($star_cert_no, 0, 4)+1;
         } else {
-            $star_cert_no = 1100;
+            $final_star_cert = 1100;
         }
 
 
-        $ici_cert = Certification::where('certificate_template', 'ici')->where('certificate_status', 'Final')
-            ->whereNotNull('date_registration')->latest('updated_at')->first();
 
-        if ($ici_cert) {
-
-            $ici_cert_no = explode('/', $ici_cert->certificate_number)[1] + 1;
-        } else {
-            $ici_cert_no = 3100;
-        }
-
-
-        $icv_cert = Certification::where('certificate_template', 'ici')->where('certificate_status', 'Final')
+        $icv_cert = Certification::where('certificate_template', 'icv')->where('certificate_status', 'Final')
             ->whereNotNull('date_registration')->latest('updated_at')->first();
 
         if ($icv_cert) {
 
-            $icv_cert_no = explode('/', $icv_cert->certificate_number)[1] + 1;
+            $icv_cert_no = explode('/', $icv_cert->certificate_number)[1];
+            $final_icv_cert = substr($icv_cert_no, 4, 6)+1;
+            // return $final_icv_cert;
         } else {
-            $icv_cert_no = 900;
+            $final_icv_cert = 900;
         }
         $current_date = now();
         $format_current_date = $current_date->format('d-m-y');
@@ -224,13 +231,14 @@ class HomeController extends Controller
         $second_number = rand(100,  1000);
         $third_number = rand(10,  100);
         $fourth_number = rand(1000,  10000);
-
-        $ici_Certificate_number = 'ICI' . '/' . $star_cert_no . $second_number . '/' . $third_number;
-        $icv_Certificate_number = 'IN' . '/' . $first_number . $icv_cert_no . '/' . $fourth_number;
-        $star_Certificate_number = 'SR' . '/' . $star_cert_no . $second_number . '/' . $fourth_number;
+        $ici_Certificate_number = 'ICI' . '/' . $final_ici_cert . $second_number . '/' . $third_number;
+        // return $ici_Certificate_number;
+        $icv_Certificate_number = 'IN' . '/' . $first_number . $final_icv_cert . '/' . $fourth_number;
+        $star_Certificate_number = 'SR' . '/' . $final_star_cert . $second_number . '/' . $fourth_number;
 
 
         return view('edit-draft-cert', compact('certification', 'documents', 'format_current_date', 'format_first_date', 'format_second_date', 'format_due_date', 'payments', 'ici_Certificate_number', 'icv_Certificate_number', 'star_Certificate_number'));
+        // 
     }
     public function report()
     {
