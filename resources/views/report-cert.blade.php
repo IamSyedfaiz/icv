@@ -72,39 +72,41 @@
                         </thead>
                         <tbody>
                             @foreach (@$certifications as $certification)
-                                <tr>
-                                    {{-- <td>{{ $certification->id }}</td> --}}
-                                    <td>{{ $certification->standerd }}</td>
-                                    <td>{{ $certification->business_name }}</td>
-                                    <td>{{ $certification->certificate_number }}</td>
+                                @if ($certification->user->parent_id == auth()->user()->id)
+                                    <tr>
+                                        {{-- <td>{{ $certification->id }}</td> --}}
+                                        <td>{{ $certification->standerd }}</td>
+                                        <td>{{ $certification->business_name }}</td>
+                                        <td>{{ $certification->certificate_number }}</td>
 
-                                    <td>{{ $certification->certificate_template }}</td>
-                                    <td>{{ $certification->user->name }}</td>
-                                    <td>{{ $certification->consultant->name }}</td>
-                                    <td>{{ date('d-m-Y', strtotime($certification->created_at)) }}</td>
-                                    <td>{{ $certification->scope_registration }}</td>
-                                    <td>{{ $certification->registered_site }}</td>
-                                    <td>
-                                        @foreach ($certification->payments as $payment)
-                                            {{ $payment->payment_balance }}
-                                            <!-- Display other payment fields as needed -->
-                                        @endforeach
-                                    </td>
-                                    <td>
-                                        @foreach ($certification->payments as $payment)
-                                            {{ $payment->payment_type }}
-                                            <!-- Display other payment fields as needed -->
-                                        @endforeach
-                                    </td>
-                                    <td>
-                                        @foreach ($certification->payments as $payment)
-                                            {{ $payment->status == 'A' ? 'Approved' : ($payment->status == 'R' ? 'Rejected' : 'pending ') }}
-                                            <!-- Display other payment fields as needed -->
-                                        @endforeach
-                                    </td>
-                                    {{-- <td>7981236786123</td> --}}
-                                    {{-- <td>{{ $certification->certificate_status }}</td> --}}
-                                </tr>
+                                        <td>{{ $certification->certificate_template }}</td>
+                                        <td>{{ $certification->user->name }}</td>
+                                        <td>{{ $certification->consultant->name }}</td>
+                                        <td>{{ date('d-m-Y', strtotime($certification->created_at)) }}</td>
+                                        <td>{{ $certification->scope_registration }}</td>
+                                        <td>{{ $certification->registered_site }}</td>
+                                        <td>
+                                            @foreach ($certification->payments as $payment)
+                                                {{ $payment->payment_balance }}
+                                                <!-- Display other payment fields as needed -->
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach ($certification->payments as $payment)
+                                                {{ $payment->payment_type }}
+                                                <!-- Display other payment fields as needed -->
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach ($certification->payments as $payment)
+                                                {{ $payment->status == 'A' ? 'Approved' : ($payment->status == 'R' ? 'Rejected' : 'pending ') }}
+                                                <!-- Display other payment fields as needed -->
+                                            @endforeach
+                                        </td>
+                                        {{-- <td>7981236786123</td> --}}
+                                        {{-- <td>{{ $certification->certificate_status }}</td> --}}
+                                    </tr>
+                                @endif
                             @endforeach
 
                         </tbody>

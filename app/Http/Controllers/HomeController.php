@@ -180,13 +180,13 @@ class HomeController extends Controller
 
         $ici_cert = Certification::where('certificate_template', 'ici')->where('certificate_status', 'Final')
             ->whereNotNull('date_registration')->latest('updated_at')->first();
-            // return 123;
+        // return 123;
 
         if ($ici_cert) {
             // return $ici_cert;
 
             $ici_cert_no = explode('/', $ici_cert->certificate_number)[1];
-            $final_ici_cert = substr($ici_cert_no, 0, 4)+1;
+            $final_ici_cert = substr($ici_cert_no, 0, 4) + 1;
         } else {
 
             $final_ici_cert = 3100;
@@ -198,7 +198,7 @@ class HomeController extends Controller
         if ($star_cert) {
 
             $star_cert_no = explode('/', $star_cert->certificate_number)[1];
-            $final_star_cert = substr($star_cert_no, 0, 4)+1;
+            $final_star_cert = substr($star_cert_no, 0, 4) + 1;
         } else {
             $final_star_cert = 1100;
         }
@@ -211,7 +211,7 @@ class HomeController extends Controller
         if ($icv_cert) {
 
             $icv_cert_no = explode('/', $icv_cert->certificate_number)[1];
-            $final_icv_cert = substr($icv_cert_no, 4, 6)+1;
+            $final_icv_cert = substr($icv_cert_no, 4, 6) + 1;
             // return $final_icv_cert;
         } else {
             $final_icv_cert = 900;
@@ -233,7 +233,7 @@ class HomeController extends Controller
         $fourth_number = rand(1000,  10000);
         $ici_Certificate_number = 'ICI' . '/' . $final_ici_cert . $second_number . '/' . $third_number;
         // return $ici_Certificate_number;
-        $icv_Certificate_number = 'IN' . '/' . $first_number . $final_icv_cert . '/' . $fourth_number;
+        $icv_Certificate_number = 'ICV' . '/' . $first_number . $final_icv_cert . '/' . $fourth_number;
         $star_Certificate_number = 'SR' . '/' . $final_star_cert . $second_number . '/' . $fourth_number;
 
 

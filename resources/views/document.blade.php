@@ -20,51 +20,54 @@
                             <tr>
                                 <th>Salesperson</th>
                                 <th>Consultant</th>
-                                <th>Certificate Number</th>
+                                <th>Business Name</th>
                                 <th>Certificate Status</th>
                                 <th>Date</th>
+                                <th>File Name</th>
+                                <th>File</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($certifications as $certification)
-                                @if ($certification->user->parent_id == auth()->user()->id)
-                                    <tr>
-                                        <td>{{ @$certification->user->name }}</td>
-                                        <td>{{ @$certification->consultant->name }}</td>
-                                        <td>{{ @$certification->certificate_number }}</td>
-                                        <td>{{ @$certification->certificate_status }}</td>
-                                        <td>{{ date('Y-m-d', strtotime($certification->created_at)) }}</td>
-                                        @if ($certification->status == 'A')
-                                            <td>Approved</td>
-                                        @elseif ($certification->status == 'R')
-                                            <td>Rejected</td>
-                                        @else
-                                            <td></td>
-                                        @endif
-                                        <td>
-                                            <div class="d-flex">
-                                                <form
-                                                    action="{{ route('approved.document', ['id' => $certification->id]) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-link small">Approve</button>
-                                                </form>
-                                                <span class="mx-2 mt-2">|</span>
-                                                <form
-                                                    action="{{ route('rejected.document', ['id' => $certification->id]) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-link small ">Reject</button>
-                                                </form>
-                                            </div>
-                                        </td>
+                            @foreach ($documents as $document)
+                                <tr>
+                                    <td>{{ $document->certification->user->name }}</td>
+                                    <td>{{ $document->certification->consultant->name }}</td>
+                                    <td>{{ $document->certification->business_name }}</td>
+                                    <td>{{ $document->certification->certificate_status }}</td>
+                                    <td>{{ date('Y-m-d', strtotime($document->created_at)) }}</td>
+                                    <td>{{ $document->file_name }}</td>
+                                    <td><a target="_blank"
+                                            href="{{ $document->getMedia('post_image')->first()->getUrl() }}">View</a></td>
+                                    @if ($document->certification->status == 'A')
+                                        <td>Approved</td>
+                                    @elseif ($document->certification->status == 'R')
+                                        <td>Rejected</td>
+                                    @else
+                                        <td></td>
+                                    @endif
+                                    <td>
+                                        <div class="d-flex">
+                                            <form
+                                                action="{{ route('approved.document', ['id' => $document->certification->id]) }}"
+                                                method="post">
+                                                @csrf
+                                                <button type="submit" class="btn btn-link small">Approve</button>
+                                            </form>
+                                            <span class="mx-2 mt-2">|</span>
+                                            <form
+                                                action="{{ route('rejected.document', ['id' => $document->certification->id]) }}"
+                                                method="post">
+                                                @csrf
+                                                <button type="submit" class="btn btn-link small ">Reject</button>
+                                            </form>
+                                        </div>
+                                    </td>
 
-                                    </tr>
-                                @endif
+
+                                </tr>
                             @endforeach
-
 
                         </tbody>
                     </table>

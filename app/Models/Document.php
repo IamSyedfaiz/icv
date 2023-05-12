@@ -10,4 +10,8 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Document extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
+    public function certification()
+    {
+        return $this->belongsTo(Certification::class, 'certificate_id');
+    }
 }
