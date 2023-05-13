@@ -45,17 +45,20 @@
             width: 100%;
         }
 
+
         #page-container {
-            background-image: url("{{ asset('/assets/img/cert/STAR-Draft.pdf') }}");
+            background-image: url("{{ asset('/assets/img/cert/STAR-Draft.jpg') }}");
             background-repeat: no-repeat;
-            /* object-fit: cover; */
-            background-size: 920px 1800px;
+            /* object-fit: contain; */
+            background-size: 920px 1950px;
+            /* background-size: 100% 100%; */
             /* margin: 100px auto 50px; */
             width: 100%;
-            height: 1800px;
+            height: 2000px;
             display: grid;
             place-items: center;
             padding-left: 100px;
+            margin-left: -100px;
             /* border: 1px solid black */
         }
 

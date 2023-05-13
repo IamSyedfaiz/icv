@@ -96,7 +96,7 @@ class HomeController extends Controller
     }
     public function all_certs()
     {
-        $certifications = Certification::where('user_id', auth()->user()->id)->get();
+        $certifications = Certification::where('user_id', auth()->user()->id)->latest()->get();
         return view('all-certs', compact('certifications'));
     }
     public function consultant($id)
@@ -108,9 +108,6 @@ class HomeController extends Controller
     }
     public function store_draft_cert(Request $request)
     {
-
-
-
         $validator = Validator::make($request->all(), [
             'certificate_template' => 'required',
         ]);

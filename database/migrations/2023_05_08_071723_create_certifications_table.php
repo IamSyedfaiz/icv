@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('certificate_template')->nullable();
             $table->string('certificate_status')->nullable();
             $table->string('business_name')->nullable();
-            $table->string('scope_registration')->nullable();
-            $table->string('registered_site')->nullable();
+            $table->text('scope_registration')->nullable();
+            $table->text('registered_site')->nullable();
             $table->string('certificate_number')->nullable();
             $table->string('date_registration')->nullable();
             $table->string('first_surveillance_audit')->nullable();

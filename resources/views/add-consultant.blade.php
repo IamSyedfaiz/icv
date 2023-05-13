@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="col-12">
                                     <label for="refno" class="form-label">Phone</label>
-                                    <input type="text" class="form-control" id="refno" name="phone"
+                                    <input type="number" class="form-control" id="refno" name="phone"
                                         value="{{ old('phone') }}" required>
                                     @error('phone')
                                         <p class="small text-danger">{{ $message }}</p>
