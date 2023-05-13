@@ -20,4 +20,9 @@ class Certification extends Model
     {
         return $this->hasMany(Payment::class, 'certificate_id');
     }
+    public function documents()
+    {
+        return $this->hasMany(Document::class, 'certificate_id');
+    }
+
 }

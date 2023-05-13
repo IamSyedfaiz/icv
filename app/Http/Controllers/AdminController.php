@@ -6,6 +6,7 @@ use App\Models\Certification;
 use App\Models\Document;
 use App\Models\Payment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -44,13 +45,10 @@ class AdminController extends Controller
     }
     public function document()
     {
-        // $payments = Payment::all();
-        // $payments = Payment::where('user_id', auth()->user()->id)->get();
-        // $certifications = Certification::all();
-        $documents = Document::all();
 
+        $certifications = Certification::has('documents')->get();
 
-        return view('document', compact('documents'));
+        return view('document', compact('certifications'));
     }
     public function approved_document($id)
     {

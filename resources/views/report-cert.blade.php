@@ -54,19 +54,6 @@
                                 <th>Payment</th>
                                 <th>Payment Type</th>
                                 <th>Status</th>
-                                {{-- <th>#</th>
-                                <th>Standerd</th>
-                                <th>Salesperson</th>
-                                <th>Business</th>
-                                <th>CB</th>
-                                <th>Consultant</th>
-                                <th>DOC</th>
-                                <th>Scope of Registration</th>
-                                <th>Registered Site</th>
-                                <th>Payment</th>
-                                <th>Payment Type</th>
-                                <th>Status</th>
-                                <th>Cert No.</th> --}}
 
                             </tr>
                         </thead>

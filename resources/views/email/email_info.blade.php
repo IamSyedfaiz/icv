@@ -1,11 +1,11 @@
 <html>
 
 <head>
-    <title>RACAP</title>
+    <title>ICV</title>
 </head>
 
 <body>
-    <h1>User Login ID</h1>
+    <h1>Approval Payment</h1>
     <p>User Name: {{ @$consultant }}</p>
     <p>Business Name : {{ @$certificate }}</p>
     <p>Payment Received: {{ @$balance }}</p>

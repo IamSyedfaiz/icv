@@ -48,20 +48,31 @@
         #page-container {
             background-image: url("{{ asset('/assets/img/cert/ICI-Draft.jpg') }}");
             background-repeat: no-repeat;
-            /* object-fit: cover; */
-            background-size: 920px 1500px;
-            /* margin: 100px auto 50px; */
-            width: 100%;
-            height: 1500px;
+            background-size: 100% 100%;
+            width: 2480px;
+            height: 3508px;
             display: grid;
             place-items: center;
             padding-left: 100px;
-            /* border: 1px solid black */
         }
 
         #canvasElement {
             margin: 0px auto 50px;
             text-align: center;
+        }
+
+        #canvasElement h6 {
+            font-size: 45px;
+        }
+
+        #canvasElement p {
+            font-size: 24px;
+            width: 60%;
+            text-align: center;
+            line-height: 40px;
+            float: none;
+            display: block;
+            margin: 0 auto;
         }
 
         .date-text p {
@@ -175,7 +186,7 @@
                 var pdf = new jsPDF({
                     orientation: "portrait",
                     unit: "px",
-                    format: [510, 850]
+                    format: [1380, 1970]
                 });
 
 

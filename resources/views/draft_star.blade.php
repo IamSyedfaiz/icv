@@ -49,23 +49,34 @@
         #page-container {
             background-image: url("{{ asset('/assets/img/cert/STAR-Draft.jpg') }}");
             background-repeat: no-repeat;
-            /* object-fit: contain; */
-            background-size: 920px 1950px;
-            /* background-size: 100% 100%; */
-            /* margin: 100px auto 50px; */
-            width: 100%;
-            height: 2000px;
+            background-size: 100% 100%;
+            width: 2480px;
+            height: 3508px;
             display: grid;
             place-items: center;
-            padding-left: 100px;
-            margin-left: -100px;
-            /* border: 1px solid black */
+            /* padding-left: 300px; */
         }
 
         #canvasElement {
-            /* margin: 0px auto 50px; */
+            margin: 0px auto;
+            display: block;
+            margin-left: 400px;
 
             text-align: center;
+        }
+
+        #canvasElement h6 {
+            font-size: 45px;
+        }
+
+        #canvasElement p {
+            font-size: 24px;
+            width: 60%;
+            text-align: center;
+            line-height: 40px;
+            float: none;
+            display: block;
+            margin: 0 auto;
         }
 
         .date-text p {
@@ -179,7 +190,7 @@
                 var pdf = new jsPDF({
                     orientation: "portrait",
                     unit: "px",
-                    format: [510, 1050]
+                    format: [1380, 1970]
                 });
 
 

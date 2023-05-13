@@ -176,18 +176,13 @@ class UserController extends Controller
         ];
         // return $userFind;
 
-        Mail::send('email.email_info', @$data, function ($msg) use ($data) {
-            $msg->from('saiyedsafral@gmail.com');
-            // $msg->to('saiyedsafral@gmail.com', 'Pathshalahub');
-            $msg->to('saiyedsafral@gmail.com', 'ICV');
-            $msg->subject('ICV Assessments Pvt. Ltd.');
-        });
 
-        // Mail::send('email.email_info', @$data, function ($msg) use ($data, $userFind) {
-        //     $msg->from('racap@omegawebdemo.com.au');
-        //     $msg->to('saiyedsafral@gmail.com', 'ICV');
-        //     $msg->subject('Title');
-        // });
+
+        Mail::send('email.email_info', @$data, function ($msg) use ($data, $userFind) {
+            $msg->from('racap@omegawebdemo.com.au');
+            $msg->to($userFind->email, 'ICV');
+            $msg->subject('Title');
+        });
         $data = new Payment;
         $data->payment_type = $request->payment_type;
         $data->payment_balance = $request->payment_balance;
