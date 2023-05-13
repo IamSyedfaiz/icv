@@ -57,7 +57,9 @@
         }
 
         #canvasElement {
-            margin: 0px auto 50px;
+            margin: 0px auto;
+            display: block;
+            margin-left: 800px;
             text-align: center;
         }
 
