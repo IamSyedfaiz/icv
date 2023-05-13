@@ -12,7 +12,8 @@ class AdminController extends Controller
 {
     public function allPayment()
     {
-        $payments = Payment::all();
+        // $payments = Payment::all();
+        $payments = Payment::orderByDesc('created_at')->get();
         // $payments = Payment::where('user_id', auth()->user()->id)->get();
 
         return view('all-payment', compact('payments'));
@@ -46,7 +47,7 @@ class AdminController extends Controller
     public function document()
     {
 
-        $certifications = Certification::has('documents')->get();
+        $certifications = Certification::has('documents')->latest()->get();
 
         return view('document', compact('certifications'));
     }

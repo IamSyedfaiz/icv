@@ -21,7 +21,8 @@
                                 {{ @$certification->consultant->name }}
 
                             </h5>
-                            <form class="row g-3" action="{{ route('edit.certificate', ['id'=>$certification->id]) }}" method="post">
+                            <form class="row g-3" action="{{ route('edit.certificate', ['id' => $certification->id]) }}"
+                                method="post">
                                 @csrf
                                 <!-- Use auto complete js https://jqueryui.com/autocomplete/ -->
 
@@ -29,9 +30,9 @@
                                     <label for="cat" class="form-label">Certificate Template</label>
                                     <input type="text" name="consultant_id" class="form-control" id="cat"
                                         value="{{ @$consultants->id }}" hidden>
-                                    <select  class="form-control" name="certificate_template">
-                                        <option  value="">{{ @$certification->certificate_template }}</option>
-                                        
+                                    <select class="form-control" name="certificate_template">
+                                        <option value="">{{ @$certification->certificate_template }}</option>
+
                                     </select>
                                 </div>
                                 <div class="col-12 col-lg-6">
@@ -43,17 +44,17 @@
                                 <div class="col-12">
                                     <label for="cat" class="form-label">Business Name</label>
                                     <input type="text" name="business_name" value="{{ @$certification->business_name }}"
-                                         class="form-control" id="cat">
+                                        class="form-control" id="cat">
                                 </div>
 
                                 <div class="col-12">
                                     <label for="subcat" class="form-label">Scope of Registration</label>
-                                    <textarea class="form-control" name="scope_registration" >{{ @$certification->scope_registration }}</textarea>
+                                    <textarea class="form-control" name="scope_registration">{{ @$certification->scope_registration }}</textarea>
                                 </div>
 
                                 <div class="col-12">
                                     <label for="product" class="form-label">Registered Site(s)</label>
-                                    <textarea class="form-control" name="registered_site" >{{ @$certification->registered_site }}</textarea>
+                                    <textarea class="form-control" name="registered_site">{{ @$certification->registered_site }}</textarea>
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -234,35 +235,40 @@
                                             </div>
                                         @endif
 
+
+
+
                                         <div class="col-12 col-lg-6">
                                             <label for="email" class="form-label">Date of initial registration</label>
-                                            <input type="date" class="form-control" id="date_registration"
-                                                name="date_registration">
+                                            <input type="text" class="form-control" id="date_registration"
+                                                name="date_registration" value="{{ $format_current_date }}" readonly>
                                         </div>
                                         <div class="col-12 col-lg-6">
                                             <label for="email" class="form-label">First Surveillance Audit on or
                                                 before</label>
                                             <input type="text" class="form-control" id="first_surveillance_audit"
-                                                name="first_surveillance_audit" readonly>
+                                                name="first_surveillance_audit" readonly
+                                                value="{{ $format_first_date }}">
                                         </div>
                                         <div class="col-12 col-lg-6">
                                             <label for="email" class="form-label">Second Surveillance Audit on or
                                                 before</label>
                                             <input type="text" class="form-control" id="second_surveillance_audit"
-                                                name="second_surveillance_audit" readonly>
+                                                name="second_surveillance_audit" value="{{ $format_second_date }}"
+                                                readonly>
                                         </div>
 
                                         <div class="col-12 col-lg-6">
                                             <label for="email" class="form-label">Re-certification Due</label>
-                                            <input type="text" class="form-control" id="certification_due_date"
-                                                name="certification_due_date" readonly>
+                                            <input type="text" class="form-control" value="{{ $format_due_date }}"
+                                                id="certification_due_date" name="certification_due_date" readonly>
                                         </div>
                                         @foreach ($payments as $payment)
                                             @if ($payment->certificate_id == $certification->id)
                                                 <div class="alert alert-success">
-                                                    <p class="">your amount
-                                                        is
-                                                        {{ $payment->status == 'A' ? 'Approved' : ($payment->status == 'R' ? 'Rejected' : 'pending ') }}
+                                                    <p class="">
+                                                        {{ $payment->status == 'A' ? 'Approved' : ($payment->status == 'R' ? 'Rejected' : 'Pending ') }}
+                                                        From Admin
                                                     </p>
                                                 </div>
 
@@ -327,43 +333,6 @@
             </div>
         </section>
 
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                // Function to add months to a given date
-                // function addMonthsToDate(date, months) {
-                //     return new Date(date.setMonth(date.getMonth() + months));
-                // }
-
-                // // Function to format a date as 'dd/mm/yyyy'
-                function formatDate(date) {
-                    var day = date.getDate().toString().padStart(2, '0');
-                    var month = (date.getMonth() + 1).toString().padStart(2, '0');
-                    var year = date.getFullYear().toString();
-                    return day + '/' + month + '/' + year;
-                }
-
-                // let day = String(expire_at.getDate()).padStart(2, '0');
-                // let month = String(expire_at.getMonth() + 1).padStart(2, '0');
-                // let year = expire_at.getFullYear();
-
-                // let formattedDate = day + '-' + month + '-' + year;
-                // Handle input1 change event
-                $('#date_registration').on('change', function() {
-                    var input1Date = new Date($(this).val());
-
-                    let date1 = new Date(input1Date.getTime());
-                    date1.setMonth(date1.getMonth() + 11); // Add 11 months to the current date
-                    let date2 = new Date(input1Date.getTime());
-                    date2.setMonth(date2.getMonth() + 22); // Add 11 months to the current date
-                    let date3 = new Date(input1Date.getTime());
-                    date3.setMonth(date3.getMonth() + 33); // Add 11 months to the current date
-                    var input2Date = $('#first_surveillance_audit').val(formatDate(date1));
-                    var input3Date = $('#second_surveillance_audit').val(formatDate(date2));
-                    var input3Date = $('#certification_due_date').val(formatDate(date3));
-                });
-            });
-        </script>
     </main><!-- End #main -->
 @endsection
 

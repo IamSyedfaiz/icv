@@ -55,6 +55,7 @@
             display: grid;
             place-items: center;
             /* padding-left: 300px; */
+
         }
 
         #canvasElement {
@@ -106,7 +107,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Certificate Preview</h5>
 
-                            <div id="previewImage" class="img-fluid"></div>
+                            <div id="previewImage" class="img-fluid" style="overflow: scroll"></div>
 
                             <div id="page-container">
                                 <div id="canvasElement" class="cert-text pb-5">

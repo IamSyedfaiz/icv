@@ -50,7 +50,7 @@ class HomeController extends Controller
     }
     public function all_user()
     {
-        $users = User::where('parent_id', auth()->user()->id)->get();
+        $users = User::where('parent_id', auth()->user()->id)->latest()->get();
         return view('all-users', compact('users'));
     }
     public function add_consultant()
@@ -59,7 +59,7 @@ class HomeController extends Controller
     }
     public function all_consultant()
     {
-        $consultants = Consultant::where('user_id', auth()->user()->id)->get();
+        $consultants = Consultant::where('user_id', auth()->user()->id)->latest()->get();
 
         return view('all-consultant', compact('consultants'));
     }
