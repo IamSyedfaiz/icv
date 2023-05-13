@@ -60,8 +60,7 @@
         #canvasElement {
             margin: 0px auto;
             display: block;
-            margin-left: 400px;
-
+            margin-left: 800px;
             text-align: center;
         }
 
