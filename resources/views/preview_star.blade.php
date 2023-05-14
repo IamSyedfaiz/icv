@@ -24,16 +24,30 @@
         }
 
         h2 {
-            font-size: 34px;
+            font-size: 54px;
             font-family: 'Gill Sans', sans-serif;
-            color: #000;
+            color: navy;
+            font-weight: 700;
+
         }
 
         h6 {
-            font-size: 22px;
+            font-size: 45px;
+            font-weight: 400;
+            color: #000;
+        }
+
+        h4 {
+            font-size: 45px;
             font-weight: 700;
             color: #000;
+            margin: 10px 0;
+        }
 
+        h1 {
+            font-size: 100px;
+            font-weight: 700;
+            margin: 10px 0;
         }
 
         p {
@@ -58,32 +72,43 @@
 
         #canvasElement {
             margin: 0px auto;
-            display: block;
-            margin-left: 800px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-left: 150px;
             text-align: center;
-        }
-
-        #canvasElement h6 {
-            font-size: 45px;
         }
 
         #canvasElement p {
             font-size: 24px;
-            width: 60%;
-            text-align: center;
+            width: 70%;
+            /* text-align: center; */
             line-height: 40px;
-            float: none;
-            display: block;
-            margin: 0 auto;
+            /* float: none; */
+            /* display: block; */
+            /* margin: 0 auto; */
         }
 
 
-        .date-text p {
+        .date-text {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-direction: column;
+            width: 100%;
+
+        }
+
+        .date-text div {
+            display: flex;
+            /* flex-direction: column; */
+            /* justify-content: space-between; */
+            align-items: center;
             padding-left: 50px;
-            width: 700px;
+            width: 1700px;
+            font-size: 24px;
         }
     </style>
 @endsection
@@ -106,42 +131,50 @@
                         <div class="card-body">
                             <h5 class="card-title">Certificate Preview</h5>
 
-                            <div id="previewImage" class="img-fluid"></div>
+                            <div id="previewImage" class="img-fluid" style="overflow: scroll"></div>
 
                             <div id="page-container">
                                 <div id="canvasElement" class="cert-text pb-5">
                                     {{-- <h6>This is to certify that the management system of</h6><br> --}}
                                     <h2>{{ $data->business_name }}</h2><br>
                                     <h6>has been formally assessed by</h6>
-                                    <h6>INTERNATIONAL CERTIFICATION & INSPECTION UK LTD.</h6>
+                                    <h4>Star Certifications UK Limited</h4>
                                     <h6>and found to comply with the requirements of</h6>
                                     <h1 style="color:navy;">ISO 9001: 2015</h1><br>
                                     <h6 style="color:navy;">(Quality Management System)</h6>
+                                    <h6>Registered Site (s):</h6>
+                                    <p>{{ $data->registered_site }}</p>
                                     <h6>Scope of Registration</h6>
                                     <p>{{ $data->scope_registration }}</p>
-                                    <h6>Registered Site (s):</h6>
-                                    <p>{{ $data->registered_site }}</p><br>
+                                    <br>
                                     <h6>CERTIFICATE NO : &nbsp;
                                         {{ @$data->certificate_number ? @$data->certificate_number : 'DRAFT COPY' }}</h6>
                                     <br>
                                     <div class="dottedbox row">
                                         <div class="dottedbox-right w-100 col-4">
                                             <div class="date-text">
-                                                <p>Date of initial registration
-                                                    &nbsp; &nbsp; <span>
-                                                        {{ @$data->date_registration ? @$data->date_registration : 'XX XXX xx' }}</span>
-                                                </p>
-                                                <p>First Surveillance Audit on or before:
-                                                    &nbsp;&nbsp; <span>
-                                                        {{ @$data->first_surveillance_audit ? @$data->first_surveillance_audit : 'XX XXX xx' }}</span>
-                                                </p>
-                                                <p>Second Surveillance Audit on or before:
-                                                    &nbsp;&nbsp; <span>
-                                                        {{ @$data->second_surveillance_audit ? @$data->second_surveillance_audit : 'XX XXX xx' }}</span>
-                                                </p>
-                                                <p>Re-certification Due: &nbsp;&nbsp;
-                                                    <span>{{ @$data->certification_due_date ? @$data->certification_due_date : 'XX XXX xx' }}</span>
-                                                </p>
+                                                <div class="">
+                                                    <div>Date of initial registration
+                                                        &nbsp; &nbsp; <span>
+                                                            {{ @$data->date_registration ? @$data->date_registration : 'XX XXX xx' }}</span>
+                                                    </div>
+                                                    <div>1st Surveillance Audit on or before:
+                                                        &nbsp;&nbsp; <span>
+                                                            {{ @$data->first_surveillance_audit ? @$data->first_surveillance_audit : 'XX XXX xx' }}</span>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="">
+                                                    <div>Re-certification Due: &nbsp;&nbsp;
+                                                        <span>{{ @$data->certification_due_date ? @$data->certification_due_date : 'XX XXX xx' }}</span>
+                                                    </div>
+                                                    <div>2nd Surveillance Audit on or before:
+                                                        &nbsp;&nbsp; <span>
+                                                            {{ @$data->second_surveillance_audit ? @$data->second_surveillance_audit : 'XX XXX xx' }}</span>
+                                                    </div>
+
+                                                </div>
                                             </div>
                                         </div>
 

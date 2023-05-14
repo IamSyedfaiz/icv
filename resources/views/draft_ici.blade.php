@@ -24,7 +24,7 @@
         }
 
         h2 {
-            font-size: 34px;
+            font-size: 54px;
             font-family: 'Gill Sans', sans-serif;
             color: #000;
         }
@@ -75,12 +75,22 @@
             margin: 0 auto;
         }
 
-        .date-text p {
+        .date-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 700px;
+            margin-left: 220px;
+        }
+
+        .date-text div {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding-left: 50px;
-            width: 700px;
+            width: 800px;
+            font-size: 24px;
         }
     </style>
 @endsection
@@ -124,21 +134,21 @@
                                     <div class="dottedbox row">
                                         <div class="dottedbox-right w-100 col-4">
                                             <div class="date-text">
-                                                <p>Date of initial registration
+                                                <div>Date of initial registration
                                                     &nbsp; &nbsp; <span>
                                                         {{ @$data->date_registration ? @$data->date_registration : 'XX XXX 2023' }}</span>
-                                                </p>
-                                                <p>First Surveillance Audit on or before:
+                                                </div>
+                                                <div>First Surveillance Audit on or before:
                                                     &nbsp;&nbsp; <span>
                                                         {{ @$data->first_surveillance_audit ? @$data->first_surveillance_audit : 'XX XXX xx' }}</span>
-                                                </p>
-                                                <p>Second Surveillance Audit on or before:
+                                                </div>
+                                                <div>Second Surveillance Audit on or before:
                                                     &nbsp;&nbsp; <span>
                                                         {{ @$data->second_surveillance_audit ? @$data->second_surveillance_audit : 'XX XXX xx' }}</span>
-                                                </p>
-                                                <p>Re-certification Due: &nbsp;&nbsp;
+                                                </div>
+                                                <div>Re-certification Due: &nbsp;&nbsp;
                                                     <span>{{ @$data->certification_due_date ? @$data->certification_due_date : 'XX XXX xx' }}</span>
-                                                </p>
+                                                </div>
                                             </div>
                                         </div>
 
