@@ -17,28 +17,34 @@
         }
 
         h1 {
-            font-size: 50px;
-            color: #a0a591;
+            font-size: 120px;
             font-weight: 700;
-
         }
 
         h2 {
-            font-size: 34px;
+            font-size: 84px;
             font-family: 'Gill Sans', sans-serif;
-            color: #000;
+            color: #3a4ce9;
         }
 
-        h6 {
-            font-size: 32px;
+        
+        h5 {
+            font-size: 65px;
             font-weight: 700;
             color: #000;
-
+            
+        }
+        h6 {
+            font-size: 40px;
+            font-weight: 700;
+            color: #000;
+            margin-top: 20px;
         }
 
         p {
             font-size: 18px;
             width: 700px;
+            font-weight:500;
         }
 
         .container {
@@ -70,7 +76,7 @@
         }
 
         #canvasElement p {
-            font-size: 28px;
+            font-size: 37px;
             width: 60%;
             text-align: center;
             line-height: 40px;
@@ -78,6 +84,8 @@
             display: block;
             margin: 0 auto;
             margin-top: 30px;
+            color:#000;
+            font-weight:500;
         }
 
         .date-text div {
@@ -112,49 +120,32 @@
                             <div id="previewImage" class="img-fluid" style="overflow: scroll"></div>
 
                             <div id="page-container">
-                                <div id="canvasElement" class="cert-text pb-5">
-                                    <h6>This is to certify that the management system of</h6><br>
-                                    <h2>{{ $data->business_name }}</h2><br>
+                                <div id="canvasElement" class="cert-text pb-5"><br><br>
+                                    <h6>This is to certify that the management system of</h6>
+                                    <br>
+                                    <h1 style="color:#0198db; font-weight:700;">{{ $data->business_name }}</h1><br><br>
 
 
                                     <p>{{ $data->registered_site }}</p>
                                     <h6>has been audited by ICV and found to be</h6>
                                     <h6>in compliance with the requirements of the standard</h6>
-                                    {{-- <h6>and found to comply with the requirements of</h6> --}}
-                                    <h1>ISO 9001: 2015</h1><br>
-                                    <h6>(Quality Management System)</h6>
-                                    <h6>This certificate is valid for <br> the following scope:</h6>
-                                    {{-- <h6>Scope of Registration</h6>
-                                    <p>{{ $data->scope_registration }}</p> --}}
-                                    {{-- <h6>Registered Site (s):</h6> --}}
-                                    <p>{{ $data->scope_registration }}</p><br>
-                                    {{-- <h6>CERTIFICATE NO : &nbsp;
-                                        {{ @$data->certificate_number ? @$data->certificate_number : 'DRAFT COPY' }}</h6> --}}
+                                    <br><br>
+                                    <h1 style="color:#000;">ISO 9001:2015</h1><br><br>
+                                    <h5 style="color:#000;">(Quality Management System)</h5><br><br>
+                                    <h6>This certificate is valid for <br> the following scope:</h6><br>
+                                    <p>{{ $data->scope_registration }}</p><br><br>                                    
+                                    
+                                    
+                                    
+                                    <h6>CERTIFICATE NO :&nbsp;&nbsp;&nbsp;&nbsp;{{ @$data->certificate_number ? @$data->certificate_number : 'DRAFT COPY' }}</h6>
+                                    <h6>Date of initial registration :&nbsp;&nbsp;&nbsp;&nbsp;{{ @$data->date_registration ? @$data->date_registration : 'XX XXX XX' }}</h6>
+                                    <h6>First Surveillance Audit on or before :&nbsp;&nbsp;&nbsp;&nbsp;{{ @$data->first_surveillance_audit ? @$data->first_surveillance_audit : 'XX XXX XX' }}</h6>
+                                    <h6>Second Surveillance Audit on or before :&nbsp;&nbsp;&nbsp;&nbsp;{{ @$data->second_surveillance_audit ? @$data->second_surveillance_audit : 'XX XXX XX' }}</h6>
+                                    <h6>Re-certification Due :&nbsp;&nbsp;&nbsp;&nbsp;{{ @$data->certification_due_date ? @$data->certification_due_date : 'XX XXX XX' }}</h6>
+                                    
                                     <br>
                                     <div class="dottedbox row">
-                                        <div class="dottedbox-right w-100 col-4">
-                                            <div class="date-text">
-                                                <div>CERTIFICATE NO :
-                                                    &nbsp; &nbsp; <span>
-                                                        {{ @$data->certificate_number ? @$data->certificate_number : 'DRAFT COPY' }}</span>
-                                                </div>
-                                                <div>Date of initial registration
-                                                    &nbsp; &nbsp; <span>
-                                                        {{ @$data->date_registration ? @$data->date_registration : 'XX XXX xx' }}</span>
-                                                </div>
-                                                <div>First Surveillance Audit on or before:
-                                                    &nbsp;&nbsp; <span>
-                                                        {{ @$data->first_surveillance_audit ? @$data->first_surveillance_audit : 'XX XXX xx' }}</span>
-                                                </div>
-                                                <div>Second Surveillance Audit on or before:
-                                                    &nbsp;&nbsp; <span>
-                                                        {{ @$data->second_surveillance_audit ? @$data->second_surveillance_audit : 'XX XXX xx' }}</span>
-                                                </div>
-                                                <div>Re-certification Due: &nbsp;&nbsp;
-                                                    <span>{{ @$data->certification_due_date ? @$data->certification_due_date : 'XX XXX xx' }}</span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
 
                                     </div>
                                 </div>
