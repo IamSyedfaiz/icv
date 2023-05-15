@@ -25,30 +25,31 @@
 
         h2 {
             font-size: 54px;
-            
+
             color: #000;
-            font-weight:700;
-        }
-        
-        h3 {
-            font-size: 44px;
-            color:navy;
-            font-weight:700;
-            line-height:45px;
+            font-weight: 700;
         }
 
-         h5 {
+        h3 {
+            font-size: 44px;
+            color: navy;
+            font-weight: 700;
+            line-height: 45px;
+        }
+
+        h5 {
             font-size: 54px;
             font-weight: 700;
             color: #000;
-            margin-bottom:30px;
+            margin-bottom: 30px;
 
         }
+
         h6 {
             font-size: 14px;
             font-weight: 700;
             color: #000;
-            margin-bottom:30px;
+            margin-bottom: 30px;
 
         }
 
@@ -77,7 +78,7 @@
             text-align: center;
         }
 
-         
+
 
 
         #canvasElement h6 {
@@ -92,14 +93,14 @@
             float: none;
             display: block;
             margin: 0 auto;
-            color:#000;
+            color: #000;
         }
 
         .date-text {
-            text-align:center;
+            text-align: center;
             width: 100%;
-            display:block;
-            margin:0 auto;
+            display: block;
+            margin: 0 auto;
         }
 
         .date-text div {
@@ -140,7 +141,7 @@
                                     <h6>has been formally assessed by</h6>
                                     <h2>INTERNATIONAL CERTIFICATION & INSPECTION UK LTD.</h2>
                                     <h6>and found to comply with the requirements of</h6>
-                                    <h1 style="font-size:130px;color:navy;">ISO 9001: 2015</h1><br>
+                                    <h1 style="font-size:130px;color:navy;">ISO {{ $data->standerd }}: 2015</h1><br>
                                     <h3 style="color:navy; margin-botom:130px;">(Quality Management System)</h3><br>
                                     <br><br>
                                     <h6>Scope of Registration</h6><br>
@@ -151,25 +152,29 @@
                                         {{ @$data->certificate_number ? @$data->certificate_number : 'DRAFT COPY' }}</h5>
                                     <br>
                                     <h3 style="color:#000;">
-                                        Date of initial registration:&nbsp;&nbsp;&nbsp;&nbsp;    {{ @$data->date_registration ? @$data->date_registration : 'XX XXX 2023' }}
+                                        Date of initial registration:&nbsp;&nbsp;&nbsp;&nbsp;
+                                        {{ @$data->date_registration ? @$data->date_registration : 'XX XXX 2023' }}
                                     </h3>
                                     <br>
                                     <h3 style="color:#000;">
-                                        First Surveillance Audit on or before:&nbsp;&nbsp;&nbsp;&nbsp;    {{ @$data->first_surveillance_audit ? @$data->first_surveillance_audit : 'XX XXX XX' }}
+                                        First Surveillance Audit on or before:&nbsp;&nbsp;&nbsp;&nbsp;
+                                        {{ @$data->first_surveillance_audit ? @$data->first_surveillance_audit : 'XX XXX XX' }}
                                     </h3>
                                     <br>
                                     <h3 style="color:#000;">
-                                        Second Surveillance Audit on or before:&nbsp;&nbsp;&nbsp;&nbsp;    {{ @$data->second_surveillance_audit ? @$data->second_surveillance_audit : 'XX XXX XX' }}
+                                        Second Surveillance Audit on or before:&nbsp;&nbsp;&nbsp;&nbsp;
+                                        {{ @$data->second_surveillance_audit ? @$data->second_surveillance_audit : 'XX XXX XX' }}
                                     </h3>
                                     <br>
                                     <h3 style="color:#000;">
-                                        Re-certification Due:&nbsp;&nbsp;&nbsp;&nbsp;    {{ @$data->certification_due_date ? @$data->certification_due_date : 'XX XXX XX' }}
+                                        Re-certification Due:&nbsp;&nbsp;&nbsp;&nbsp;
+                                        {{ @$data->certification_due_date ? @$data->certification_due_date : 'XX XXX XX' }}
                                     </h3>
-                                    
-                                    
-                                    
+
+
+
                                     <div class="dottedbox row">
-                                        
+
 
                                         <div class="col-md-9 ms-auto" style="position: absolute; right: 0px;">
                                             <div id="previewImage"></div>

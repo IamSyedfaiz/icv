@@ -155,34 +155,34 @@ class UserController extends Controller
 
     public function uploadPayment(Request $request)
     {
-        // $userId = auth()->user()->id;
-        // $user = User::whereHas('payments', function ($query) use ($userId) {
-        //     $query->where('user_id', $userId);
-        // })
-        //     ->select('parent_id')
-        //     ->first();
+        $userId = auth()->user()->id;
+        $user = User::whereHas('payments', function ($query) use ($userId) {
+            $query->where('user_id', $userId);
+        })
+            ->select('parent_id')
+            ->first();
 
-        // $parentId = @$user->parent_id;
+        $parentId = @$user->parent_id;
 
-        // $userFind = User::find($parentId);
-        // $ConsultantFind = Consultant::find($request->consultant_id);
-        // $CertificationFind = Certification::find($request->certificate_id);
-
-
-        // $data = [
-        //     'consultant' => $ConsultantFind->name,
-        //     'certificate' => $CertificationFind->business_name,
-        //     'balance' => $request->payment_balance,
-        // ];
-        // // return $userFind->email;
+        $userFind = User::find($parentId);
+        $ConsultantFind = Consultant::find($request->consultant_id);
+        $CertificationFind = Certification::find($request->certificate_id);
 
 
+        $data = [
+            'consultant' => $ConsultantFind->name,
+            'certificate' => $CertificationFind->business_name,
+            'balance' => $request->payment_balance,
+        ];
+        return $userFind->email;
 
-        // Mail::send('email.email_info', @$data, function ($msg) use ($data, $userFind) {
-        //     $msg->from('racap@omegawebdemo.com.au');
-        //     $msg->to($userFind->email);
-        //     $msg->subject('Title');
-        // });
+
+
+        Mail::send('email.email_info', @$data, function ($msg) use ($data, $userFind) {
+            $msg->from('racap@omegawebdemo.com.au');
+            $msg->to($userFind->email);
+            $msg->subject('Title');
+        });
         $data = new Payment;
         $data->payment_type = $request->payment_type;
         $data->payment_balance = $request->payment_balance;

@@ -25,15 +25,16 @@
 
         h2 {
             font-size: 54px;
-            
-            
+
+
             font-weight: 700;
 
         }
+
         h3 {
             font-size: 45px;
-            
-            
+
+
             font-weight: 700;
 
         }
@@ -96,7 +97,7 @@
             /* float: none; */
             /* display: block; */
             /* margin: 0 auto; */
-            color:#000;
+            color: #000;
         }
 
 
@@ -117,7 +118,7 @@
             padding-left: 50px;
             width: 1700px;
             font-size: 35px;
-            color:#000;
+            color: #000;
         }
     </style>
 @endsection
@@ -144,19 +145,19 @@
 
                             <div id="page-container">
                                 <div id="canvasElement" class="cert-text pb-5">
-                                    
+
                                     <h1 style="color:#2e3092;font-weight:700;">{{ $data->business_name }}</h1><br>
                                     <h6>has been formally assessed by</h6>
                                     <h2 style="color:#000;">Star Certifications UK Limited</h2>
                                     <h6>and found to comply with the requirements of</h6>
-                                    <h1  style="color:#2e3092;font-weight:700;">ISO 9001: 2015</h1><br>
+                                    <h1 style="color:#2e3092;font-weight:700;">ISO {{ $data->standerd }}: 2015</h1><br>
                                     <h3 style="color:#2e3092;font-weight:700;">(Quality Management System)</h3><br><br>
-                                    <h6  style="color:#000;font-weight:700;" >Registered Site (s):</h6>
+                                    <h6 style="color:#000;font-weight:700;">Registered Site (s):</h6>
                                     <p>{{ $data->registered_site }}</p>
-                                    <h6  style="color:#000;font-weight:700;" >Scope of Registration</h6>
+                                    <h6 style="color:#000;font-weight:700;">Scope of Registration</h6>
                                     <p>{{ $data->scope_registration }}</p>
                                     <br><br>
-                                    <h6  style="color:#000;font-weight:700;" >:: CERTIFICATE NO :: &nbsp;
+                                    <h6 style="color:#000;font-weight:700;">:: CERTIFICATE NO :: &nbsp;
                                         {{ @$data->certificate_number ? @$data->certificate_number : 'DRAFT COPY' }}</h6>
                                     <br>
                                     <div class="dottedbox row">

@@ -27,13 +27,14 @@
             color: #3a4ce9;
         }
 
-        
+
         h5 {
             font-size: 65px;
             font-weight: 700;
             color: #000;
-            
+
         }
+
         h6 {
             font-size: 40px;
             font-weight: 700;
@@ -44,7 +45,7 @@
         p {
             font-size: 18px;
             width: 700px;
-            font-weight:500;
+            font-weight: 500;
         }
 
         .container {
@@ -84,8 +85,8 @@
             display: block;
             margin: 0 auto;
             margin-top: 30px;
-            color:#000;
-            font-weight:500;
+            color: #000;
+            font-weight: 500;
         }
 
         .date-text div {
@@ -120,7 +121,7 @@
                             <div id="previewImage" class="img-fluid" style="overflow: scroll"></div>
 
                             <div id="page-container">
-                                    <div id="canvasElement" class="cert-text pb-5"><br><br>
+                                <div id="canvasElement" class="cert-text pb-5"><br><br>
                                     <h6>This is to certify that the management system of</h6>
                                     <br>
                                     <h1 style="color:#0198db; font-weight:700;">{{ $data->business_name }}</h1><br><br>
@@ -130,22 +131,32 @@
                                     <h6>has been audited by ICV and found to be</h6>
                                     <h6>in compliance with the requirements of the standard</h6>
                                     <br><br>
-                                    <h1 style="color:#000;">ISO 9001:2015</h1><br><br>
+                                    <h1 style="color:#000;">ISO {{ $data->standerd }}:2015</h1><br><br>
                                     <h5 style="color:#000;">(Quality Management System)</h5><br><br>
                                     <h6>This certificate is valid for <br> the following scope:</h6><br>
-                                    <p>{{ $data->scope_registration }}</p><br><br>                                    
-                                    
-                                    
-                                    
-                                    <h6>CERTIFICATE NO :&nbsp;&nbsp;&nbsp;&nbsp;{{ @$data->certificate_number ? @$data->certificate_number : 'DRAFT COPY' }}</h6>
-                                    <h6>Date of initial registration :&nbsp;&nbsp;&nbsp;&nbsp;{{ @$data->date_registration ? @$data->date_registration : 'XX XXX XX' }}</h6>
-                                    <h6>First Surveillance Audit on or before :&nbsp;&nbsp;&nbsp;&nbsp;{{ @$data->first_surveillance_audit ? @$data->first_surveillance_audit : 'XX XXX XX' }}</h6>
-                                    <h6>Second Surveillance Audit on or before :&nbsp;&nbsp;&nbsp;&nbsp;{{ @$data->second_surveillance_audit ? @$data->second_surveillance_audit : 'XX XXX XX' }}</h6>
-                                    <h6>Re-certification Due :&nbsp;&nbsp;&nbsp;&nbsp;{{ @$data->certification_due_date ? @$data->certification_due_date : 'XX XXX XX' }}</h6>
-                                    
+                                    <p>{{ $data->scope_registration }}</p><br><br>
+
+
+
+                                    <h6>CERTIFICATE NO
+                                        :&nbsp;&nbsp;&nbsp;&nbsp;{{ @$data->certificate_number ? @$data->certificate_number : 'DRAFT COPY' }}
+                                    </h6>
+                                    <h6>Date of initial registration
+                                        :&nbsp;&nbsp;&nbsp;&nbsp;{{ @$data->date_registration ? @$data->date_registration : 'XX XXX XX' }}
+                                    </h6>
+                                    <h6>First Surveillance Audit on or before
+                                        :&nbsp;&nbsp;&nbsp;&nbsp;{{ @$data->first_surveillance_audit ? @$data->first_surveillance_audit : 'XX XXX XX' }}
+                                    </h6>
+                                    <h6>Second Surveillance Audit on or before
+                                        :&nbsp;&nbsp;&nbsp;&nbsp;{{ @$data->second_surveillance_audit ? @$data->second_surveillance_audit : 'XX XXX XX' }}
+                                    </h6>
+                                    <h6>Re-certification Due
+                                        :&nbsp;&nbsp;&nbsp;&nbsp;{{ @$data->certification_due_date ? @$data->certification_due_date : 'XX XXX XX' }}
+                                    </h6>
+
                                     <br>
                                     <div class="dottedbox row">
-                                        
+
 
                                     </div>
                                 </div>
