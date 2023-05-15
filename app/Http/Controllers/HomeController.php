@@ -211,9 +211,11 @@ class HomeController extends Controller
             $final_icv_cert = substr($icv_cert_no, 4, 6) + 1;
             // return $final_icv_cert;
         } else {
-            $final_icv_cert = 900;
+            $final_icv_cert = 7900;
         }
         $current_date = now();
+              $current_year = date('Y');
+        $last_two_digits = substr($current_year, -2);
         $format_current_date = $current_date->format('d-m-y');
         $first_date = $current_date->copy()->addMonth(10);
         $format_first_date = $first_date->format('d-m-y');
@@ -228,10 +230,10 @@ class HomeController extends Controller
         $second_number = rand(100,  1000);
         $third_number = rand(10,  100);
         $fourth_number = rand(1000,  10000);
-        $ici_Certificate_number = 'ICI' . '/' . $final_ici_cert . $second_number . '/' . $third_number;
+        $ici_Certificate_number = 'ICI' . '/' . $final_ici_cert . $second_number . '/' . $last_two_digits;
         // return $ici_Certificate_number;
-        $icv_Certificate_number = 'ICV' . '/' . $first_number . $final_icv_cert . '/' . $fourth_number;
-        $star_Certificate_number = 'SR' . '/' . $final_star_cert . $second_number . '/' . $fourth_number;
+        $icv_Certificate_number = 'IN' . '/' . $first_number . $final_icv_cert . '/' . $fourth_number;
+        $star_Certificate_number = 'SR' . '/' . $final_star_cert . $second_number . '/' . $current_year;
 
 
         return view('edit-draft-cert', compact('certification', 'documents', 'format_current_date', 'format_first_date', 'format_second_date', 'format_due_date', 'payments', 'ici_Certificate_number', 'icv_Certificate_number', 'star_Certificate_number'));

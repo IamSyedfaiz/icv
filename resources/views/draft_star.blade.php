@@ -13,7 +13,7 @@
         }
 
         .cert-text {
-            font-family: 'Merriweather', serif;
+            *font-family: 'Merriweather', serif;
         }
 
         h1 {
@@ -25,8 +25,15 @@
 
         h2 {
             font-size: 54px;
-            font-family: 'Gill Sans', sans-serif;
-            color: navy;
+            
+            
+            font-weight: 700;
+
+        }
+        h3 {
+            font-size: 45px;
+            
+            
             font-weight: 700;
 
         }
@@ -82,13 +89,14 @@
         }
 
         #canvasElement p {
-            font-size: 24px;
+            font-size: 35px;
             width: 70%;
             /* text-align: center; */
-            line-height: 40px;
+            line-height: 50px;
             /* float: none; */
             /* display: block; */
             /* margin: 0 auto; */
+            color:#000;
         }
 
 
@@ -108,7 +116,8 @@
             align-items: center;
             padding-left: 50px;
             width: 1700px;
-            font-size: 24px;
+            font-size: 35px;
+            color:#000;
         }
     </style>
 @endsection
@@ -135,19 +144,19 @@
 
                             <div id="page-container">
                                 <div id="canvasElement" class="cert-text pb-5">
-                                    {{-- <h6>This is to certify that the management system of</h6><br> --}}
-                                    <h2>{{ $data->business_name }}</h2><br>
+                                    
+                                    <h1 style="color:#2e3092;font-weight:700;">{{ $data->business_name }}</h1><br>
                                     <h6>has been formally assessed by</h6>
-                                    <h4>Star Certifications UK Limited</h4>
+                                    <h2 style="color:#000;">Star Certifications UK Limited</h2>
                                     <h6>and found to comply with the requirements of</h6>
-                                    <h1 style="color:navy;">ISO 9001: 2015</h1><br>
-                                    <h6 style="color:navy;">(Quality Management System)</h6>
-                                    <h6>Registered Site (s):</h6>
+                                    <h1  style="color:#2e3092;font-weight:700;">ISO 9001: 2015</h1><br>
+                                    <h3 style="color:#2e3092;font-weight:700;">(Quality Management System)</h3><br><br>
+                                    <h6  style="color:#000;font-weight:700;" >Registered Site (s):</h6>
                                     <p>{{ $data->registered_site }}</p>
-                                    <h6>Scope of Registration</h6>
+                                    <h6  style="color:#000;font-weight:700;" >Scope of Registration</h6>
                                     <p>{{ $data->scope_registration }}</p>
-                                    <br>
-                                    <h6>CERTIFICATE NO : &nbsp;
+                                    <br><br>
+                                    <h6  style="color:#000;font-weight:700;" >:: CERTIFICATE NO :: &nbsp;
                                         {{ @$data->certificate_number ? @$data->certificate_number : 'DRAFT COPY' }}</h6>
                                     <br>
                                     <div class="dottedbox row">
@@ -156,22 +165,22 @@
                                                 <div class="">
                                                     <div>Date of initial registration
                                                         &nbsp; &nbsp; <span>
-                                                            {{ @$data->date_registration ? @$data->date_registration : 'XX XXX xx' }}</span>
+                                                            {{ @$data->date_registration ? @$data->date_registration : 'XX XXX XX' }}</span>
                                                     </div>
                                                     <div>1st Surveillance Audit on or before:
                                                         &nbsp;&nbsp; <span>
-                                                            {{ @$data->first_surveillance_audit ? @$data->first_surveillance_audit : 'XX XXX xx' }}</span>
+                                                            {{ @$data->first_surveillance_audit ? @$data->first_surveillance_audit : 'XX XXX XX' }}</span>
                                                     </div>
 
 
                                                 </div>
                                                 <div class="">
                                                     <div>Re-certification Due: &nbsp;&nbsp;
-                                                        <span>{{ @$data->certification_due_date ? @$data->certification_due_date : 'XX XXX xx' }}</span>
+                                                        <span>{{ @$data->certification_due_date ? @$data->certification_due_date : 'XX XXX XX' }}</span>
                                                     </div>
                                                     <div>2nd Surveillance Audit on or before:
                                                         &nbsp;&nbsp; <span>
-                                                            {{ @$data->second_surveillance_audit ? @$data->second_surveillance_audit : 'XX XXX xx' }}</span>
+                                                            {{ @$data->second_surveillance_audit ? @$data->second_surveillance_audit : 'XX XXX XX' }}</span>
                                                     </div>
 
                                                 </div>
