@@ -61,7 +61,7 @@
                                 </div>
                                 <div class="col-12">
                                     <label for="cat" class="form-label">Standerd</label>
-                                    <input type="number" name="standerd" class="form-control" id="cat">
+                                    <input type="text" name="standerd" class="form-control" id="cat">
                                 </div>
                                 <div class="col-12">
                                     <label for="cat" class="form-label">Business Name</label>

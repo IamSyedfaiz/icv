@@ -17,16 +17,14 @@
         }
 
         h1 {
-            font-size: 60px;
+            font-size: 80px;
             color: #000;
             font-weight: 700;
 
         }
 
         h2 {
-            font-size: 54px;
-
-            color: #000;
+            font-size: 60px;
             font-weight: 700;
         }
 
@@ -141,7 +139,7 @@
                                     <h6>has been formally assessed by</h6>
                                     <h2>INTERNATIONAL CERTIFICATION & INSPECTION UK LTD.</h2>
                                     <h6>and found to comply with the requirements of</h6>
-                                    <h1 style="font-size:130px;color:navy;">ISO {{ $data->standerd }}: 2015</h1><br>
+                                    <h2 style="font-size:130px;color:navy;">{{ $data->standerd }}</h2><br>
                                     <h3 style="color:navy; margin-botom:130px;">(Quality Management System)</h3><br>
                                     <br><br>
                                     <h6>Scope of Registration</h6><br>
