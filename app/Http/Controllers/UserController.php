@@ -155,6 +155,14 @@ class UserController extends Controller
 
     public function uploadPayment(Request $request)
     {
+        $data = new Payment;
+        $data->payment_type = $request->payment_type;
+        $data->payment_balance = $request->payment_balance;
+        $data->consultant_id = $request->consultant_id;
+        $data->certificate_id = $request->certificate_id;
+        $data->user_id = auth()->user()->id;
+        $data->save();
+
         $userId = auth()->user()->id;
         $user = User::whereHas('payments', function ($query) use ($userId) {
             $query->where('user_id', $userId);
@@ -163,6 +171,7 @@ class UserController extends Controller
             ->first();
 
         $parentId = @$user->parent_id;
+        // DD($parentId);
 
         $userFind = User::find($parentId);
         $ConsultantFind = Consultant::find($request->consultant_id);
@@ -174,7 +183,7 @@ class UserController extends Controller
             'certificate' => $CertificationFind->business_name,
             'balance' => $request->payment_balance,
         ];
-        return $userFind->email;
+        // return $userFind->email;
 
 
 
@@ -183,13 +192,7 @@ class UserController extends Controller
             $msg->to($userFind->email);
             $msg->subject('Title');
         });
-        $data = new Payment;
-        $data->payment_type = $request->payment_type;
-        $data->payment_balance = $request->payment_balance;
-        $data->consultant_id = $request->consultant_id;
-        $data->certificate_id = $request->certificate_id;
-        $data->user_id = auth()->user()->id;
-        $data->save();
+
 
         return redirect()->back();
     }
