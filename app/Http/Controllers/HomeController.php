@@ -127,7 +127,7 @@ class HomeController extends Controller
         $data->consultant_id = $request->consultant_id;
         $data->user_id = auth()->user()->id;
         $data->certificate_template = $request->certificate_template;
-        $data->standerd = '9001';
+        $data->standerd = $request->standerd;
         $data->certificate_status = $request->certificate_status;
         $data->business_name = $request->business_name;
         $data->scope_registration = $request->scope_registration;
@@ -214,7 +214,7 @@ class HomeController extends Controller
             $final_icv_cert = 7900;
         }
         $current_date = now();
-              $current_year = date('Y');
+        $current_year = date('Y');
         $last_two_digits = substr($current_year, -2);
         $format_current_date = $current_date->format('d-m-y');
         $first_date = $current_date->copy()->addMonth(10);
