@@ -101,13 +101,22 @@
             margin: 0 auto;
         }
 
-        .date-text div {
+        /* .date-text div {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                padding-left: 50px;
+                                width: 800px;
+                                font-size: 24px;
+                            } */
+
+        .justify {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding-left: 50px;
-            width: 800px;
-            font-size: 24px;
+            width: 1200px;
+            margin-left: 200px;
         }
     </style>
 @endsection
@@ -149,24 +158,28 @@
                                     <h5>::CERTIFICATE NO :: &nbsp;
                                         {{ @$data->certificate_number ? @$data->certificate_number : 'DRAFT COPY' }}</h5>
                                     <br>
-                                    <h3 style="color:#000;">
+                                    <h3 class="justify" style="color:#000;">
                                         Date of initial registration:&nbsp;&nbsp;&nbsp;&nbsp;
-                                        {{ @$data->date_registration ? @$data->date_registration : 'XX XXX 2023' }}
+                                        <span>
+                                            {{ @$data->date_registration ? @$data->date_registration : 'XX XXX 2023' }}</span>
                                     </h3>
                                     <br>
-                                    <h3 style="color:#000;">
+                                    <h3 class="justify" style="color:#000;">
                                         First Surveillance Audit on or before:&nbsp;&nbsp;&nbsp;&nbsp;
-                                        {{ @$data->first_surveillance_audit ? @$data->first_surveillance_audit : 'XX XXX XX' }}
+                                        <span>
+                                            {{ @$data->first_surveillance_audit ? @$data->first_surveillance_audit : 'XX XXX XX' }}</span>
                                     </h3>
                                     <br>
-                                    <h3 style="color:#000;">
+                                    <h3 class="justify" style="color:#000;">
                                         Second Surveillance Audit on or before:&nbsp;&nbsp;&nbsp;&nbsp;
-                                        {{ @$data->second_surveillance_audit ? @$data->second_surveillance_audit : 'XX XXX XX' }}
+                                        <span>
+                                            {{ @$data->second_surveillance_audit ? @$data->second_surveillance_audit : 'XX XXX XX' }}</span>
                                     </h3>
                                     <br>
-                                    <h3 style="color:#000;">
+                                    <h3 class="justify" style="color:#000;">
                                         Re-certification Due:&nbsp;&nbsp;&nbsp;&nbsp;
-                                        {{ @$data->certification_due_date ? @$data->certification_due_date : 'XX XXX XX' }}
+                                        <span>
+                                            {{ @$data->certification_due_date ? @$data->certification_due_date : 'XX XXX XX' }}</span>
                                     </h3>
 
 
