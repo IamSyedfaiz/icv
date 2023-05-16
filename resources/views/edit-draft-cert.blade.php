@@ -43,8 +43,9 @@
                                 </div>
                                 <div class="col-12">
                                     <label for="cat" class="form-label">Business Name</label>
-                                    <input type="text" name="business_name" value="{{ @$certification->business_name }}"
-                                        class="form-control" id="cat">
+                                    <textarea id="myeditorinstance" class="form-control" name="business_name">{{ @$certification->business_name }}</textarea>
+                                    {{-- <input type="text" name="business_name" value="{{ @$certification->business_name }}"
+                                        class="form-control" id="cat"> --}}
                                 </div>
 
                                 <div class="col-12">
@@ -335,7 +336,10 @@
 
     </main><!-- End #main -->
 @endsection
-
+<script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('editor1');
+</script>
 
 <script>
     // Get the input element

@@ -56,6 +56,13 @@
             font-size: 100px;
             font-weight: 700;
             margin: 10px 0;
+            color: #2e3092 !important;
+
+        }
+
+        .bname {
+            color: #2e3092 !important;
+            margin: 0 auto;
         }
 
         p {
@@ -112,8 +119,6 @@
 
         .date-text div {
             display: flex;
-            /* flex-direction: column; */
-            /* justify-content: space-between; */
             align-items: center;
             padding-left: 50px;
             width: 1700px;
@@ -146,7 +151,7 @@
                             <div id="page-container">
                                 <div id="canvasElement" class="cert-text pb-5">
 
-                                    <h1 style="color:#2e3092;font-weight:700;">{{ $data->business_name }}</h1><br>
+                                    <h1 class="bname">{!! $data->business_name !!}</h1><br>
                                     <h6>has been formally assessed by</h6>
                                     <h2 style="color:#000;">Star Certifications UK Limited</h2>
                                     <h6>and found to comply with the requirements of</h6>
@@ -212,7 +217,7 @@
 @endsection
 @section('script')
     <script>
-        $certFileName = '{{ @$data->business_name ? @$data->business_name : 'Certificate' }}.pdf';
+        $certFileName = 'Certificate.pdf';
         $(document).ready(function() {
             var element = $("#page-container"); // global variable
             var getCanvas; // global variable
@@ -252,7 +257,7 @@
                 var newData = imgageData.replace(/^data:image\/jpeg/,
                     "data:application/octet-stream"); // Change "image/png" to "image/jpeg"
                 $("#btn-Convert-jpg").attr("download",
-                    "{{ @$data->business_name ? @$data->business_name : 'Certificate' }}.jpg").attr(
+                    "Certificate.jpg").attr(
                     "href",
                     newData); // Change file extension to .jpg
             });

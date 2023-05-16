@@ -65,7 +65,9 @@
                                 </div>
                                 <div class="col-12">
                                     <label for="cat" class="form-label">Business Name</label>
-                                    <input type="text" name="business_name" class="form-control" id="cat">
+                                    {{-- <input type="text" name="business_name" class="form-control" id="cat"> --}}
+                                    <textarea class="form-control" id="editor1" name="business_name"></textarea>
+
                                 </div>
 
                                 <div class="col-12">
@@ -289,4 +291,8 @@
             </div>
         </section>
     </main><!-- End #main -->
+    <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('editor1');
+    </script>
 @endsection

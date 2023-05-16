@@ -16,16 +16,20 @@
             font-family: 'Merriweather', serif;
         }
 
-        h1 {
+        h1,
+        .bname p {
             font-size: 80px;
             color: #000;
             font-weight: 700;
+            margin: 0 auto;
 
         }
 
         h2 {
             font-size: 60px;
             font-weight: 700;
+            color: #000;
+
         }
 
         h3 {
@@ -101,22 +105,13 @@
             margin: 0 auto;
         }
 
-        /* .date-text div {
-                                display: flex;
-                                justify-content: space-between;
-                                align-items: center;
-                                padding-left: 50px;
-                                width: 800px;
-                                font-size: 24px;
-                            } */
-
         .justify {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding-left: 50px;
             width: 1200px;
-            margin-left: 200px;
+            margin: 0 auto;
         }
     </style>
 @endsection
@@ -144,7 +139,7 @@
                             <div id="page-container">
                                 <div id="canvasElement" class="cert-text pb-5">
                                     <h6>This is to certify that the management system of</h6><br>
-                                    <h1>{{ $data->business_name }}</h1><br>
+                                    <div class="bname" style="font-size: 80px">{!! $data->business_name !!}</div><br>
                                     <h6>has been formally assessed by</h6>
                                     <h2>INTERNATIONAL CERTIFICATION & INSPECTION UK LTD.</h2>
                                     <h6>and found to comply with the requirements of</h6>
@@ -206,12 +201,13 @@
                     </div>
                 </div>
             </div>
+            {{-- // $certFileName = '{{ @$data->business_name ? @$data->business_name : 'Certificate' }}.pdf'; --}}
         </section>
     </main>
 @endsection
 @section('script')
     <script>
-        $certFileName = '{{ @$data->business_name ? @$data->business_name : 'Certificate' }}.pdf';
+        $certFileName = 'Certificate.pdf';
         $(document).ready(function() {
             var element = $("#page-container"); // global variable
             var getCanvas; // global variable
@@ -251,7 +247,7 @@
                 var newData = imgageData.replace(/^data:image\/jpeg/,
                     "data:application/octet-stream"); // Change "image/png" to "image/jpeg"
                 $("#btn-Convert-jpg").attr("download",
-                    "{{ @$data->business_name ? @$data->business_name : 'Certificate' }}.jpg").attr(
+                    "Certificate.jpg").attr(
                     "href",
                     newData); // Change file extension to .jpg
             });

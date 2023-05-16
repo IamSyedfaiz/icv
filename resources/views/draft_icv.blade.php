@@ -21,11 +21,19 @@
             font-weight: 700;
         }
 
-        h2 {
-            font-size: 84px;
-            font-family: 'Gill Sans', sans-serif;
-            color: #3a4ce9;
+        .bname {
+            font-size: 80px;
+            color: #0198db;
+            font-weight: 700;
+            margin: 0 auto;
+
         }
+
+        /* h2 {
+                                            font-size: 84px;
+                                            font-family: 'Gill Sans', sans-serif;
+                                            color: #3a4ce9;
+                                        } */
 
 
         h5 {
@@ -36,10 +44,10 @@
         }
 
         h6 {
-            font-size: 40px;
+            font-size: 45px;
             font-weight: 700;
             color: #000;
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
         p {
@@ -65,7 +73,7 @@
 
         #canvasElement {
             /* margin: 0px auto 50px; */
-            margin-top: -400px;
+            margin-top: -120px;
 
             display: flex;
             flex-direction: column;
@@ -77,8 +85,8 @@
         }
 
         #canvasElement p {
-            font-size: 37px;
-            width: 60%;
+            font-size: 28px;
+            width: 70%;
             text-align: center;
             line-height: 40px;
             float: none;
@@ -114,7 +122,7 @@
             <h1>Preview Certificate</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item active">Preview Certificate</li>
                 </ol>
             </nav>
@@ -133,16 +141,16 @@
                                 <div id="canvasElement" class="cert-text pb-5"><br><br>
                                     <h6>This is to certify that the management system of</h6>
                                     <br>
-                                    <h1 style="color:#0198db; font-weight:700;">{{ $data->business_name }}</h1><br><br>
+                                    <div class="bname">{!! $data->business_name !!}</div>
 
 
                                     <p>{{ $data->registered_site }}</p>
                                     <h6>has been audited by ICV and found to be</h6>
                                     <h6>in compliance with the requirements of the standard</h6>
                                     <br><br>
-                                    <h1 style="color:#000;">{{ $data->standerd }}</h1><br><br>
-                                    <h5 style="color:#000;">(Quality Management System)</h5><br><br>
-                                    <h6>This certificate is valid for <br> the following scope:</h6><br>
+                                    <h1 style="color:#000;">{{ $data->standerd }}</h1><br>
+                                    <h5 style="color:#000;">(Quality Management System)</h5><br>
+                                    <h6>This certificate is valid for <br> the following scope:</h6>
                                     <p>{{ $data->scope_registration }}</p><br><br>
 
 
@@ -192,7 +200,7 @@
 @endsection
 @section('script')
     <script>
-        $certFileName = '{{ @$data->business_name ? @$data->business_name : 'Certificate' }}.pdf';
+        $certFileName = 'Certificate.pdf';
         $(document).ready(function() {
             var element = $("#page-container"); // global variable
             var getCanvas; // global variable
@@ -232,7 +240,7 @@
                 var newData = imgageData.replace(/^data:image\/jpeg/,
                     "data:application/octet-stream"); // Change "image/png" to "image/jpeg"
                 $("#btn-Convert-jpg").attr("download",
-                    "{{ @$data->business_name ? @$data->business_name : 'Certificate' }}.jpg").attr(
+                    "Certificate.jpg").attr(
                     "href",
                     newData); // Change file extension to .jpg
             });
