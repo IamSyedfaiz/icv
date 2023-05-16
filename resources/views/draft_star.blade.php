@@ -150,7 +150,7 @@
                                     <h6>has been formally assessed by</h6>
                                     <h2 style="color:#000;">Star Certifications UK Limited</h2>
                                     <h6>and found to comply with the requirements of</h6>
-                                    <h1 style="color:#2e3092;font-weight:700;">ISO {{ $data->standerd }}: 2015</h1><br>
+                                    <h1 style="color:#2e3092;font-weight:700;">{{ $data->standerd }}</h1><br>
                                     <h3 style="color:#2e3092;font-weight:700;">(Quality Management System)</h3><br><br>
                                     <h6 style="color:#000;font-weight:700;">Registered Site (s):</h6>
                                     <p>{{ $data->registered_site }}</p>

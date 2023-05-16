@@ -131,7 +131,7 @@
                                     <h6>has been audited by ICV and found to be</h6>
                                     <h6>in compliance with the requirements of the standard</h6>
                                     <br><br>
-                                    <h1 style="color:#000;">ISO {{ $data->standerd }}:2015</h1><br><br>
+                                    <h1 style="color:#000;">{{ $data->standerd }}</h1><br><br>
                                     <h5 style="color:#000;">(Quality Management System)</h5><br><br>
                                     <h6>This certificate is valid for <br> the following scope:</h6><br>
                                     <p>{{ $data->scope_registration }}</p><br><br>
