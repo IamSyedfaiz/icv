@@ -87,8 +87,19 @@
             font-size: 45px;
         }
 
-        #canvasElement p {
-            font-size: 30px;
+        #canvasElement .scope {
+            font-size: {{ @$scopeSize }}px;
+            width: 60%;
+            text-align: center;
+            line-height: 40px;
+            float: none;
+            display: block;
+            margin: 0 auto;
+            color: #000;
+        }
+
+        #canvasElement .registered {
+            font-size: {{ @$registeredSize }}px;
             width: 60%;
             text-align: center;
             line-height: 40px;
@@ -147,9 +158,9 @@
                                     <h3 style="color:navy; margin-botom:130px;">(Quality Management System)</h3><br>
                                     <br><br>
                                     <h6>Scope of Registration</h6><br>
-                                    <p>{{ $data->scope_registration }}</p><br><br>
+                                    <p class="scope">{{ $data->scope_registration }}</p><br><br>
                                     <h6>Registered Site (s):</h6><br>
-                                    <p>{{ $data->registered_site }}</p><br><br>
+                                    <p class="registered">{{ $data->registered_site }}</p><br><br>
                                     <h5>::CERTIFICATE NO :: &nbsp;
                                         {{ @$data->certificate_number ? @$data->certificate_number : 'DRAFT COPY' }}</h5>
                                     <br>

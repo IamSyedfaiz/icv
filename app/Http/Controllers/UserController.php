@@ -95,23 +95,23 @@ class UserController extends Controller
         }
         return redirect()->back()->with('success', 'Add Consultant Successfully ');
     }
-    public function create_icv($id)
+    public function create_icv($id, $scopeSize, $registeredSize)
     {
         $data = Certification::find($id);
-        // return $draft_data;
-        return view('draft_icv', compact('data'));
+        // return $scopeSize;
+        return view('draft_icv', compact('data', 'scopeSize', 'registeredSize'));
     }
-    public function create_ici($id)
+    public function create_ici($id, $scopeSize, $registeredSize)
     {
         $data = Certification::find($id);
-        // return $draft_data;
-        return view('draft_ici', compact('data'));
+        // return $scopeSize;
+        return view('draft_ici', compact('data', 'scopeSize', 'registeredSize'));
     }
-    public function create_star($id)
+    public function create_star($id, $scopeSize, $registeredSize)
     {
         $data = Certification::find($id);
         // return $draft_data;
-        return view('draft_star', compact('data'));
+        return view('draft_star', compact('data', 'scopeSize', 'registeredSize'));
     }
     public function final_icv($id)
     {
@@ -216,6 +216,9 @@ class UserController extends Controller
 
     public function editCertificate(Request $request, $id)
     {
+        $scopeSize = $request->scope_font_size;
+        $registeredSize = $request->registered_font_size;
+
         $data = Certification::find($id);
         // $data->certificate_template = $request->certificate_template;
         // $data->certificate_status = $request->certificate_status;
@@ -226,11 +229,11 @@ class UserController extends Controller
         // return $data->certificate_template;
 
         if ($data->certificate_template == 'icv') {
-            return redirect('/create-icv/' . $data->id);
+            return redirect('/create-icv/' . $data->id . '/' . $scopeSize . '/' . $registeredSize);
         } elseif ($data->certificate_template == 'ici') {
-            return redirect('/create-ici/' . $data->id);
+            return redirect('/create-ici/' . $data->id . '/' . $scopeSize . '/' . $registeredSize);
         } elseif ($data->certificate_template == 'star') {
-            return redirect('/create-star/' . $data->id);
+            return redirect('/create-star/' . $data->id . '/' . $scopeSize . '/' . $registeredSize);
         } else {
             return redirect()->back();
         }

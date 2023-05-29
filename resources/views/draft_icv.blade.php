@@ -30,10 +30,10 @@
         }
 
         /* h2 {
-                                            font-size: 84px;
-                                            font-family: 'Gill Sans', sans-serif;
-                                            color: #3a4ce9;
-                                        } */
+                                                    font-size: 84px;
+                                                    font-family: 'Gill Sans', sans-serif;
+                                                    color: #3a4ce9;
+                                                } */
 
 
         h5 {
@@ -84,8 +84,21 @@
             text-align: center;
         }
 
-        #canvasElement p {
-            font-size: 28px;
+        #canvasElement .scope {
+            font-size: {{ @$scopeSize }}px;
+            width: 70%;
+            text-align: center;
+            line-height: 40px;
+            float: none;
+            display: block;
+            margin: 0 auto;
+            margin-top: 30px;
+            color: #000;
+            font-weight: 500;
+        }
+
+        #canvasElement .registered {
+            font-size: {{ @$registeredSize }}px;
             width: 70%;
             text-align: center;
             line-height: 40px;
@@ -144,14 +157,14 @@
                                     <div class="bname">{!! $data->business_name !!}</div>
 
 
-                                    <p>{{ $data->registered_site }}</p>
+                                    <p class="registered">{{ $data->registered_site }}</p>
                                     <h6>has been audited by ICV and found to be</h6>
                                     <h6>in compliance with the requirements of the standard</h6>
                                     <br><br>
                                     <h1 style="color:#000;">{{ $data->standerd }}</h1><br>
                                     <h5 style="color:#000;">(Quality Management System)</h5><br>
                                     <h6>This certificate is valid for <br> the following scope:</h6>
-                                    <p>{{ $data->scope_registration }}</p><br><br>
+                                    <p class="scope">{{ $data->scope_registration }}</p><br><br>
 
 
 

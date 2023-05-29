@@ -43,19 +43,45 @@
                                 </div>
                                 <div class="col-12">
                                     <label for="cat" class="form-label">Business Name</label>
-                                    <textarea id="myeditorinstance" class="form-control" name="business_name">{{ @$certification->business_name }}</textarea>
+                                    <textarea id="editor2" class="form-control" name="business_name">{{ @$certification->business_name }}</textarea>
                                     {{-- <input type="text" name="business_name" value="{{ @$certification->business_name }}"
                                         class="form-control" id="cat"> --}}
                                 </div>
 
-                                <div class="col-12">
-                                    <label for="subcat" class="form-label">Scope of Registration</label>
-                                    <textarea class="form-control" name="scope_registration">{{ @$certification->scope_registration }}</textarea>
-                                </div>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <label for="subcat" class="form-label">Scope of Registration</label>
+                                        <textarea class="form-control" name="scope_registration">{{ @$certification->scope_registration }}</textarea>
+                                    </div>
+                                    <div class="col-4 mb-3">
+                                        <label for="cat" class="form-label">Select Font Size</label>
+                                        <select class="form-control" name="scope_font_size">
+                                            <option value="16">16px</option>
+                                            <option value="18">18px</option>
+                                            <option value="20">20px</option>
+                                            <option value="25">25px</option>
+                                            <option value="28">28px</option>
+                                            <option value="30">30px</option>
+                                        </select>
+                                    </div>
 
-                                <div class="col-12">
-                                    <label for="product" class="form-label">Registered Site(s)</label>
-                                    <textarea class="form-control" name="registered_site">{{ @$certification->registered_site }}</textarea>
+                                </div>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <label for="product" class="form-label">Registered Site(s)</label>
+                                        <textarea class="form-control" name="registered_site">{{ @$certification->registered_site }}</textarea>
+                                    </div>
+                                    <div class="col-4 mb-3">
+                                        <label for="cat" class="form-label">Select Font Size</label>
+                                        <select class="form-control" name="registered_font_size">
+                                            <option value="16">16px</option>
+                                            <option value="18">18px</option>
+                                            <option value="20">20px</option>
+                                            <option value="25">25px</option>
+                                            <option value="28">28px</option>
+                                            <option value="30">30px</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -101,7 +127,8 @@
                                             <label for="fullName" class="col-md-4 col-lg-3 col-form-label">File
                                                 Name</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <input name="file_name" type="text" class="form-control" id="fullName">
+                                                <input name="file_name" type="text" class="form-control"
+                                                    id="fullName">
                                                 <input name="consultant_id" type="text"
                                                     value="{{ $certification->consultant_id }}" hidden>
                                                 <input name="certificate_id" type="text"
@@ -113,7 +140,8 @@
                                             <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Upload
                                                 File</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <input type="file" name="file" class="form-control" id="">
+                                                <input type="file" name="file" class="form-control"
+                                                    id="">
                                             </div>
                                         </div>
 
@@ -333,13 +361,13 @@
                 <!-- End Right side columns -->
             </div>
         </section>
-
+        <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+        <script>
+            CKEDITOR.replace('editor2');
+        </script>
     </main><!-- End #main -->
 @endsection
-<script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace('editor1');
-</script>
+
 
 <script>
     // Get the input element

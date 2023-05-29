@@ -96,14 +96,23 @@
             text-align: center;
         }
 
-        #canvasElement p {
-            font-size: 35px;
+        /* #canvasElement p {
+                    font-size: 35px;
+                    width: 70%;
+                    line-height: 50px;
+                    color: #000;
+                } */
+        #canvasElement .scope {
+            font-size: {{ @$scopeSize }}px;
             width: 70%;
-            /* text-align: center; */
             line-height: 50px;
-            /* float: none; */
-            /* display: block; */
-            /* margin: 0 auto; */
+            color: #000;
+        }
+
+        #canvasElement .registered {
+            font-size: {{ @$registeredSize }}px;
+            width: 70%;
+            line-height: 50px;
             color: #000;
         }
 
@@ -158,9 +167,9 @@
                                     <h1 style="color:#2e3092;font-weight:700;">{{ $data->standerd }}</h1><br>
                                     <h3 style="color:#2e3092;font-weight:700;">(Quality Management System)</h3><br><br>
                                     <h6 style="color:#000;font-weight:700;">Registered Site (s):</h6>
-                                    <p>{{ $data->registered_site }}</p>
+                                    <p class="registered">{{ $data->registered_site }}</p>
                                     <h6 style="color:#000;font-weight:700;">Scope of Registration</h6>
-                                    <p>{{ $data->scope_registration }}</p>
+                                    <p class="scope">{{ $data->scope_registration }}</p>
                                     <br><br>
                                     <h6 style="color:#000;font-weight:700;">:: CERTIFICATE NO :: &nbsp;
                                         {{ @$data->certificate_number ? @$data->certificate_number : 'DRAFT COPY' }}</h6>
