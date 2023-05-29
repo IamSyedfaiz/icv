@@ -122,6 +122,8 @@ class HomeController extends Controller
             // Handle the error (e.g., redirect back with error message)
             return redirect()->back()->with('danger', $errorMessage);
         }
+        $scopeSize = 30;
+        $registeredSize = 30;
 
         $data = new Certification;
         $data->consultant_id = $request->consultant_id;
@@ -141,11 +143,11 @@ class HomeController extends Controller
 
 
         if ($request->certificate_template == 'icv') {
-            return redirect('/create-icv/' . $data->id);
+            return redirect('/create-icv/' . $data->id . '/' . $scopeSize . '/' . $registeredSize);
         } elseif ($request->certificate_template == 'ici') {
-            return redirect('/create-ici/' . $data->id);
+            return redirect('/create-ici/' . $data->id . '/' . $scopeSize . '/' . $registeredSize);
         } elseif ($request->certificate_template == 'star') {
-            return redirect('/create-star/' . $data->id);
+            return redirect('/create-star/' . $data->id . '/' . $scopeSize . '/' . $registeredSize);
         } else {
             return redirect()->back();
         }

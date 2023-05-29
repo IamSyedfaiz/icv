@@ -32,7 +32,7 @@
                                 <tr>
 
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ @$certification->business_name }}</td>
+                                    <td>{!! @$certification->business_name !!}</td>
                                     <td>{{ @$certification->certificate_template }}</td>
                                     <td>{{ @$certification->consultant->name }}</td>
                                     <td>{{ @$certification->certificate_status }}</td>
