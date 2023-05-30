@@ -157,11 +157,11 @@ class UserController extends Controller
         $data->file_name = $request->file_name;
         $data->consultant_id = $request->consultant_id;
         $data->certificate_id = $request->certificate_id;
-
         $data->addMediaFromRequest('file')->toMediaCollection('post_image');
+        $data->user_id = auth()->user()->id;
         $data->save();
         $userId = auth()->user()->id;
-        $user = User::whereHas('payments', function ($query) use ($userId) {
+        $user = User::whereHas('documents', function ($query) use ($userId) {
             $query->where('user_id', $userId);
         })
             ->select('parent_id')
@@ -246,8 +246,6 @@ class UserController extends Controller
         ];
         // return $userFind->email;
 
-
-
         Mail::send('email.email_info', @$data, function ($msg) use ($data, $userFind) {
             $msg->from('racap@omegawebdemo.com.au');
             $msg->to($userFind->email);
@@ -301,22 +299,4 @@ class UserController extends Controller
             return redirect()->back();
         }
     }
-
-    //     . '/' . $scopeSize . '/' . $registeredSize . '/' . $businessSize
-    // . '/' . $scopeSize . '/' . $registeredSize . '/' . $businessSize
-    // . '/' . $scopeSize . '/' . $registeredSize . '/' . $businessSize
-    // public function storeImage(Request $request, $id)
-    // {
-    //     $imageData = $request->input('image_data');
-    //     $imageData = str_replace('data:image/png;base64,', '', $imageData);
-    //     $imageData = str_replace(' ', '+', $imageData);
-    //     $image = base64_decode($imageData);
-    //     $imageName = auth()->user()->fname . '_' . auth()->user()->lname . '_' . $request->class_title . '_' . time() . '.png';
-    //     $path = public_path('storage/certificates/' . $imageName);
-    //     file_put_contents($path, $image);
-    //     $data = Certification::find($id);
-    //     return $data;
-    // }
-
-
 }
