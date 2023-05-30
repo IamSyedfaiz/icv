@@ -17,8 +17,8 @@
         }
 
         h1,
-        .bname p {
-            font-size: 80px;
+        .bname {
+            font-size: {{ @$businessSize }}px;
             color: #000;
             font-weight: 700;
             margin: 0 auto;
@@ -150,7 +150,7 @@
                             <div id="page-container">
                                 <div id="canvasElement" class="cert-text pb-5">
                                     <h6>This is to certify that the management system of</h6><br>
-                                    <div class="bname" style="font-size: 80px">{!! $data->business_name !!}</div><br>
+                                    <div class="bname">{{ $data->business_name }}</div><br>
                                     <h6>has been formally assessed by</h6>
                                     <h2>INTERNATIONAL CERTIFICATION & INSPECTION UK LTD.</h2>
                                     <h6>and found to comply with the requirements of</h6>

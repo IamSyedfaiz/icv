@@ -61,6 +61,8 @@
         }
 
         .bname {
+            /* font-size: {{ @$businessSize }}px; */
+            /* font-size: {{ isset($businessSize) ? $businessSize . 'px' : '70px' }}; */
             color: #2e3092 !important;
             margin: 0 auto;
         }
@@ -97,20 +99,20 @@
         }
 
         /* #canvasElement p {
-                    font-size: 35px;
-                    width: 70%;
-                    line-height: 50px;
-                    color: #000;
-                } */
+                                                        font-size: 35px;
+                                                        width: 70%;
+                                                        line-height: 50px;
+                                                        color: #000;
+                                                    } */
         #canvasElement .scope {
-            font-size: {{ @$scopeSize }}px;
+            /* font-size: {{ @$scopeSize }}px; */
             width: 70%;
             line-height: 50px;
             color: #000;
         }
 
         #canvasElement .registered {
-            font-size: {{ @$registeredSize }}px;
+            /* font-size: {{ @$registeredSize }}px; */
             width: 70%;
             line-height: 50px;
             color: #000;
@@ -160,16 +162,22 @@
                             <div id="page-container">
                                 <div id="canvasElement" class="cert-text pb-5">
 
-                                    <h1 class="bname">{!! $data->business_name !!}</h1><br>
+                                    <div class="bname"
+                                        style="font-size: {{ isset($businessSize) ? @$businessSize . 'px' : '80px' }};">
+                                        {{ $data->business_name }}</div><br>
                                     <h6>has been formally assessed by</h6>
                                     <h2 style="color:#000;">Star Certifications UK Limited</h2>
                                     <h6>and found to comply with the requirements of</h6>
                                     <h1 style="color:#2e3092;font-weight:700;">{{ $data->standerd }}</h1><br>
                                     <h3 style="color:#2e3092;font-weight:700;">(Quality Management System)</h3><br><br>
                                     <h6 style="color:#000;font-weight:700;">Registered Site (s):</h6>
-                                    <p class="registered">{{ $data->registered_site }}</p>
+                                    <p class="registered"
+                                        style="font-size: {{ isset($registeredSize) ? @$registeredSize . 'px' : '30px' }};">
+                                        {{ $data->registered_site }}</p>
                                     <h6 style="color:#000;font-weight:700;">Scope of Registration</h6>
-                                    <p class="scope">{{ $data->scope_registration }}</p>
+                                    <p class="scope"
+                                        style="font-size: {{ isset($scopeSize) ? @$scopeSize . 'px' : '30px' }};">
+                                        {{ $data->scope_registration }}</p>
                                     <br><br>
                                     <h6 style="color:#000;font-weight:700;">:: CERTIFICATE NO :: &nbsp;
                                         {{ @$data->certificate_number ? @$data->certificate_number : 'DRAFT COPY' }}</h6>

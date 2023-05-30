@@ -43,9 +43,9 @@ Route::post('/filter-report', [HomeController::class, 'filter_report'])->name('f
 
 Route::post('/changeActive/{id}/{status}', [UserController::class, 'changeActive'])->name('change.active');
 Route::post('/create-consultant', [UserController::class, 'create_consultant'])->name('create.consultant');
-Route::get('/create-icv/{id}/{scopeSize}/{registeredSize}', [UserController::class, 'create_icv'])->name('create.icv');
-Route::get('/create-ici/{id}/{scopeSize}/{registeredSize}', [UserController::class, 'create_ici'])->name('create.ici');
-Route::get('/create-star/{id}/{scopeSize}/{registeredSize}', [UserController::class, 'create_star'])->name('create.star');
+Route::get('/create-icv/{id}', [UserController::class, 'create_icv'])->name('create.icv');
+Route::get('/create-ici/{id}', [UserController::class, 'create_ici'])->name('create.ici');
+Route::get('/create-star/{id}', [UserController::class, 'create_star'])->name('create.star');
 Route::get('/final-icv/{id}', [UserController::class, 'final_icv'])->name('final.icv');
 Route::get('/final-ici/{id}', [UserController::class, 'final_ici'])->name('final.ici');
 Route::get('/final-star/{id}', [UserController::class, 'final_star'])->name('final.star');

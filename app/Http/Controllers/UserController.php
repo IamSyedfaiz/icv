@@ -10,6 +10,7 @@ use App\Models\Payment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -95,23 +96,32 @@ class UserController extends Controller
         }
         return redirect()->back()->with('success', 'Add Consultant Successfully ');
     }
-    public function create_icv($id, $scopeSize, $registeredSize)
+    public function create_icv($id)
     {
         $data = Certification::find($id);
+        $scopeSize = session('scopeSize');
+        $registeredSize = session('registeredSize');
+        $businessSize = session('businessSize');
         // return $scopeSize;
-        return view('draft_icv', compact('data', 'scopeSize', 'registeredSize'));
+        return view('draft_icv', compact('data', 'scopeSize', 'registeredSize', 'businessSize'));
     }
-    public function create_ici($id, $scopeSize, $registeredSize)
+    public function create_ici($id)
     {
         $data = Certification::find($id);
+        $scopeSize = session('scopeSize');
+        $registeredSize = session('registeredSize');
+        $businessSize = session('businessSize');
         // return $scopeSize;
-        return view('draft_ici', compact('data', 'scopeSize', 'registeredSize'));
+        return view('draft_ici', compact('data', 'scopeSize', 'registeredSize', 'businessSize'));
     }
-    public function create_star($id, $scopeSize, $registeredSize)
+    public function create_star($id)
     {
         $data = Certification::find($id);
+        $scopeSize = session('scopeSize');
+        $registeredSize = session('registeredSize');
+        $businessSize = session('businessSize');
         // return $draft_data;
-        return view('draft_star', compact('data', 'scopeSize', 'registeredSize'));
+        return view('draft_star', compact('data', 'scopeSize', 'registeredSize', 'businessSize'));
     }
     public function final_icv($id)
     {
@@ -216,12 +226,14 @@ class UserController extends Controller
 
     public function editCertificate(Request $request, $id)
     {
-        $scopeSize = $request->scope_font_size;
-        $registeredSize = $request->registered_font_size;
+        $scopeSize_value = $request->scope_font_size;
+        $registeredSize_value = $request->registered_font_size;
+        $businessSize_value = $request->business_font_size;
 
+        session(['scopeSize' => $scopeSize_value]);
+        session(['registeredSize' => $registeredSize_value]);
+        session(['businessSize' => $businessSize_value]);
         $data = Certification::find($id);
-        // $data->certificate_template = $request->certificate_template;
-        // $data->certificate_status = $request->certificate_status;
         $data->business_name = $request->business_name;
         $data->scope_registration = $request->scope_registration;
         $data->registered_site = $request->registered_site;
@@ -229,16 +241,19 @@ class UserController extends Controller
         // return $data->certificate_template;
 
         if ($data->certificate_template == 'icv') {
-            return redirect('/create-icv/' . $data->id . '/' . $scopeSize . '/' . $registeredSize);
+            return redirect('/create-icv/' . $data->id);
         } elseif ($data->certificate_template == 'ici') {
-            return redirect('/create-ici/' . $data->id . '/' . $scopeSize . '/' . $registeredSize);
+            return redirect('/create-ici/' . $data->id);
         } elseif ($data->certificate_template == 'star') {
-            return redirect('/create-star/' . $data->id . '/' . $scopeSize . '/' . $registeredSize);
+            return redirect('/create-star/' . $data->id);
         } else {
             return redirect()->back();
         }
     }
 
+    //     . '/' . $scopeSize . '/' . $registeredSize . '/' . $businessSize
+    // . '/' . $scopeSize . '/' . $registeredSize . '/' . $businessSize
+    // . '/' . $scopeSize . '/' . $registeredSize . '/' . $businessSize
     // public function storeImage(Request $request, $id)
     // {
     //     $imageData = $request->input('image_data');

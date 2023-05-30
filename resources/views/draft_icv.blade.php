@@ -22,7 +22,7 @@
         }
 
         .bname {
-            font-size: 80px;
+            font-size: {{ @$businessSize }}px;
             color: #0198db;
             font-weight: 700;
             margin: 0 auto;
@@ -30,10 +30,10 @@
         }
 
         /* h2 {
-                                                    font-size: 84px;
-                                                    font-family: 'Gill Sans', sans-serif;
-                                                    color: #3a4ce9;
-                                                } */
+                                                            font-size: 84px;
+                                                            font-family: 'Gill Sans', sans-serif;
+                                                            color: #3a4ce9;
+                                                        } */
 
 
         h5 {
@@ -154,7 +154,7 @@
                                 <div id="canvasElement" class="cert-text pb-5"><br><br>
                                     <h6>This is to certify that the management system of</h6>
                                     <br>
-                                    <div class="bname">{!! $data->business_name !!}</div>
+                                    <div class="bname">{{ $data->business_name }}</div><br>
 
 
                                     <p class="registered">{{ $data->registered_site }}</p>

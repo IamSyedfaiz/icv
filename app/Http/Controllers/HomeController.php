@@ -122,9 +122,6 @@ class HomeController extends Controller
             // Handle the error (e.g., redirect back with error message)
             return redirect()->back()->with('danger', $errorMessage);
         }
-        $scopeSize = 30;
-        $registeredSize = 30;
-
         $data = new Certification;
         $data->consultant_id = $request->consultant_id;
         $data->user_id = auth()->user()->id;
@@ -143,11 +140,11 @@ class HomeController extends Controller
 
 
         if ($request->certificate_template == 'icv') {
-            return redirect('/create-icv/' . $data->id . '/' . $scopeSize . '/' . $registeredSize);
+            return redirect('/create-icv/' . $data->id );
         } elseif ($request->certificate_template == 'ici') {
-            return redirect('/create-ici/' . $data->id . '/' . $scopeSize . '/' . $registeredSize);
+            return redirect('/create-ici/' . $data->id );
         } elseif ($request->certificate_template == 'star') {
-            return redirect('/create-star/' . $data->id . '/' . $scopeSize . '/' . $registeredSize);
+            return redirect('/create-star/' . $data->id );
         } else {
             return redirect()->back();
         }
@@ -237,8 +234,10 @@ class HomeController extends Controller
         $icv_Certificate_number = 'IN' . '/' . $first_number . $final_icv_cert . '/' . $fourth_number;
         $star_Certificate_number = 'SR' . '/' . $final_star_cert . $second_number . '/' . $current_year;
 
-
-        return view('edit-draft-cert', compact('certification', 'documents', 'format_current_date', 'format_first_date', 'format_second_date', 'format_due_date', 'payments', 'ici_Certificate_number', 'icv_Certificate_number', 'star_Certificate_number'));
+        $scopeSize = session('scopeSize');
+        $registeredSize = session('registeredSize');
+        $businessSize = session('businessSize');
+        return view('edit-draft-cert', compact('certification', 'documents', 'format_current_date', 'format_first_date', 'format_second_date', 'format_due_date', 'payments', 'ici_Certificate_number', 'icv_Certificate_number', 'star_Certificate_number', 'scopeSize', 'registeredSize', 'businessSize'));
         // 
     }
     public function report()
