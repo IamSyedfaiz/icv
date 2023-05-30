@@ -63,8 +63,6 @@
         .bname {
             color: #2e3092 !important;
             margin: 0 auto;
-            width: 1700px;
-
         }
 
         p {
@@ -77,49 +75,88 @@
         }
 
         #page-container {
-            background-image: url("{{ asset('/assets/img/cert/STAR-Draft.jpg') }}");
+            background-image: url("{{ asset('/assets/img/cert/star-test.jpg') }}");
             background-repeat: no-repeat;
             background-size: 100% 100%;
             width: 2480px;
             height: 3508px;
             display: grid;
-            place-items: center;
+            /* place-items: center; */
             padding-left: 100px;
         }
 
         #canvasElement {
-            margin: 0px auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            margin-left: 150px;
+            position: relative;
+            top: 700px;
+            left: 100px;
             text-align: center;
         }
 
-        /* #canvasElement p {
-                                                            font-size: 35px;
-                                                            width: 70%;
-                                                            line-height: 50px;
-                                                            color: #000;
-                                                        } */
-        #canvasElement .scope {
-            /* font-size: {{ @$scopeSize }}px; */
-            width: 70%;
-            line-height: 50px;
-            color: #000;
+        .bname {
+            position: absolute;
+            top: 80px;
+            /* left: 80px; */
+            text-align: center;
+            width: 100%;
+            padding: 0 200px;
+
         }
 
-        #canvasElement .registered {
-            /* font-size: {{ @$registeredSize }}px; */
-            width: 70%;
-            line-height: 50px;
-            color: #000;
+        .bname div {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            height: 300px;
         }
 
+        .standerd {
+            position: absolute;
+            top: 650px;
+            left: 850px;
+            margin: 0 auto;
+        }
+
+        .scope {
+            position: absolute;
+            top: 1380px;
+            left: 300px;
+            width: 90%;
+            padding: 0 100px;
+            margin: 0 auto;
+        }
+
+        .scope p {
+            width: 90%;
+            /* font-size: 24px; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* border: 2px solid red; */
+            height: 235px;
+        }
+
+        .registered {
+            position: absolute;
+            top: 1080px;
+            left: 180px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .registered p {
+            width: 90%;
+            /* font-size: 30px; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+        }
 
         .date-text {
+            position: absolute;
+            top: 1790px;
+            left: 700px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -132,9 +169,18 @@
             display: flex;
             align-items: center;
             padding-left: 50px;
-            width: 1700px;
+            width: 1900px;
             font-size: 35px;
             color: #000;
+            margin-bottom: 3px;
+        }
+
+        .certificate {
+            position: absolute;
+            top: 1680px;
+            left: 400px;
+            width: 90%;
+            margin: 0 auto;
         }
     </style>
 @endsection
@@ -162,50 +208,52 @@
                             <div id="page-container">
                                 <div id="canvasElement" class="cert-text pb-5">
 
-                                    <div class="bname"
-                                        style="font-size: {{ isset($businessSize) ? @$businessSize . 'px' : '80px' }};">
-                                        {{ $data->business_name }}</div><br>
-                                    <h6>has been formally assessed by</h6>
-                                    <h2 style="color:#000;">Star Certifications UK Limited</h2>
-                                    <h6>and found to comply with the requirements of</h6>
-                                    <h1 style="color:#2e3092;font-weight:700;">{{ $data->standerd }}</h1><br>
-                                    <h3 style="color:#2e3092;font-weight:700;">(Quality Management System)</h3><br><br>
-                                    <h6 style="color:#000;font-weight:700;">Registered Site (s):</h6>
-                                    <p class="registered"
-                                        style="font-size: {{ isset($registeredSize) ? @$registeredSize . 'px' : '30px' }};">
-                                        {{ $data->registered_site }}</p>
-                                    <h6 style="color:#000;font-weight:700;">Scope of Registration</h6>
-                                    <p class="scope"
-                                        style="font-size: {{ isset($scopeSize) ? @$scopeSize . 'px' : '30px' }};">
-                                        {{ $data->scope_registration }}</p>
+                                    <div class="bname">
+                                        <div
+                                            style="font-size: {{ isset($businessSize) ? @$businessSize . 'px' : '80px' }};">
+                                            {{ $data->business_name }}</div>
+                                    </div>
+
+                                    {{-- <h6>has been formally assessed by</h6> --}}
+                                    {{-- <h2 style="color:#000;">Star Certifications UK Limited</h2> --}}
+                                    {{-- <h6>and found to comply with the requirements of</h6> --}}
+                                    <div class="standerd">
+                                        <div style="font-size:130px;color:navy;">{{ $data->standerd }}</div><br>
+                                        <h3 style="color:navy;">(Quality Management System)</h3><br>
+                                    </div>
+                                    {{-- <h6 style="color:#000;font-weight:700;">Registered Site (s):</h6> --}}
+                                    <div class="registered">
+                                        <p
+                                            style="font-size: {{ isset($registeredSize) ? @$registeredSize . 'px' : '30px' }};">
+                                            {{ $data->registered_site }}</p><br><br>
+                                    </div>
+                                    {{-- <h6 style="color:#000;font-weight:700;">Scope of Registration</h6> --}}
+                                    <div class="scope">
+                                        <p style="font-size: {{ isset($scopeSize) ? @$scopeSize . 'px' : '30px' }};">
+                                            {{ $data->scope_registration }}</p><br><br>
+                                    </div>
                                     <br><br>
-                                    <h6 style="color:#000;font-weight:700;">:: CERTIFICATE NO :: &nbsp;
+                                    <h6 class="certificate" style="color:#000;font-weight:700;">
                                         {{ @$data->certificate_number ? @$data->certificate_number : 'DRAFT COPY' }}</h6>
                                     <br>
                                     <div class="dottedbox row">
                                         <div class="dottedbox-right w-100 col-4">
                                             <div class="date-text">
                                                 <div class="">
-                                                    <div>Date of initial registration
-                                                        &nbsp; &nbsp; <span>
-                                                            {{ @$data->date_registration ? @$data->date_registration : 'XX XXX XX' }}</span>
+                                                    <div>
+                                                        {{ @$data->date_registration ? @$data->date_registration : 'XX XXX XX' }}</span>
                                                     </div>
-                                                    <div>1st Surveillance Audit on or before:
-                                                        &nbsp;&nbsp; <span>
-                                                            {{ @$data->first_surveillance_audit ? @$data->first_surveillance_audit : 'XX XXX XX' }}</span>
+                                                    <div>
+                                                        {{ @$data->first_surveillance_audit ? @$data->first_surveillance_audit : 'XX XXX XX' }}</span>
                                                     </div>
-
-
                                                 </div>
                                                 <div class="">
-                                                    <div>Re-certification Due: &nbsp;&nbsp;
+                                                    <div>
                                                         <span>{{ @$data->certification_due_date ? @$data->certification_due_date : 'XX XXX XX' }}</span>
                                                     </div>
-                                                    <div>2nd Surveillance Audit on or before:
-                                                        &nbsp;&nbsp; <span>
-                                                            {{ @$data->second_surveillance_audit ? @$data->second_surveillance_audit : 'XX XXX XX' }}</span>
+                                                    <div>
+                                                        {{ @$data->second_surveillance_audit ? @$data->second_surveillance_audit : 'XX XXX XX' }}</span>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
