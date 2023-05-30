@@ -143,6 +143,15 @@ class UserController extends Controller
     }
     public function uploadDocument(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|file',
+            'file_name' => 'required',
+        ]);
+
+        // Check if validation fails
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
         $data = new Document;
         $data->file_name = $request->file_name;
@@ -151,6 +160,37 @@ class UserController extends Controller
 
         $data->addMediaFromRequest('file')->toMediaCollection('post_image');
         $data->save();
+        $userId = auth()->user()->id;
+        $user = User::whereHas('payments', function ($query) use ($userId) {
+            $query->where('user_id', $userId);
+        })
+            ->select('parent_id')
+            ->first();
+
+        $parentId = @$user->parent_id;
+        // DD($parentId);
+
+        $userFind = User::find($parentId);
+        $ConsultantFind = Consultant::find($request->consultant_id);
+        $CertificationFind = Certification::find($request->certificate_id);
+
+
+        $data = [
+            'consultant' => $ConsultantFind->name,
+            'certificate' => $CertificationFind->business_name,
+            'balance' => 'File Name : ' . $request->file_name,
+            'text' => 'Please Approve This File',
+        ];
+        // return $userFind->email;
+
+
+
+        Mail::send('email.email_info', @$data, function ($msg) use ($data, $userFind, $request) {
+            $msg->from('racap@omegawebdemo.com.au');
+            $msg->to($userFind->email);
+            $msg->subject('File Approval ');
+        });
+
 
         return redirect()->back();
     }
@@ -165,6 +205,15 @@ class UserController extends Controller
 
     public function uploadPayment(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'payment_type' => 'required',
+            'payment_balance' => 'required|numeric',
+        ]);
+
+        // Check if validation fails
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
         $data = new Payment;
         $data->payment_type = $request->payment_type;
         $data->payment_balance = $request->payment_balance;
@@ -191,7 +240,9 @@ class UserController extends Controller
         $data = [
             'consultant' => $ConsultantFind->name,
             'certificate' => $CertificationFind->business_name,
-            'balance' => $request->payment_balance,
+            'balance' => 'Payment Received : ' . $request->payment_balance,
+            'text' => 'Please Approve This Payment',
+
         ];
         // return $userFind->email;
 
@@ -200,7 +251,7 @@ class UserController extends Controller
         Mail::send('email.email_info', @$data, function ($msg) use ($data, $userFind) {
             $msg->from('racap@omegawebdemo.com.au');
             $msg->to($userFind->email);
-            $msg->subject('Title');
+            $msg->subject('Payment Approval');
         });
 
 

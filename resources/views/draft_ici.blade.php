@@ -18,11 +18,10 @@
 
         h1,
         .bname {
-            font-size: {{ @$businessSize }}px;
             color: #000;
             font-weight: 700;
             margin: 0 auto;
-
+            width: 1700px;
         }
 
         h2 {
@@ -88,7 +87,7 @@
         }
 
         #canvasElement .scope {
-            font-size: {{ @$scopeSize }}px;
+            /* font-size: {{ @$scopeSize }}px; */
             width: 60%;
             text-align: center;
             line-height: 40px;
@@ -99,7 +98,7 @@
         }
 
         #canvasElement .registered {
-            font-size: {{ @$registeredSize }}px;
+            /* font-size: {{ @$registeredSize }}px; */
             width: 60%;
             text-align: center;
             line-height: 40px;
@@ -150,7 +149,9 @@
                             <div id="page-container">
                                 <div id="canvasElement" class="cert-text pb-5">
                                     <h6>This is to certify that the management system of</h6><br>
-                                    <div class="bname">{{ $data->business_name }}</div><br>
+                                    <div class="bname"
+                                        style="font-size: {{ isset($businessSize) ? @$businessSize . 'px' : '80px' }};">
+                                        {{ $data->business_name }}</div><br>
                                     <h6>has been formally assessed by</h6>
                                     <h2>INTERNATIONAL CERTIFICATION & INSPECTION UK LTD.</h2>
                                     <h6>and found to comply with the requirements of</h6>
@@ -158,9 +159,13 @@
                                     <h3 style="color:navy; margin-botom:130px;">(Quality Management System)</h3><br>
                                     <br><br>
                                     <h6>Scope of Registration</h6><br>
-                                    <p class="scope">{{ $data->scope_registration }}</p><br><br>
+                                    <p class="scope"
+                                        style="font-size: {{ isset($scopeSize) ? @$scopeSize . 'px' : '30px' }};">
+                                        {{ $data->scope_registration }}</p><br><br>
                                     <h6>Registered Site (s):</h6><br>
-                                    <p class="registered">{{ $data->registered_site }}</p><br><br>
+                                    <p class="registered"
+                                        style="font-size: {{ isset($registeredSize) ? @$registeredSize . 'px' : '30px' }};">
+                                        {{ $data->registered_site }}</p><br><br>
                                     <h5>::CERTIFICATE NO :: &nbsp;
                                         {{ @$data->certificate_number ? @$data->certificate_number : 'DRAFT COPY' }}</h5>
                                     <br>

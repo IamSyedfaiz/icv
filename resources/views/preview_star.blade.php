@@ -56,6 +56,15 @@
             font-size: 100px;
             font-weight: 700;
             margin: 10px 0;
+            color: #2e3092 !important;
+
+        }
+
+        .bname {
+            color: #2e3092 !important;
+            margin: 0 auto;
+            width: 1700px;
+
         }
 
         p {
@@ -89,14 +98,23 @@
             text-align: center;
         }
 
-        #canvasElement p {
-            font-size: 35px;
+        /* #canvasElement p {
+                                                                font-size: 35px;
+                                                                width: 70%;
+                                                                line-height: 50px;
+                                                                color: #000;
+                                                            } */
+        #canvasElement .scope {
+            /* font-size: {{ @$scopeSize }}px; */
             width: 70%;
-            /* text-align: center; */
             line-height: 50px;
-            /* float: none; */
-            /* display: block; */
-            /* margin: 0 auto; */
+            color: #000;
+        }
+
+        #canvasElement .registered {
+            /* font-size: {{ @$registeredSize }}px; */
+            width: 70%;
+            line-height: 50px;
             color: #000;
         }
 
@@ -112,8 +130,6 @@
 
         .date-text div {
             display: flex;
-            /* flex-direction: column; */
-            /* justify-content: space-between; */
             align-items: center;
             padding-left: 50px;
             width: 1700px;
@@ -146,16 +162,22 @@
                             <div id="page-container">
                                 <div id="canvasElement" class="cert-text pb-5">
 
-                                    <h1 style="color:#2e3092;font-weight:700;">{{ $data->business_name }}</h1><br>
+                                    <div class="bname"
+                                        style="font-size: {{ isset($businessSize) ? @$businessSize . 'px' : '80px' }};">
+                                        {{ $data->business_name }}</div><br>
                                     <h6>has been formally assessed by</h6>
                                     <h2 style="color:#000;">Star Certifications UK Limited</h2>
                                     <h6>and found to comply with the requirements of</h6>
                                     <h1 style="color:#2e3092;font-weight:700;">{{ $data->standerd }}</h1><br>
                                     <h3 style="color:#2e3092;font-weight:700;">(Quality Management System)</h3><br><br>
                                     <h6 style="color:#000;font-weight:700;">Registered Site (s):</h6>
-                                    <p>{{ $data->registered_site }}</p>
+                                    <p class="registered"
+                                        style="font-size: {{ isset($registeredSize) ? @$registeredSize . 'px' : '30px' }};">
+                                        {{ $data->registered_site }}</p>
                                     <h6 style="color:#000;font-weight:700;">Scope of Registration</h6>
-                                    <p>{{ $data->scope_registration }}</p>
+                                    <p class="scope"
+                                        style="font-size: {{ isset($scopeSize) ? @$scopeSize . 'px' : '30px' }};">
+                                        {{ $data->scope_registration }}</p>
                                     <br><br>
                                     <h6 style="color:#000;font-weight:700;">:: CERTIFICATE NO :: &nbsp;
                                         {{ @$data->certificate_number ? @$data->certificate_number : 'DRAFT COPY' }}</h6>
@@ -212,7 +234,7 @@
 @endsection
 @section('script')
     <script>
-        $certFileName = '{{ @$data->business_name ? @$data->business_name : 'Certificate' }}.pdf';
+        $certFileName = 'Certificate.pdf';
         $(document).ready(function() {
             var element = $("#page-container"); // global variable
             var getCanvas; // global variable
@@ -252,7 +274,7 @@
                 var newData = imgageData.replace(/^data:image\/jpeg/,
                     "data:application/octet-stream"); // Change "image/png" to "image/jpeg"
                 $("#btn-Convert-jpg").attr("download",
-                    "{{ @$data->business_name ? @$data->business_name : 'Certificate' }}.jpg").attr(
+                    "Certificate.jpg").attr(
                     "href",
                     newData); // Change file extension to .jpg
             });

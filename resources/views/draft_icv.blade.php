@@ -22,19 +22,12 @@
         }
 
         .bname {
-            font-size: {{ @$businessSize }}px;
             color: #0198db;
             font-weight: 700;
             margin: 0 auto;
+            width: 1700px;
 
         }
-
-        /* h2 {
-                                                            font-size: 84px;
-                                                            font-family: 'Gill Sans', sans-serif;
-                                                            color: #3a4ce9;
-                                                        } */
-
 
         h5 {
             font-size: 65px;
@@ -72,9 +65,7 @@
         }
 
         #canvasElement {
-            /* margin: 0px auto 50px; */
             margin-top: -120px;
-
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -85,7 +76,6 @@
         }
 
         #canvasElement .scope {
-            font-size: {{ @$scopeSize }}px;
             width: 70%;
             text-align: center;
             line-height: 40px;
@@ -98,7 +88,6 @@
         }
 
         #canvasElement .registered {
-            font-size: {{ @$registeredSize }}px;
             width: 70%;
             text-align: center;
             line-height: 40px;
@@ -154,17 +143,23 @@
                                 <div id="canvasElement" class="cert-text pb-5"><br><br>
                                     <h6>This is to certify that the management system of</h6>
                                     <br>
-                                    <div class="bname">{{ $data->business_name }}</div><br>
+                                    <div class="bname"
+                                        style="font-size: {{ isset($businessSize) ? @$businessSize . 'px' : '80px' }};">
+                                        {{ $data->business_name }}</div><br>
 
 
-                                    <p class="registered">{{ $data->registered_site }}</p>
+                                    <p class="registered"
+                                        style="font-size: {{ isset($registeredSize) ? @$registeredSize . 'px' : '30px' }};">
+                                        {{ $data->registered_site }}</p>
                                     <h6>has been audited by ICV and found to be</h6>
                                     <h6>in compliance with the requirements of the standard</h6>
                                     <br><br>
                                     <h1 style="color:#000;">{{ $data->standerd }}</h1><br>
                                     <h5 style="color:#000;">(Quality Management System)</h5><br>
                                     <h6>This certificate is valid for <br> the following scope:</h6>
-                                    <p class="scope">{{ $data->scope_registration }}</p><br><br>
+                                    <p class="scope"
+                                        style="font-size: {{ isset($scopeSize) ? @$scopeSize . 'px' : '30px' }};">
+                                        {{ $data->scope_registration }}</p><br><br>
 
 
 

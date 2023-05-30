@@ -61,10 +61,10 @@
         }
 
         .bname {
-            /* font-size: {{ @$businessSize }}px; */
-            /* font-size: {{ isset($businessSize) ? $businessSize . 'px' : '70px' }}; */
             color: #2e3092 !important;
             margin: 0 auto;
+            width: 1700px;
+
         }
 
         p {
@@ -99,11 +99,11 @@
         }
 
         /* #canvasElement p {
-                                                        font-size: 35px;
-                                                        width: 70%;
-                                                        line-height: 50px;
-                                                        color: #000;
-                                                    } */
+                                                            font-size: 35px;
+                                                            width: 70%;
+                                                            line-height: 50px;
+                                                            color: #000;
+                                                        } */
         #canvasElement .scope {
             /* font-size: {{ @$scopeSize }}px; */
             width: 70%;

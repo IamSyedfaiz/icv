@@ -16,16 +16,19 @@
             font-family: 'Merriweather', serif;
         }
 
-        h1 {
-            font-size: 80px;
+        h1,
+        .bname {
             color: #000;
             font-weight: 700;
-
+            margin: 0 auto;
+            width: 1700px;
         }
 
         h2 {
             font-size: 60px;
             font-weight: 700;
+            color: #000;
+
         }
 
         h3 {
@@ -83,8 +86,19 @@
             font-size: 45px;
         }
 
-        #canvasElement p {
-            font-size: 30px;
+        #canvasElement .scope {
+            /* font-size: {{ @$scopeSize }}px; */
+            width: 60%;
+            text-align: center;
+            line-height: 40px;
+            float: none;
+            display: block;
+            margin: 0 auto;
+            color: #000;
+        }
+
+        #canvasElement .registered {
+            /* font-size: {{ @$registeredSize }}px; */
             width: 60%;
             text-align: center;
             line-height: 40px;
@@ -101,22 +115,13 @@
             margin: 0 auto;
         }
 
-        .date-text div {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-left: 50px;
-            width: 800px;
-            font-size: 24px;
-        }
-
         .justify {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding-left: 50px;
             width: 1200px;
-            margin-left: 200px;
+            margin: 0 auto;
         }
     </style>
 @endsection
@@ -144,7 +149,9 @@
                             <div id="page-container">
                                 <div id="canvasElement" class="cert-text pb-5">
                                     <h6>This is to certify that the management system of</h6><br>
-                                    <h1>{{ $data->business_name }}</h1><br>
+                                    <div class="bname"
+                                        style="font-size: {{ isset($businessSize) ? @$businessSize . 'px' : '80px' }};">
+                                        {{ $data->business_name }}</div><br>
                                     <h6>has been formally assessed by</h6>
                                     <h2>INTERNATIONAL CERTIFICATION & INSPECTION UK LTD.</h2>
                                     <h6>and found to comply with the requirements of</h6>
@@ -152,30 +159,38 @@
                                     <h3 style="color:navy; margin-botom:130px;">(Quality Management System)</h3><br>
                                     <br><br>
                                     <h6>Scope of Registration</h6><br>
-                                    <p>{{ $data->scope_registration }}</p><br><br>
+                                    <p class="scope"
+                                        style="font-size: {{ isset($scopeSize) ? @$scopeSize . 'px' : '30px' }};">
+                                        {{ $data->scope_registration }}</p><br><br>
                                     <h6>Registered Site (s):</h6><br>
-                                    <p>{{ $data->registered_site }}</p><br><br>
+                                    <p class="registered"
+                                        style="font-size: {{ isset($registeredSize) ? @$registeredSize . 'px' : '30px' }};">
+                                        {{ $data->registered_site }}</p><br><br>
                                     <h5>::CERTIFICATE NO :: &nbsp;
                                         {{ @$data->certificate_number ? @$data->certificate_number : 'DRAFT COPY' }}</h5>
                                     <br>
                                     <h3 class="justify" style="color:#000;">
                                         Date of initial registration:&nbsp;&nbsp;&nbsp;&nbsp;
-                                        {{ @$data->date_registration ? @$data->date_registration : 'XX XXX 2023' }}
+                                        <span>
+                                            {{ @$data->date_registration ? @$data->date_registration : 'XX XXX 2023' }}</span>
                                     </h3>
                                     <br>
                                     <h3 class="justify" style="color:#000;">
                                         First Surveillance Audit on or before:&nbsp;&nbsp;&nbsp;&nbsp;
-                                        {{ @$data->first_surveillance_audit ? @$data->first_surveillance_audit : 'XX XXX XX' }}
+                                        <span>
+                                            {{ @$data->first_surveillance_audit ? @$data->first_surveillance_audit : 'XX XXX XX' }}</span>
                                     </h3>
                                     <br>
                                     <h3 class="justify" style="color:#000;">
                                         Second Surveillance Audit on or before:&nbsp;&nbsp;&nbsp;&nbsp;
-                                        {{ @$data->second_surveillance_audit ? @$data->second_surveillance_audit : 'XX XXX XX' }}
+                                        <span>
+                                            {{ @$data->second_surveillance_audit ? @$data->second_surveillance_audit : 'XX XXX XX' }}</span>
                                     </h3>
                                     <br>
                                     <h3 class="justify" style="color:#000;">
                                         Re-certification Due:&nbsp;&nbsp;&nbsp;&nbsp;
-                                        {{ @$data->certification_due_date ? @$data->certification_due_date : 'XX XXX XX' }}
+                                        <span>
+                                            {{ @$data->certification_due_date ? @$data->certification_due_date : 'XX XXX XX' }}</span>
                                     </h3>
 
 
@@ -202,12 +217,13 @@
                     </div>
                 </div>
             </div>
+            {{-- // $certFileName = '{{ @$data->business_name ? @$data->business_name : 'Certificate' }}.pdf'; --}}
         </section>
     </main>
 @endsection
 @section('script')
     <script>
-        $certFileName = '{{ @$data->business_name ? @$data->business_name : 'Certificate' }}.pdf';
+        $certFileName = 'Certificate.pdf';
         $(document).ready(function() {
             var element = $("#page-container"); // global variable
             var getCanvas; // global variable
@@ -247,7 +263,7 @@
                 var newData = imgageData.replace(/^data:image\/jpeg/,
                     "data:application/octet-stream"); // Change "image/png" to "image/jpeg"
                 $("#btn-Convert-jpg").attr("download",
-                    "{{ @$data->business_name ? @$data->business_name : 'Certificate' }}.jpg").attr(
+                    "Certificate.jpg").attr(
                     "href",
                     newData); // Change file extension to .jpg
             });

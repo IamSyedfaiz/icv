@@ -151,12 +151,15 @@
                                                 Name</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="file_name" type="text" class="form-control"
-                                                    id="fullName">
+                                                    value="{{ old('file_name') }}" id="fullName">
                                                 <input name="consultant_id" type="text"
                                                     value="{{ $certification->consultant_id }}" hidden>
                                                 <input name="certificate_id" type="text"
                                                     value="{{ $certification->id }}" hidden>
                                             </div>
+                                            @error('file_name')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
 
                                         <div class="row mb-3">
@@ -166,6 +169,9 @@
                                                 <input type="file" name="file" class="form-control"
                                                     id="">
                                             </div>
+                                            @error('file')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
 
 
@@ -208,20 +214,26 @@
                                         <div class="col-12 mb-3">
                                             <label for="cat" class="form-label">Payment Received</label>
                                             <select class="form-control" name="payment_type">
-                                                <option>Select</option>
-                                                <option>Pending</option>
-                                                <option>Paytm</option>
-                                                <option>Gpay</option>
-                                                <option>Phonepay</option>
-                                                <option>B. Account</option>
-                                                <option>P. Account</option>
-                                                <option>Cash</option>
+                                                <option value="">Select</option>
+                                                <option value="Pending">Pending</option>
+                                                <option value="Paytm">Paytm</option>
+                                                <option value="Gpay">Gpay</option>
+                                                <option value="Phonepay">Phonepay</option>
+                                                <option value="B. Account">B. Account</option>
+                                                <option value="P. Account">P. Account</option>
+                                                <option value="Cash">Cash</option>
                                             </select>
+                                            @error('payment_type')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="col-12 mb-3">
                                             <label for="cat" class="form-label">Amount</label>
                                             <input type="text" class="form-control" name="payment_balance"
                                                 id="cat">
+                                            @error('payment_balance')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <input type="text" name="consultant_id"
                                             value="{{ @$certification->consultant_id }}" hidden>
@@ -315,6 +327,9 @@
                                             <input type="text" class="form-control" value="{{ $format_due_date }}"
                                                 id="certification_due_date" name="certification_due_date" readonly>
                                         </div>
+                                        @php
+                                            $showButton = false; // Set the flag variable to false after displaying the button
+                                        @endphp
                                         @foreach ($payments as $payment)
                                             @if ($payment->certificate_id == $certification->id)
                                                 <div class="alert alert-success">
@@ -325,14 +340,23 @@
                                                 </div>
 
                                                 @if ($payment->status == 'A' && $certification->status == 'A')
-                                                    <div class="text-center">
+                                                    @php
+                                                        $showButton = true; // Set the flag variable to false after displaying the button
+                                                    @endphp
+                                                    {{-- <div class="text-center">
 
                                                         <button type="submit" class="btn btn-primary">Generate Final
                                                             Cert</button>
-                                                    </div>
+                                                    </div> --}}
                                                 @endif
                                             @endif
                                         @endforeach
+                                        @if ($showButton)
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-primary">Generate Final
+                                                    Cert</button>
+                                            </div>
+                                        @endif
                                     </form><!-- End settings Form -->
 
                                 </div>

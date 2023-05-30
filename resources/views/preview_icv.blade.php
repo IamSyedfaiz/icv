@@ -21,12 +21,13 @@
             font-weight: 700;
         }
 
-        h2 {
-            font-size: 84px;
-            font-family: 'Gill Sans', sans-serif;
-            color: #3a4ce9;
-        }
+        .bname {
+            color: #0198db;
+            font-weight: 700;
+            margin: 0 auto;
+            width: 1700px;
 
+        }
 
         h5 {
             font-size: 65px;
@@ -36,10 +37,10 @@
         }
 
         h6 {
-            font-size: 40px;
+            font-size: 45px;
             font-weight: 700;
             color: #000;
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
         p {
@@ -64,9 +65,7 @@
         }
 
         #canvasElement {
-            /* margin: 0px auto 50px; */
-            margin-top: -400px;
-
+            margin-top: -120px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -76,9 +75,20 @@
             text-align: center;
         }
 
-        #canvasElement p {
-            font-size: 37px;
-            width: 60%;
+        #canvasElement .scope {
+            width: 70%;
+            text-align: center;
+            line-height: 40px;
+            float: none;
+            display: block;
+            margin: 0 auto;
+            margin-top: 30px;
+            color: #000;
+            font-weight: 500;
+        }
+
+        #canvasElement .registered {
+            width: 70%;
             text-align: center;
             line-height: 40px;
             float: none;
@@ -97,6 +107,15 @@
             width: 900px;
             font-size: 28px;
         }
+
+        .justify {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 50px;
+            width: 1200px;
+            margin-left: 100px;
+        }
     </style>
 @endsection
 @section('content')
@@ -105,7 +124,7 @@
             <h1>Preview Certificate</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item active">Preview Certificate</li>
                 </ol>
             </nav>
@@ -124,34 +143,41 @@
                                 <div id="canvasElement" class="cert-text pb-5"><br><br>
                                     <h6>This is to certify that the management system of</h6>
                                     <br>
-                                    <h1 style="color:#0198db; font-weight:700;">{{ $data->business_name }}</h1><br><br>
+                                    <div class="bname"
+                                        style="font-size: {{ isset($businessSize) ? @$businessSize . 'px' : '80px' }};">
+                                        {{ $data->business_name }}</div><br>
 
 
-                                    <p>{{ $data->registered_site }}</p>
+                                    <p class="registered"
+                                        style="font-size: {{ isset($registeredSize) ? @$registeredSize . 'px' : '30px' }};">
+                                        {{ $data->registered_site }}</p>
                                     <h6>has been audited by ICV and found to be</h6>
                                     <h6>in compliance with the requirements of the standard</h6>
                                     <br><br>
-                                    <h1 style="color:#000;">{{ $data->standerd }}</h1><br><br>
-                                    <h5 style="color:#000;">(Quality Management System)</h5><br><br>
-                                    <h6>This certificate is valid for <br> the following scope:</h6><br>
-                                    <p>{{ $data->scope_registration }}</p><br><br>
+                                    <h1 style="color:#000;">{{ $data->standerd }}</h1><br>
+                                    <h5 style="color:#000;">(Quality Management System)</h5><br>
+                                    <h6>This certificate is valid for <br> the following scope:</h6>
+                                    <p class="scope"
+                                        style="font-size: {{ isset($scopeSize) ? @$scopeSize . 'px' : '30px' }};">
+                                        {{ $data->scope_registration }}</p><br><br>
 
 
 
-                                    <h6>CERTIFICATE NO
-                                        :&nbsp;&nbsp;&nbsp;&nbsp;{{ @$data->certificate_number ? @$data->certificate_number : 'DRAFT COPY' }}
+                                    <h6 class="justify">CERTIFICATE NO
+                                        :&nbsp;&nbsp;&nbsp;&nbsp; <span>
+                                            {{ @$data->certificate_number ? @$data->certificate_number : 'DRAFT COPY' }}</span>
                                     </h6>
-                                    <h6>Date of initial registration
-                                        :&nbsp;&nbsp;&nbsp;&nbsp;{{ @$data->date_registration ? @$data->date_registration : 'XX XXX XX' }}
+                                    <h6 class="justify">Date of initial registration
+                                        :&nbsp;&nbsp;&nbsp;&nbsp;<span>{{ @$data->date_registration ? @$data->date_registration : 'XX XXX XX' }}</span>
                                     </h6>
-                                    <h6>First Surveillance Audit on or before
-                                        :&nbsp;&nbsp;&nbsp;&nbsp;{{ @$data->first_surveillance_audit ? @$data->first_surveillance_audit : 'XX XXX XX' }}
+                                    <h6 class="justify">First Surveillance Audit on or before
+                                        :&nbsp;&nbsp;&nbsp;&nbsp;<span>{{ @$data->first_surveillance_audit ? @$data->first_surveillance_audit : 'XX XXX XX' }}</span>
                                     </h6>
-                                    <h6>Second Surveillance Audit on or before
-                                        :&nbsp;&nbsp;&nbsp;&nbsp;{{ @$data->second_surveillance_audit ? @$data->second_surveillance_audit : 'XX XXX XX' }}
+                                    <h6 class="justify">Second Surveillance Audit on or before
+                                        :&nbsp;&nbsp;&nbsp;&nbsp;<span>{{ @$data->second_surveillance_audit ? @$data->second_surveillance_audit : 'XX XXX XX' }}</span>
                                     </h6>
-                                    <h6>Re-certification Due
-                                        :&nbsp;&nbsp;&nbsp;&nbsp;{{ @$data->certification_due_date ? @$data->certification_due_date : 'XX XXX XX' }}
+                                    <h6 class="justify">Re-certification Due
+                                        :&nbsp;&nbsp;&nbsp;&nbsp;<span>{{ @$data->certification_due_date ? @$data->certification_due_date : 'XX XXX XX' }}</span>
                                     </h6>
 
                                     <br>
@@ -182,7 +208,7 @@
 @endsection
 @section('script')
     <script>
-        $certFileName = '{{ @$data->business_name ? @$data->business_name : 'Certificate' }}.pdf';
+        $certFileName = 'Certificate.pdf';
         $(document).ready(function() {
             var element = $("#page-container"); // global variable
             var getCanvas; // global variable
@@ -222,7 +248,7 @@
                 var newData = imgageData.replace(/^data:image\/jpeg/,
                     "data:application/octet-stream"); // Change "image/png" to "image/jpeg"
                 $("#btn-Convert-jpg").attr("download",
-                    "{{ @$data->business_name ? @$data->business_name : 'Certificate' }}.jpg").attr(
+                    "Certificate.jpg").attr(
                     "href",
                     newData); // Change file extension to .jpg
             });
