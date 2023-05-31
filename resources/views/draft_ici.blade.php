@@ -91,9 +91,8 @@
             top: 450px;
             /* left: 200px; */
             text-align: center;
-            /* width: 1700px; */
+            width: 100%;
             padding: 0 200px;
-
         }
 
         .bname div {

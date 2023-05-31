@@ -49,10 +49,7 @@
                                     <div class="col-4 mb-3">
                                         <label for="cat" class="form-label">Select Font Size</label>
                                         <select class="form-control" name="business_font_size">
-                                            <option value="70" {{ $businessSize == '70' ? 'selected' : '' }}>70px
-                                            </option>
-                                            <option value="75" {{ $businessSize == '75' ? 'selected' : '' }}>75px
-                                            </option>
+
                                             <option value="80" {{ $businessSize == '80' ? 'selected' : '' }}>80px
                                             </option>
                                             <option value="90" {{ $businessSize == '90' ? 'selected' : '' }}>90px
@@ -60,6 +57,10 @@
                                             <option value="100" {{ $businessSize == '100' ? 'selected' : '' }}>100px
                                             </option>
                                             <option value="110" {{ $businessSize == '110' ? 'selected' : '' }}>110px
+                                            </option>
+                                            <option value="120" {{ $businessSize == '120' ? 'selected' : '' }}>120px
+                                            </option>
+                                            <option value="125" {{ $businessSize == '125' ? 'selected' : '' }}>125px
                                             </option>
                                         </select>
                                     </div>
@@ -73,12 +74,13 @@
                                     <div class="col-4 mb-3">
                                         <label for="cat" class="form-label">Select Font Size</label>
                                         <select class="form-control" name="scope_font_size">
-                                            <option value="16" {{ $scopeSize == '16' ? 'selected' : '' }}>16px</option>
-                                            <option value="18" {{ $scopeSize == '18' ? 'selected' : '' }}>18px</option>
-                                            <option value="20" {{ $scopeSize == '20' ? 'selected' : '' }}>20px</option>
+
                                             <option value="25" {{ $scopeSize == '25' ? 'selected' : '' }}>25px</option>
                                             <option value="28" {{ $scopeSize == '28' ? 'selected' : '' }}>28px</option>
                                             <option value="30" {{ $scopeSize == '30' ? 'selected' : '' }}>30px</option>
+                                            <option value="35" {{ $scopeSize == '35' ? 'selected' : '' }}>35px</option>
+                                            <option value="40" {{ $scopeSize == '40' ? 'selected' : '' }}>40px</option>
+                                            <option value="45" {{ $scopeSize == '45' ? 'selected' : '' }}>45px</option>
                                         </select>
                                     </div>
 
@@ -91,17 +93,19 @@
                                     <div class="col-4 mb-3">
                                         <label for="cat" class="form-label">Select Font Size</label>
                                         <select class="form-control" name="registered_font_size">
-                                            <option value="16" {{ $registeredSize == '16' ? 'selected' : '' }}>16px
-                                            </option>
-                                            <option value="18" {{ $registeredSize == '18' ? 'selected' : '' }}>18px
-                                            </option>
-                                            <option value="20" {{ $registeredSize == '20' ? 'selected' : '' }}>20px
-                                            </option>
+
                                             <option value="25" {{ $registeredSize == '25' ? 'selected' : '' }}>25px
                                             </option>
                                             <option value="28" {{ $registeredSize == '28' ? 'selected' : '' }}>28px
                                             </option>
                                             <option value="30" {{ $registeredSize == '30' ? 'selected' : '' }}>30px
+                                            </option>
+                                            <option value="35" {{ $registeredSize == '35' ? 'selected' : '' }}>35px
+                                            </option>
+                                            <option value="40" {{ $registeredSize == '40' ? 'selected' : '' }}>40px
+                                            </option>
+
+                                            <option value="45" {{ $registeredSize == '45' ? 'selected' : '' }}>45px
                                             </option>
                                         </select>
                                     </div>
