@@ -18,10 +18,9 @@
 
         h1,
         .bname {
+            font-size: 80px;
             color: #000;
             font-weight: 700;
-            margin: 0 auto;
-            width: 1700px;
         }
 
         h2 {
@@ -31,19 +30,26 @@
 
         }
 
+        .standerd {
+            font-size: 65px;
+            font-weight: 700;
+            color: #000;
+            /* margin-top: 200px; */
+        }
+
         h3 {
             font-size: 44px;
             color: navy;
             font-weight: 700;
             line-height: 45px;
+            margin-top: -60px;
         }
 
-        h5 {
+        .certificate {
             font-size: 54px;
             font-weight: 700;
             color: #000;
-            margin-bottom: 30px;
-
+            margin-left: 350px;
         }
 
         h6 {
@@ -64,63 +70,118 @@
         }
 
         #page-container {
-            background-image: url("{{ asset('/assets/img/cert/ICI.jpg') }}");
+            background-image: url("{{ asset('/assets/img/cert/ici-final.png') }}");
             background-repeat: no-repeat;
             background-size: 100% 100%;
             width: 2480px;
             height: 3508px;
             display: grid;
-            place-items: center;
-            padding-left: 100px;
+            /* place-items: center; */
+            padding-left: 400px;
         }
 
         #canvasElement {
-            margin: 0px auto 50px;
+            position: relative;
+            top: 300px;
             text-align: center;
         }
 
-
-
-
-        #canvasElement h6 {
-            font-size: 45px;
-        }
-
-        #canvasElement .scope {
-            /* font-size: {{ @$scopeSize }}px; */
-            width: 60%;
-            text-align: center;
-            line-height: 40px;
-            float: none;
-            display: block;
-            margin: 0 auto;
-            color: #000;
-        }
-
-        #canvasElement .registered {
-            /* font-size: {{ @$registeredSize }}px; */
-            width: 60%;
-            text-align: center;
-            line-height: 40px;
-            float: none;
-            display: block;
-            margin: 0 auto;
-            color: #000;
-        }
-
-        .date-text {
+        .bname {
+            position: absolute;
+            top: 450px;
             text-align: center;
             width: 100%;
-            display: block;
+            padding: 0 200px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bname .first {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bname .second {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .standerd {
+            position: absolute;
+            top: 1000px;
+            left: 600px;
             margin: 0 auto;
+        }
+
+        .scope {
+            position: absolute;
+            top: 1380px;
+            left: 150px;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .scope p {
+            width: 90%;
+            /* font-size: 24px; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* border: 2px solid red; */
+            height: 235px;
+        }
+
+        .registered {
+            position: absolute;
+            top: 1660px;
+            left: 150px;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .registered p {
+            width: 90%;
+            /* font-size: 24px; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* border: 2px solid red; */
+            height: 180px;
+        }
+
+        .justify-data {
+            position: absolute;
+            top: 2000px;
+            left: 50px;
+            width: 90%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: end;
+            flex-direction: column;
+            padding-left: 50px;
+            width: 90%;
         }
 
         .justify {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: end;
             padding-left: 50px;
-            width: 1200px;
+            width: 100%;
+            margin-bottom: 150px;
+        }
+
+        .certificate {
+            position: absolute;
+            top: 1840px;
+            left: 400px;
+            width: 90%;
             margin: 0 auto;
         }
     </style>
@@ -148,52 +209,63 @@
 
                             <div id="page-container">
                                 <div id="canvasElement" class="cert-text pb-5">
-                                    <h6>This is to certify that the management system of</h6><br>
-                                    <div class="bname"
-                                        style="font-size: {{ isset($businessSize) ? @$businessSize . 'px' : '80px' }};">
-                                        {{ $data->business_name }}</div><br>
-                                    <h6>has been formally assessed by</h6>
-                                    <h2>INTERNATIONAL CERTIFICATION & INSPECTION UK LTD.</h2>
-                                    <h6>and found to comply with the requirements of</h6>
-                                    <h2 style="font-size:130px;color:navy;">{{ $data->standerd }}</h2><br>
-                                    <h3 style="color:navy; margin-botom:130px;">(Quality Management System)</h3><br>
+                                    {{-- <h6>This is to certify that the management system of</h6><br> --}}
+                                    <div class="bname">
+                                        <div class="first"
+                                            style="font-size: {{ isset($businessSize) ? @$businessSize . 'px' : '80px' }};">
+                                            {{ $data->business_name }}</div>
+                                        @if ($data->business_name_secondary)
+                                            <div class="second"
+                                                style="font-size: {{ isset($businessSize) ? @$businessSize . 'px' : '80px' }}; ">
+                                                {{ $data->business_name_secondary }}</div>
+                                        @endif
+
+                                    </div><br>
+                                    {{-- <h6>has been formally assessed by</h6> --}}
+                                    {{-- <h2>INTERNATIONAL CERTIFICATION & INSPECTION UK LTD.</h2> --}}
+                                    {{-- <h6>and found to comply with the requirements of</h6> --}}
+                                    <div class="standerd">
+                                        <h2 style="font-size:130px;color:navy;">{{ $data->standerd }}</h2><br>
+                                        <h3 style="color:navy;">(Quality Management System)</h3><br>
+                                    </div>
                                     <br><br>
-                                    <h6>Scope of Registration</h6><br>
-                                    <p class="scope"
-                                        style="font-size: {{ isset($scopeSize) ? @$scopeSize . 'px' : '30px' }};">
-                                        {{ $data->scope_registration }}</p><br><br>
-                                    <h6>Registered Site (s):</h6><br>
-                                    <p class="registered"
-                                        style="font-size: {{ isset($registeredSize) ? @$registeredSize . 'px' : '30px' }};">
-                                        {{ $data->registered_site }}</p><br><br>
-                                    <h5>::CERTIFICATE NO :: &nbsp;
+                                    {{-- <h6>Scope of Registration</h6><br> --}}
+                                    <div class="scope">
+                                        <p style="font-size: {{ isset($scopeSize) ? @$scopeSize . 'px' : '30px' }};">
+                                            {{ $data->scope_registration }}</p><br><br>
+                                    </div>
+                                    {{-- <h6>Registered Site (s):</h6><br> --}}
+                                    <div class="registered">
+                                        <p
+                                            style="font-size: {{ isset($registeredSize) ? @$registeredSize . 'px' : '30px' }};">
+                                            {{ $data->registered_site }}</p><br><br>
+                                    </div>
+                                    <h5 class="certificate">&nbsp;
                                         {{ @$data->certificate_number ? @$data->certificate_number : 'DRAFT COPY' }}</h5>
                                     <br>
-                                    <h3 class="justify" style="color:#000;">
-                                        Date of initial registration:&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <span>
-                                            {{ @$data->date_registration ? @$data->date_registration : 'XX XXX 2023' }}</span>
-                                    </h3>
-                                    <br>
-                                    <h3 class="justify" style="color:#000;">
-                                        First Surveillance Audit on or before:&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <span>
-                                            {{ @$data->first_surveillance_audit ? @$data->first_surveillance_audit : 'XX XXX XX' }}</span>
-                                    </h3>
-                                    <br>
-                                    <h3 class="justify" style="color:#000;">
-                                        Second Surveillance Audit on or before:&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <span>
-                                            {{ @$data->second_surveillance_audit ? @$data->second_surveillance_audit : 'XX XXX XX' }}</span>
-                                    </h3>
-                                    <br>
-                                    <h3 class="justify" style="color:#000;">
-                                        Re-certification Due:&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <span>
-                                            {{ @$data->certification_due_date ? @$data->certification_due_date : 'XX XXX XX' }}</span>
-                                    </h3>
 
+                                    <div class="justify-data">
+                                        <h3 class="justify" style="color:#000;">
 
+                                            {{ @$data->date_registration ? @$data->date_registration : 'XX XXX XX' }}
+                                        </h3>
+                                        <br>
+                                        <h3 class="justify" style="color:#000;">
+
+                                            {{ @$data->first_surveillance_audit ? @$data->first_surveillance_audit : 'XX XXX XX' }}
+                                        </h3>
+                                        <br>
+                                        <h3 class="justify" style="color:#000;">
+
+                                            {{ @$data->second_surveillance_audit ? @$data->second_surveillance_audit : 'XX XXX XX' }}
+                                        </h3>
+                                        <br>
+                                        <h3 class="justify" style="color:#000;">
+
+                                            {{ @$data->certification_due_date ? @$data->certification_due_date : 'XX XXX XX' }}
+                                        </h3>
+
+                                    </div>
 
                                     <div class="dottedbox row">
 

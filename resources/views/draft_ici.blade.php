@@ -89,19 +89,28 @@
         .bname {
             position: absolute;
             top: 450px;
-            /* left: 200px; */
             text-align: center;
             width: 100%;
             padding: 0 200px;
-        }
-
-        .bname div {
+            height: 300px;
             display: flex;
             justify-content: center;
             flex-direction: column;
             align-items: center;
-            /* border: 2px solid red; */
-            height: 300px;
+        }
+
+        .bname .first {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bname .second {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
         }
 
         .standerd {
@@ -202,9 +211,15 @@
                                 <div id="canvasElement" class="cert-text pb-5">
                                     {{-- <h6>This is to certify that the management system of</h6><br> --}}
                                     <div class="bname">
-                                        <div
+                                        <div class="first"
                                             style="font-size: {{ isset($businessSize) ? @$businessSize . 'px' : '80px' }};">
                                             {{ $data->business_name }}</div>
+                                        @if ($data->business_name_secondary)
+                                            <div class="second"
+                                                style="font-size: {{ isset($businessSize) ? @$businessSize . 'px' : '80px' }}; ">
+                                                {{ $data->business_name_secondary }}</div>
+                                        @endif
+
                                     </div><br>
                                     {{-- <h6>has been formally assessed by</h6> --}}
                                     {{-- <h2>INTERNATIONAL CERTIFICATION & INSPECTION UK LTD.</h2> --}}

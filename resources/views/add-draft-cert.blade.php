@@ -65,11 +65,12 @@
                                 </div>
                                 <div class="col-12">
                                     <label for="cat" class="form-label">Business Name</label>
-                                    {{-- <input type="text" name="business_name" class="form-control" id="cat"> --}}
                                     <textarea class="form-control" name="business_name"></textarea>
-
                                 </div>
-
+                                <div class="col-12">
+                                    <label for="cat" class="form-label">Business Name Secondary</label>
+                                    <textarea class="form-control" name="business_name_secondary"></textarea>
+                                </div>
                                 <div class="col-12">
                                     <label for="subcat" class="form-label">Scope of Registration</label>
                                     <textarea class="form-control" name="scope_registration"></textarea>

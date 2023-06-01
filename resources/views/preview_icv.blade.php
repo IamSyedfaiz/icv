@@ -36,6 +36,11 @@
 
         }
 
+        h3 {
+            margin-top: -40px;
+            font-size: 65px;
+        }
+
         h6 {
             font-size: 45px;
             font-weight: 700;
@@ -54,67 +59,120 @@
         }
 
         #page-container {
-            background-image: url("{{ asset('/assets/img/cert/ICV.jpg') }}");
+            background-image: url("{{ asset('/assets/img/cert/icv-final.png') }}");
             background-repeat: no-repeat;
             background-size: 100% 100%;
             width: 2480px;
             height: 3508px;
             display: grid;
-            place-items: center;
+            /* place-items: center; */
             padding-left: 100px;
         }
 
         #canvasElement {
-            margin-top: -120px;
+            position: relative;
+            top: 700px;
+            left: 100px;
+            text-align: center;
+        }
+
+        .bname {
+            position: absolute;
+            top: 200px;
+            text-align: center;
+            width: 100%;
+            padding: 0 200px;
+            height: 300px;
             display: flex;
+            justify-content: center;
             flex-direction: column;
+            align-items: center;
+        }
+
+        .bname .first {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bname .second {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .standerd {
+            position: absolute;
+            top: 750px;
+            left: 800px;
+            margin: 0 auto;
+        }
+
+        .scope {
+            position: absolute;
+            top: 1280px;
+            left: 300px;
+            width: 90%;
+            padding: 0 100px;
+            margin: 0 auto;
+        }
+
+        .scope p {
+            width: 90%;
+            /* font-size: 24px; */
+            display: flex;
             justify-content: center;
             align-items: center;
+            /* border: 2px solid red; */
+            height: 235px;
+        }
+
+        .registered {
+            position: absolute;
+            top: 410px;
+            left: 180px;
             width: 100%;
-            margin-left: 150px;
-            text-align: center;
-        }
-
-        #canvasElement .scope {
-            width: 70%;
-            text-align: center;
-            line-height: 40px;
-            float: none;
-            display: block;
             margin: 0 auto;
-            margin-top: 30px;
-            color: #000;
-            font-weight: 500;
         }
 
-        #canvasElement .registered {
-            width: 70%;
-            text-align: center;
-            line-height: 40px;
-            float: none;
-            display: block;
-            margin: 0 auto;
-            margin-top: 30px;
-            color: #000;
-            font-weight: 500;
-        }
-
-        .date-text div {
+        .registered p {
+            width: 90%;
+            /* font-size: 28px; */
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
+            /* border: 2px solid red; */
+            height: 180px;
+        }
+
+        .justify-data {
+            position: absolute;
+            top: 1550px;
+            left: 50px;
+            width: 90%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: end;
+            flex-direction: column;
             padding-left: 50px;
-            width: 900px;
-            font-size: 28px;
+            width: 90%;
         }
 
         .justify {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: end;
             padding-left: 50px;
-            width: 1200px;
-            margin-left: 100px;
+            width: 100%;
+        }
+
+        .certificate {
+            position: absolute;
+            top: 1840px;
+            left: 400px;
+            width: 90%;
+            margin: 0 auto;
         }
     </style>
 @endsection
@@ -140,46 +198,55 @@
                             <div id="previewImage" class="img-fluid" style="overflow: scroll"></div>
 
                             <div id="page-container">
-                                <div id="canvasElement" class="cert-text pb-5"><br><br>
-                                    <h6>This is to certify that the management system of</h6>
-                                    <br>
-                                    <div class="bname"
-                                        style="font-size: {{ isset($businessSize) ? @$businessSize . 'px' : '80px' }};">
-                                        {{ $data->business_name }}</div><br>
+                                <div id="canvasElement" class="cert-text pb-5">
+                                    <div class="bname">
+                                        <div class="first"
+                                            style="font-size: {{ isset($businessSize) ? @$businessSize . 'px' : '80px' }};">
+                                            {{ $data->business_name }}</div>
+                                        @if ($data->business_name_secondary)
+                                            <div class="second"
+                                                style="font-size: {{ isset($businessSize) ? @$businessSize . 'px' : '80px' }}; ">
+                                                {{ $data->business_name_secondary }}</div>
+                                        @endif
 
+                                    </div>
 
-                                    <p class="registered"
-                                        style="font-size: {{ isset($registeredSize) ? @$registeredSize . 'px' : '30px' }};">
-                                        {{ $data->registered_site }}</p>
-                                    <h6>has been audited by ICV and found to be</h6>
-                                    <h6>in compliance with the requirements of the standard</h6>
+                                    <div class="registered">
+                                        <p
+                                            style="font-size: {{ isset($registeredSize) ? @$registeredSize . 'px' : '30px' }};">
+                                            {{ $data->registered_site }}</p><br><br>
+                                    </div>
+                                    {{-- <h6>has been audited by ICV and found to be</h6> --}}
+                                    {{-- <h6>in compliance with the requirements of the standard</h6> --}}
                                     <br><br>
-                                    <h1 style="color:#000;">{{ $data->standerd }}</h1><br>
-                                    <h5 style="color:#000;">(Quality Management System)</h5><br>
-                                    <h6>This certificate is valid for <br> the following scope:</h6>
-                                    <p class="scope"
-                                        style="font-size: {{ isset($scopeSize) ? @$scopeSize . 'px' : '30px' }};">
-                                        {{ $data->scope_registration }}</p><br><br>
+                                    <div class="standerd">
+                                        <div style="font-size:130px;color:navy;">{{ $data->standerd }}</div><br>
+                                        <h3 style="color:navy;">(Quality Management System)</h3><br>
+                                    </div>
+                                    {{-- <h6>This certificate is valid for <br> the following scope:</h6> --}}
+                                    <div class="scope">
+                                        <p style="font-size: {{ isset($scopeSize) ? @$scopeSize . 'px' : '30px' }};">
+                                            {{ $data->scope_registration }}</p><br><br>
+                                    </div>
 
 
-
-                                    <h6 class="justify">CERTIFICATE NO
-                                        :&nbsp;&nbsp;&nbsp;&nbsp; <span>
+                                    <div class="justify-data">
+                                        <h6 class="justify">
                                             {{ @$data->certificate_number ? @$data->certificate_number : 'DRAFT COPY' }}</span>
-                                    </h6>
-                                    <h6 class="justify">Date of initial registration
-                                        :&nbsp;&nbsp;&nbsp;&nbsp;<span>{{ @$data->date_registration ? @$data->date_registration : 'XX XXX XX' }}</span>
-                                    </h6>
-                                    <h6 class="justify">First Surveillance Audit on or before
-                                        :&nbsp;&nbsp;&nbsp;&nbsp;<span>{{ @$data->first_surveillance_audit ? @$data->first_surveillance_audit : 'XX XXX XX' }}</span>
-                                    </h6>
-                                    <h6 class="justify">Second Surveillance Audit on or before
-                                        :&nbsp;&nbsp;&nbsp;&nbsp;<span>{{ @$data->second_surveillance_audit ? @$data->second_surveillance_audit : 'XX XXX XX' }}</span>
-                                    </h6>
-                                    <h6 class="justify">Re-certification Due
-                                        :&nbsp;&nbsp;&nbsp;&nbsp;<span>{{ @$data->certification_due_date ? @$data->certification_due_date : 'XX XXX XX' }}</span>
-                                    </h6>
-
+                                        </h6>
+                                        <h6 class="justify">
+                                            <span>{{ @$data->date_registration ? @$data->date_registration : 'XX XXX XX' }}</span>
+                                        </h6>
+                                        <h6 class="justify">
+                                            <span>{{ @$data->first_surveillance_audit ? @$data->first_surveillance_audit : 'XX XXX XX' }}</span>
+                                        </h6>
+                                        <h6 class="justify">
+                                            <span>{{ @$data->second_surveillance_audit ? @$data->second_surveillance_audit : 'XX XXX XX' }}</span>
+                                        </h6>
+                                        <h6 class="justify">
+                                            <span>{{ @$data->certification_due_date ? @$data->certification_due_date : 'XX XXX XX' }}</span>
+                                        </h6>
+                                    </div>
                                     <br>
                                     <div class="dottedbox row">
 

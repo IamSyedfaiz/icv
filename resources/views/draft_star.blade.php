@@ -13,8 +13,8 @@
         }
 
         /* .cert-text {
-                    *font-family: 'Merriweather', serif;
-                } */
+                                        *font-family: 'Merriweather', serif;
+                                    } */
 
         h1 {
             font-size: 50px;
@@ -88,20 +88,29 @@
 
         .bname {
             position: absolute;
-            top: 80px;
-            /* left: 80px; */
+            top: 100px;
             text-align: center;
             width: 100%;
             padding: 0 200px;
-
-        }
-
-        .bname div {
+            height: 300px;
             display: flex;
             justify-content: center;
             flex-direction: column;
             align-items: center;
-            height: 300px;
+        }
+
+        .bname .first {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bname .second {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
         }
 
         .standerd {
@@ -203,10 +212,16 @@
                                 <div id="canvasElement" class="cert-text pb-5">
 
                                     <div class="bname">
-                                        <div
+                                        <div class="first"
                                             style="font-size: {{ isset($businessSize) ? @$businessSize . 'px' : '80px' }};">
                                             {{ $data->business_name }}</div>
-                                    </div>
+                                        @if ($data->business_name_secondary)
+                                            <div class="second"
+                                                style="font-size: {{ isset($businessSize) ? @$businessSize . 'px' : '80px' }}; ">
+                                                {{ $data->business_name_secondary }}</div>
+                                        @endif
+
+                                    </div><br>
 
                                     {{-- <h6>has been formally assessed by</h6> --}}
                                     {{-- <h2 style="color:#000;">Star Certifications UK Limited</h2> --}}

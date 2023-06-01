@@ -65,6 +65,12 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <label for="cat" class="form-label">Business Name Secondary</label>
+                                        <textarea class="form-control" name="business_name_secondary">{{ @$certification->business_name_secondary }}</textarea>
+                                    </div>
+                                </div>
 
                                 <div class="row">
                                     <div class="col-8">
@@ -135,7 +141,8 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Final
+                                    <button class="nav-link" data-bs-toggle="tab"
+                                        data-bs-target="#profile-settings">Final
                                         Certificate</button>
                                 </li>
 

@@ -129,6 +129,7 @@ class HomeController extends Controller
         $data->standerd = $request->standerd;
         $data->certificate_status = $request->certificate_status;
         $data->business_name = $request->business_name;
+        $data->business_name_secondary = $request->business_name_secondary;
         $data->scope_registration = $request->scope_registration;
         $data->registered_site = $request->registered_site;
         $data->certificate_number = $request->certificate_number;
@@ -140,11 +141,11 @@ class HomeController extends Controller
 
 
         if ($request->certificate_template == 'icv') {
-            return redirect('/create-icv/' . $data->id );
+            return redirect('/create-icv/' . $data->id);
         } elseif ($request->certificate_template == 'ici') {
-            return redirect('/create-ici/' . $data->id );
+            return redirect('/create-ici/' . $data->id);
         } elseif ($request->certificate_template == 'star') {
-            return redirect('/create-star/' . $data->id );
+            return redirect('/create-star/' . $data->id);
         } else {
             return redirect()->back();
         }

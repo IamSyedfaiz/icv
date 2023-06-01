@@ -78,21 +78,29 @@
 
         .bname {
             position: absolute;
-            top: 180px;
-            /* left: 80px; */
+            top: 200px;
             text-align: center;
-            /* width: 1700px; */
             width: 100%;
             padding: 0 200px;
-
-        }
-
-        .bname div {
+            height: 300px;
             display: flex;
             justify-content: center;
             flex-direction: column;
             align-items: center;
-            height: 300px;
+        }
+
+        .bname .first {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bname .second {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
         }
 
         .standerd {
@@ -192,9 +200,15 @@
                             <div id="page-container">
                                 <div id="canvasElement" class="cert-text pb-5">
                                     <div class="bname">
-                                        <div
+                                        <div class="first"
                                             style="font-size: {{ isset($businessSize) ? @$businessSize . 'px' : '80px' }};">
                                             {{ $data->business_name }}</div>
+                                        @if ($data->business_name_secondary)
+                                            <div class="second"
+                                                style="font-size: {{ isset($businessSize) ? @$businessSize . 'px' : '80px' }}; ">
+                                                {{ $data->business_name_secondary }}</div>
+                                        @endif
+
                                     </div>
 
                                     <div class="registered">
