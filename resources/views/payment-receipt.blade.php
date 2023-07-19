@@ -96,6 +96,10 @@
                                     @if (isset($validatedData['item_number']))
                                         @php
                                             $itemCount = $validatedData['item_number'];
+                                            $amount = $validatedData['amount'] * $validatedData['quantity'];
+                                            $subTotal = $validatedData['amount'] * $validatedData['quantity'];
+                                            $tax = ($validatedData['amount'] * $validatedData['quantity'] * $validatedData['tax']) / 100;
+                                            $total = $subTotal + $tax;
                                         @endphp
                                         <table class="table">
                                             <thead>
@@ -107,14 +111,14 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @for ($i = 1; $i <= $itemCount; $i++)
-                                                    <tr>
-                                                        <td>{{ $i }}</td>
-                                                        <td>#</td>
-                                                        <td>$0.00</td>
-                                                        <td>$0.00</td>
-                                                    </tr>
-                                                @endfor
+                                                {{-- @for ($i = 1; $i <= $itemCount; $i++) --}}
+                                                <tr>
+                                                    <td>{{ $validatedData['item_number'] }}</td>
+                                                    <td>{{ $validatedData['quantity'] }}</td>
+                                                    <td>{{ number_format($validatedData['amount'], 2) }}</td>
+                                                    <td>{{ number_format($amount, 2) }}</td>
+                                                </tr>
+                                                {{-- @endfor --}}
                                             </tbody>
                                         </table>
                                     @else
@@ -124,10 +128,13 @@
                                 </div>
                                 <div class="d-flex justify-content-end align-content-end w-100">
                                     <div class="">
-                                        <h5>Sub Total : 0.00</h5>
-                                        <h5>Fees/Diccounts : 0.00</h5>
-                                        <h5>Tax : 0.00</h5>
-                                        <h5>Total : 0.00</h5>
+                                        <h5>Sub Total : {{ number_format($subTotal, 2) }}
+                                        </h5>
+                                        <h5>Fees/Discounts : 0.00</h5>
+                                        <h5>Tax({{ $validatedData['tax'] }}%) :
+                                            {{ number_format($tax, 2) }}
+                                        </h5>
+                                        <h5>Total : {{ number_format($total, 2) }} </h5>
                                     </div>
                                 </div>
 
