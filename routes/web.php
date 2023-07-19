@@ -23,40 +23,40 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/add-user', [HomeController::class, 'add_user'])->name('add.user');
-Route::get('/all-user', [HomeController::class, 'all_user'])->name('all.user');
-Route::post('/create-user', [UserController::class, 'create_user'])->name('create.user');
+Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/add-user', [HomeController::class, 'add_user'])->name('add.user')->middleware('auth');
+Route::get('/all-user', [HomeController::class, 'all_user'])->name('all.user')->middleware('auth');
+Route::post('/create-user', [UserController::class, 'create_user'])->name('create.user')->middleware('auth');
 
 // consultant
-Route::get('/add-consultant', [HomeController::class, 'add_consultant'])->name('add.consultant');
-Route::get('/all-consultant', [HomeController::class, 'all_consultant'])->name('all.consultant');
-Route::get('/view-draft-cert', [HomeController::class, 'view_draft_cert'])->name('view.draft.cert');
-Route::get('/add-draft-cert/{id}', [HomeController::class, 'add_draft_cert'])->name('add.draft.cert');
-Route::get('/edit-draft-cert/{id}', [HomeController::class, 'edit_draft_cert'])->name('edit.draft.cert');
-Route::post('/add-draft-cert', [HomeController::class, 'store_draft_cert'])->name('store.draft.cert');
-Route::post('/add-final-cert/{id}', [HomeController::class, 'store_final_cert'])->name('store.final.cert');
-Route::get('/all-certs', [HomeController::class, 'all_certs'])->name('all.certs');
-Route::get('/consultant/{id}', [HomeController::class, 'consultant'])->name('consultant');
-Route::get('/report', [HomeController::class, 'report'])->name('report');
-Route::post('/filter-report', [HomeController::class, 'filter_report'])->name('filter.report');
+Route::get('/add-consultant', [HomeController::class, 'add_consultant'])->name('add.consultant')->middleware('auth');
+Route::get('/all-consultant', [HomeController::class, 'all_consultant'])->name('all.consultant')->middleware('auth');
+Route::get('/view-draft-cert', [HomeController::class, 'view_draft_cert'])->name('view.draft.cert')->middleware('auth');
+Route::get('/add-draft-cert/{id}', [HomeController::class, 'add_draft_cert'])->name('add.draft.cert')->middleware('auth');
+Route::get('/edit-draft-cert/{id}', [HomeController::class, 'edit_draft_cert'])->name('edit.draft.cert')->middleware('auth');
+Route::post('/add-draft-cert', [HomeController::class, 'store_draft_cert'])->name('store.draft.cert')->middleware('auth');
+Route::post('/add-final-cert/{id}', [HomeController::class, 'store_final_cert'])->name('store.final.cert')->middleware('auth');
+Route::get('/all-certs', [HomeController::class, 'all_certs'])->name('all.certs')->middleware('auth');
+Route::get('/consultant/{id}', [HomeController::class, 'consultant'])->name('consultant')->middleware('auth');
+Route::get('/report', [HomeController::class, 'report'])->name('report')->middleware('auth');
+Route::post('/filter-report', [HomeController::class, 'filter_report'])->name('filter.report')->middleware('auth');
 
-Route::post('/changeActive/{id}/{status}', [UserController::class, 'changeActive'])->name('change.active');
-Route::post('/create-consultant', [UserController::class, 'create_consultant'])->name('create.consultant');
-Route::get('/create-icv/{id}', [UserController::class, 'create_icv'])->name('create.icv');
-Route::get('/create-ici/{id}', [UserController::class, 'create_ici'])->name('create.ici');
-Route::get('/create-star/{id}', [UserController::class, 'create_star'])->name('create.star');
-Route::get('/final-icv/{id}', [UserController::class, 'final_icv'])->name('final.icv');
-Route::get('/final-ici/{id}', [UserController::class, 'final_ici'])->name('final.ici');
-Route::get('/final-star/{id}', [UserController::class, 'final_star'])->name('final.star');
-Route::post('/upload_document', [UserController::class, 'uploadDocument'])->name('upload.document');
-Route::get('/delete_document/{id}', [UserController::class, 'deleteDocument'])->name('delete.document');
-Route::post('/upload_payment', [UserController::class, 'uploadPayment'])->name('upload.payment');
-Route::get('/consultant_payment', [UserController::class, 'consultantPayment'])->name('consultant.payment');
+Route::post('/changeActive/{id}/{status}', [UserController::class, 'changeActive'])->name('change.active')->middleware('auth');
+Route::post('/create-consultant', [UserController::class, 'create_consultant'])->name('create.consultant')->middleware('auth');
+Route::get('/create-icv/{id}', [UserController::class, 'create_icv'])->name('create.icv')->middleware('auth');
+Route::get('/create-ici/{id}', [UserController::class, 'create_ici'])->name('create.ici')->middleware('auth');
+Route::get('/create-star/{id}', [UserController::class, 'create_star'])->name('create.star')->middleware('auth');
+Route::get('/final-icv/{id}', [UserController::class, 'final_icv'])->name('final.icv')->middleware('auth');
+Route::get('/final-ici/{id}', [UserController::class, 'final_ici'])->name('final.ici')->middleware('auth');
+Route::get('/final-star/{id}', [UserController::class, 'final_star'])->name('final.star')->middleware('auth');
+Route::post('/upload_document', [UserController::class, 'uploadDocument'])->name('upload.document')->middleware('auth');
+Route::get('/delete_document/{id}', [UserController::class, 'deleteDocument'])->name('delete.document')->middleware('auth');
+Route::post('/upload_payment', [UserController::class, 'uploadPayment'])->name('upload.payment')->middleware('auth');
+Route::get('/consultant_payment', [UserController::class, 'consultantPayment'])->name('consultant.payment')->middleware('auth');
 
 // new new  
-Route::get('/create-invoice', [UserController::class, 'createInvoice'])->name('create.invoice');
-Route::post('/create-invoice', [UserController::class, 'storeInvoice'])->name('store.invoice');
+Route::get('/create-invoice', [UserController::class, 'createInvoice'])->name('create.invoice')->middleware('auth');
+Route::post('/create-invoice', [UserController::class, 'storeInvoice'])->name('store.invoice')->middleware('auth');
 
 
 
