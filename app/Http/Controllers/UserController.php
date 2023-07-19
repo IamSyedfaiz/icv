@@ -6,13 +6,15 @@ use App\Http\Helpers\Roles;
 use App\Models\Certification;
 use App\Models\Consultant;
 use App\Models\Document;
+use App\Models\Invoice;
 use App\Models\Payment;
 use App\Models\User;
+use Barryvdh\DomPDF\PDF as DomPDFPDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-
+use PDF;
 
 class UserController extends Controller
 {
@@ -298,5 +300,42 @@ class UserController extends Controller
         } else {
             return redirect()->back();
         }
+    }
+    public function createInvoice()
+    {
+        return view('create-invoice');
+    }
+    public function storeInvoice(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'invoice_number' => 'required',
+            'item_number' => 'required',
+            'amount' => 'required|numeric',
+            'tax' => 'required|numeric',
+            'quantity' => 'required|numeric',
+        ]);
+
+        // return $validatedData;
+
+        // Invoice::create($validatedData);
+
+        // Save the form data to the database in a single line
+        // $invoiceData = Invoice::create($validatedData);
+        // return view('store_invoice');
+        // return view('p');
+        // $data = [
+        //     'order' => $order,
+        //     'parts' => $parts,
+        //     'payment' => $payment,
+        //     'client' => $client,
+        // ];
+
+        $pdf = PDF::loadView('payment-receipt', compact('validatedData'));
+        // Return the PDF as a response
+        return $pdf->stream('payment_receipt.pdf');
     }
 }

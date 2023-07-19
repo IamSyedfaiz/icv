@@ -54,6 +54,12 @@ Route::get('/delete_document/{id}', [UserController::class, 'deleteDocument'])->
 Route::post('/upload_payment', [UserController::class, 'uploadPayment'])->name('upload.payment');
 Route::get('/consultant_payment', [UserController::class, 'consultantPayment'])->name('consultant.payment');
 
+// new new  
+Route::get('/create-invoice', [UserController::class, 'createInvoice'])->name('create.invoice');
+Route::post('/create-invoice', [UserController::class, 'storeInvoice'])->name('store.invoice');
+
+
+
 
 
 

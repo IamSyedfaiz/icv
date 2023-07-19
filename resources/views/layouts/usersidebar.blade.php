@@ -54,17 +54,27 @@
                   <i class="bi bi-calendar4-event"></i><span>Payment</span><i class="bi bi-chevron-down ms-auto"></i>
               </a>
               <ul id="events" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-
                   <li>
                       <a href="{{ route('consultant.payment') }}">
                           <i class="bi bi-circle"></i><span>View All</span>
                       </a>
                   </li>
-
               </ul>
           </li><!-- End Components Nav -->
 
 
+          <li class="nav-item">
+              <a class="nav-link collapsed" data-bs-target="#form" data-bs-toggle="collapse" href="#">
+                  <i class="bi bi-calendar4-event"></i><span>Form</span><i class="bi bi-chevron-down ms-auto"></i>
+              </a>
+              <ul id="form" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                  <li>
+                      <a href="{{ route('create.invoice') }}">
+                          <i class="bi bi-circle"></i><span>Invoice</span>
+                      </a>
+                  </li>
+              </ul>
+          </li><!-- End Components Nav -->
 
       </ul>
 
